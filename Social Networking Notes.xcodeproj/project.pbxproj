@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D022CDB17A94E1400A78423 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D022CD917A94E1400A78423 /* Model.xcdatamodeld */; };
+		4D364E7517D8D51B00354AE3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D364E7417D8D51B00354AE3 /* MainViewController.m */; };
+		4D364E7817D8DBF100354AE3 /* SortingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D364E7717D8DBF100354AE3 /* SortingViewController.m */; };
 		4DB3817C17893E5E00AAB49E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB3817B17893E5E00AAB49E /* UIKit.framework */; };
 		4DB3817E17893E5E00AAB49E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB3817D17893E5E00AAB49E /* Foundation.framework */; };
 		4DB3818017893E5E00AAB49E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB3817F17893E5E00AAB49E /* CoreGraphics.framework */; };
@@ -18,15 +21,14 @@
 		4DB3819217893E5E00AAB49E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DB3819117893E5E00AAB49E /* Default-568h@2x.png */; };
 		4DB3819517893E5E00AAB49E /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DB3819317893E5E00AAB49E /* MainStoryboard_iPhone.storyboard */; };
 		4DB3819817893E5E00AAB49E /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DB3819617893E5E00AAB49E /* MainStoryboard_iPad.storyboard */; };
-		4DB3819B17893E5E00AAB49E /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB3819A17893E5E00AAB49E /* FirstViewController.m */; };
-		4DB3819D17893E5E00AAB49E /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DB3819C17893E5E00AAB49E /* first.png */; };
-		4DB3819F17893E5E00AAB49E /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DB3819E17893E5E00AAB49E /* first@2x.png */; };
-		4DB381A217893E5E00AAB49E /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB381A117893E5E00AAB49E /* SecondViewController.m */; };
-		4DB381A417893E5E00AAB49E /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DB381A317893E5E00AAB49E /* second.png */; };
-		4DB381A617893E5E00AAB49E /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DB381A517893E5E00AAB49E /* second@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D022CDA17A94E1400A78423 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		4D364E7317D8D51B00354AE3 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		4D364E7417D8D51B00354AE3 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		4D364E7617D8DBF100354AE3 /* SortingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortingViewController.h; sourceTree = "<group>"; };
+		4D364E7717D8DBF100354AE3 /* SortingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortingViewController.m; sourceTree = "<group>"; };
 		4DB3817817893E5E00AAB49E /* Social Networking Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Social Networking Notes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DB3817B17893E5E00AAB49E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4DB3817D17893E5E00AAB49E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -42,14 +44,6 @@
 		4DB3819117893E5E00AAB49E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4DB3819417893E5E00AAB49E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		4DB3819717893E5E00AAB49E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		4DB3819917893E5E00AAB49E /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		4DB3819A17893E5E00AAB49E /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		4DB3819C17893E5E00AAB49E /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
-		4DB3819E17893E5E00AAB49E /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		4DB381A017893E5E00AAB49E /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		4DB381A117893E5E00AAB49E /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
-		4DB381A317893E5E00AAB49E /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
-		4DB381A517893E5E00AAB49E /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +60,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D364E7217D8D4BE00354AE3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4D364E7617D8DBF100354AE3 /* SortingViewController.h */,
+				4D364E7717D8DBF100354AE3 /* SortingViewController.m */,
+				4D364E7317D8D51B00354AE3 /* MainViewController.h */,
+				4D364E7417D8D51B00354AE3 /* MainViewController.m */,
+			);
+			name = Controller;
+			path = controller;
+			sourceTree = "<group>";
+		};
+		4D87AEE417A8FBA400F66084 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4D022CD917A94E1400A78423 /* Model.xcdatamodeld */,
+			);
+			name = Model;
+			path = model;
+			sourceTree = "<group>";
+		};
 		4DB3816F17893E5E00AAB49E = {
 			isa = PBXGroup;
 			children = (
@@ -100,14 +115,9 @@
 				4DB3818B17893E5E00AAB49E /* AppDelegate.m */,
 				4DB3819317893E5E00AAB49E /* MainStoryboard_iPhone.storyboard */,
 				4DB3819617893E5E00AAB49E /* MainStoryboard_iPad.storyboard */,
-				4DB3819917893E5E00AAB49E /* FirstViewController.h */,
-				4DB3819A17893E5E00AAB49E /* FirstViewController.m */,
-				4DB3819C17893E5E00AAB49E /* first.png */,
-				4DB3819E17893E5E00AAB49E /* first@2x.png */,
-				4DB381A017893E5E00AAB49E /* SecondViewController.h */,
-				4DB381A117893E5E00AAB49E /* SecondViewController.m */,
-				4DB381A317893E5E00AAB49E /* second.png */,
-				4DB381A517893E5E00AAB49E /* second@2x.png */,
+				4D364E7217D8D4BE00354AE3 /* Controller */,
+				4D87AEE417A8FBA400F66084 /* Model */,
+				4DB381AC17893EC400AAB49E /* Images */,
 				4DB3818217893E5E00AAB49E /* Supporting Files */,
 			);
 			path = "Social Networking Notes";
@@ -125,6 +135,13 @@
 				4DB3819117893E5E00AAB49E /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4DB381AC17893EC400AAB49E /* Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,10 +201,6 @@
 				4DB3819217893E5E00AAB49E /* Default-568h@2x.png in Resources */,
 				4DB3819517893E5E00AAB49E /* MainStoryboard_iPhone.storyboard in Resources */,
 				4DB3819817893E5E00AAB49E /* MainStoryboard_iPad.storyboard in Resources */,
-				4DB3819D17893E5E00AAB49E /* first.png in Resources */,
-				4DB3819F17893E5E00AAB49E /* first@2x.png in Resources */,
-				4DB381A417893E5E00AAB49E /* second.png in Resources */,
-				4DB381A617893E5E00AAB49E /* second@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,8 +213,9 @@
 			files = (
 				4DB3818817893E5E00AAB49E /* main.m in Sources */,
 				4DB3818C17893E5E00AAB49E /* AppDelegate.m in Sources */,
-				4DB3819B17893E5E00AAB49E /* FirstViewController.m in Sources */,
-				4DB381A217893E5E00AAB49E /* SecondViewController.m in Sources */,
+				4D022CDB17A94E1400A78423 /* Model.xcdatamodeld in Sources */,
+				4D364E7517D8D51B00354AE3 /* MainViewController.m in Sources */,
+				4D364E7817D8DBF100354AE3 /* SortingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,8 +348,22 @@
 				4DB381AB17893E5E00AAB49E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4D022CD917A94E1400A78423 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4D022CDA17A94E1400A78423 /* Model.xcdatamodel */,
+			);
+			currentVersion = 4D022CDA17A94E1400A78423 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4DB3817017893E5E00AAB49E /* Project object */;
 }
