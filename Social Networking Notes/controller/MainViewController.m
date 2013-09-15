@@ -25,44 +25,9 @@
 	}
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder
+- (void)updateTableViewContent
 {
-	self = [super initWithCoder:aDecoder];
-	if (self) {
-		_sortingStyle = SNSortingStyleDueDate;
-	}
-	return self;
-}
-
-#pragma mark - UIStoryBoard
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-	if ([segue.identifier isEqualToString:@"showSortingMethod"]) {
-		SortingViewController *sortingViewController = (SortingViewController *)segue.destinationViewController;
-		sortingViewController.selectedSortingStyle = self.sortingStyle;
-		sortingViewController.delegate = self;
-	}
-}
-
-#pragma mark - UIViewController
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	
-	[self updateNavigationControllerTitle];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	[self.tableView setNeedsDisplay];
 }
 
 - (void)updateNavigationControllerTitle
@@ -92,6 +57,37 @@
 			break;
 	}
 	[self.navigationItem setTitle:newTitle];
+}
+
+#pragma mark - UIStoryBoard
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	if ([segue.identifier isEqualToString:@"showSortingMethod"]) {
+		SortingViewController *sortingViewController = (SortingViewController *)segue.destinationViewController;
+		sortingViewController.selectedSortingStyle = self.sortingStyle;
+		sortingViewController.delegate = self;
+	}
+}
+
+#pragma mark - UIViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	
+	self.sortingStyle = SNSortingStyleExpired;
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+ 
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Sorting view controller delegete

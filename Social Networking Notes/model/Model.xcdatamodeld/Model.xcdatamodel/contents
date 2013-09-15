@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12F37" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Contact" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="image" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="isVIP" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hasFB" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="isVIP" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="nickName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="fbAccount" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="FacebookAccount" inverseName="snAccount" inverseEntity="FacebookAccount" syncable="YES"/>
+        <relationship name="notesHaveCreated" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="sender" inverseEntity="Note" syncable="YES"/>
+        <relationship name="notesHaveRecieved" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="recievers" inverseEntity="Note" syncable="YES"/>
     </entity>
-    <entity name="Stick" syncable="YES"/>
+    <entity name="FacebookAccount" syncable="YES">
+        <attribute name="biography" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="birthday" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="coverImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="devices" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pictureImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="snAccount" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="fbAccount" inverseEntity="Contact" syncable="YES"/>
+    </entity>
+    <entity name="Multimedia" syncable="YES">
+        <attribute name="cloudUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="localUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="whichNotesInclude" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="media" inverseEntity="Note" syncable="YES"/>
+    </entity>
+    <entity name="Note" syncable="YES">
+        <attribute name="accepted" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="createTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="dueTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="read" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="media" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Multimedia" inverseName="whichNotesInclude" inverseEntity="Multimedia" syncable="YES"/>
+        <relationship name="recievers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Contact" inverseName="notesHaveRecieved" inverseEntity="Contact" syncable="YES"/>
+        <relationship name="sender" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="notesHaveCreated" inverseEntity="Contact" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="Contact" positionX="160" positionY="192" width="128" height="103"/>
-        <element name="Stick" positionX="322" positionY="216" width="128" height="43"/>
+        <element name="Contact" positionX="1035" positionY="198" width="128" height="180"/>
+        <element name="Note" positionX="783" positionY="162" width="128" height="216"/>
+        <element name="Multimedia" positionX="585" positionY="243" width="128" height="126"/>
+        <element name="FacebookAccount" positionX="1276" positionY="90" width="128" height="252"/>
     </elements>
 </model>
