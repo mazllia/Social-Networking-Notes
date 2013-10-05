@@ -6,16 +6,16 @@
 //  Copyright (c) 2013年 Dai Peng-Yang. All rights reserved.
 //
 
-#import "MainViewController.h"
+#import "OldNoteTVC.h"
 #import "SortingViewController.h"
 
-@interface MainViewController () <SortingViewControllerDelegate>
+@interface OldNoteTVC () <SortingViewControllerDelegate>
 @property (nonatomic) SNSortingStyle sortingStyle;
 
 - (void)updateNavigationControllerTitle;
 @end
 
-@implementation MainViewController
+@implementation OldNoteTVC
 
 - (void)setSortingStyle:(SNSortingStyle)sortingStyle
 {

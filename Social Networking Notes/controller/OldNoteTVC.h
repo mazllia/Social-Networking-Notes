@@ -6,6 +6,6 @@
 //  Copyright (c) 2013年 Dai Peng-Yang. All rights reserved.
 //
 
-@interface MainViewController : UITableViewController
+@interface OldNoteTVC : UITableViewController
 
 @end

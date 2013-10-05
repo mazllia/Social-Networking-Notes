@@ -8,8 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		4D022CDB17A94E1400A78423 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D022CD917A94E1400A78423 /* Model.xcdatamodeld */; };
-		4D364E7517D8D51B00354AE3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D364E7417D8D51B00354AE3 /* MainViewController.m */; };
+		4D364E7517D8D51B00354AE3 /* OldNoteTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D364E7417D8D51B00354AE3 /* OldNoteTVC.m */; };
 		4D364E7817D8DBF100354AE3 /* SortingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D364E7717D8DBF100354AE3 /* SortingViewController.m */; };
+		4D90EC8717F9E9F900086489 /* Issues.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4D90EC8617F9E9F800086489 /* Issues.rtf */; };
+		4D90EC8A17F9F4A800086489 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D90EC8917F9F4A800086489 /* Note.m */; };
+		4D90EC8D17F9F4A900086489 /* FacebookAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D90EC8C17F9F4A900086489 /* FacebookAccount.m */; };
+		4D90EC9017F9F4A900086489 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D90EC8F17F9F4A900086489 /* Contact.m */; };
+		4D90EC9317F9F4A900086489 /* Multimedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D90EC9217F9F4A900086489 /* Multimedia.m */; };
+		4D90EC9917F9FC3100086489 /* UINavigationController+Search.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D90EC9817F9FC3100086489 /* UINavigationController+Search.m */; };
 		4DB3817C17893E5E00AAB49E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB3817B17893E5E00AAB49E /* UIKit.framework */; };
 		4DB3817E17893E5E00AAB49E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB3817D17893E5E00AAB49E /* Foundation.framework */; };
 		4DB3818017893E5E00AAB49E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB3817F17893E5E00AAB49E /* CoreGraphics.framework */; };
@@ -21,14 +27,33 @@
 		4DB3819217893E5E00AAB49E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DB3819117893E5E00AAB49E /* Default-568h@2x.png */; };
 		4DB3819517893E5E00AAB49E /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DB3819317893E5E00AAB49E /* MainStoryboard_iPhone.storyboard */; };
 		4DB3819817893E5E00AAB49E /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DB3819617893E5E00AAB49E /* MainStoryboard_iPad.storyboard */; };
+		4DC36ECA17F9E3BF004BBEBD /* Note+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC36EC917F9E3BF004BBEBD /* Note+Create.m */; };
+		4DC47F8C17FB2585006D00BF /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DC47F8B17FB2585006D00BF /* Accounts.framework */; };
+		4DC47F8F17FB2982006D00BF /* AccountStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC47F8E17FB2982006D00BF /* AccountStore.m */; };
+		4DEA74C317E5AF5E004CB646 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEA74C217E5AF5E004CB646 /* CoreData.framework */; };
+		4DEA74DC17E60A3B004CB646 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DEA74DB17E60A3B004CB646 /* CoreDataTableViewController.m */; };
+		4DEA74DF17E60DCE004CB646 /* NoteTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DEA74DE17E60DCD004CB646 /* NoteTVC.m */; };
+		4DED360817E6156800CB7FF5 /* ServerCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DED360717E6156800CB7FF5 /* ServerCommunicator.m */; };
+		4DED360C17E617D400CB7FF5 /* DatabaseManagedDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DED360B17E617D400CB7FF5 /* DatabaseManagedDocument.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4D022CDA17A94E1400A78423 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		4D364E7317D8D51B00354AE3 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		4D364E7417D8D51B00354AE3 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		4D364E7617D8DBF100354AE3 /* SortingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortingViewController.h; sourceTree = "<group>"; };
-		4D364E7717D8DBF100354AE3 /* SortingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortingViewController.m; sourceTree = "<group>"; };
+		4D364E7317D8D51B00354AE3 /* OldNoteTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OldNoteTVC.h; path = ../OldNoteTVC.h; sourceTree = "<group>"; };
+		4D364E7417D8D51B00354AE3 /* OldNoteTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OldNoteTVC.m; path = ../OldNoteTVC.m; sourceTree = "<group>"; };
+		4D364E7617D8DBF100354AE3 /* SortingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SortingViewController.h; path = ../SortingViewController.h; sourceTree = "<group>"; };
+		4D364E7717D8DBF100354AE3 /* SortingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SortingViewController.m; path = ../SortingViewController.m; sourceTree = "<group>"; };
+		4D90EC8617F9E9F800086489 /* Issues.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Issues.rtf; sourceTree = "<group>"; };
+		4D90EC8817F9F4A800086489 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		4D90EC8917F9F4A800086489 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		4D90EC8B17F9F4A900086489 /* FacebookAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookAccount.h; sourceTree = "<group>"; };
+		4D90EC8C17F9F4A900086489 /* FacebookAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookAccount.m; sourceTree = "<group>"; };
+		4D90EC8E17F9F4A900086489 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
+		4D90EC8F17F9F4A900086489 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
+		4D90EC9117F9F4A900086489 /* Multimedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Multimedia.h; sourceTree = "<group>"; };
+		4D90EC9217F9F4A900086489 /* Multimedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Multimedia.m; sourceTree = "<group>"; };
+		4D90EC9717F9FC3100086489 /* UINavigationController+Search.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Search.h"; sourceTree = "<group>"; };
+		4D90EC9817F9FC3100086489 /* UINavigationController+Search.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Search.m"; sourceTree = "<group>"; };
 		4DB3817817893E5E00AAB49E /* Social Networking Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Social Networking Notes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DB3817B17893E5E00AAB49E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4DB3817D17893E5E00AAB49E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -44,6 +69,20 @@
 		4DB3819117893E5E00AAB49E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4DB3819417893E5E00AAB49E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		4DB3819717893E5E00AAB49E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		4DC36EC817F9E3BF004BBEBD /* Note+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Note+Create.h"; sourceTree = "<group>"; };
+		4DC36EC917F9E3BF004BBEBD /* Note+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Note+Create.m"; sourceTree = "<group>"; };
+		4DC47F8B17FB2585006D00BF /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		4DC47F8D17FB2982006D00BF /* AccountStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountStore.h; sourceTree = "<group>"; };
+		4DC47F8E17FB2982006D00BF /* AccountStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountStore.m; sourceTree = "<group>"; };
+		4DEA74C217E5AF5E004CB646 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		4DEA74DA17E60A3B004CB646 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
+		4DEA74DB17E60A3B004CB646 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
+		4DEA74DD17E60DCD004CB646 /* NoteTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteTVC.h; sourceTree = "<group>"; };
+		4DEA74DE17E60DCD004CB646 /* NoteTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteTVC.m; sourceTree = "<group>"; };
+		4DED360617E6156800CB7FF5 /* ServerCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerCommunicator.h; sourceTree = "<group>"; };
+		4DED360717E6156800CB7FF5 /* ServerCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerCommunicator.m; sourceTree = "<group>"; };
+		4DED360A17E617D400CB7FF5 /* DatabaseManagedDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseManagedDocument.h; sourceTree = "<group>"; };
+		4DED360B17E617D400CB7FF5 /* DatabaseManagedDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseManagedDocument.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +90,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DC47F8C17FB2585006D00BF /* Accounts.framework in Frameworks */,
+				4DEA74C317E5AF5E004CB646 /* CoreData.framework in Frameworks */,
 				4DB3817C17893E5E00AAB49E /* UIKit.framework in Frameworks */,
 				4DB3817E17893E5E00AAB49E /* Foundation.framework in Frameworks */,
 				4DB3818017893E5E00AAB49E /* CoreGraphics.framework in Frameworks */,
@@ -63,10 +104,13 @@
 		4D364E7217D8D4BE00354AE3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4D364E7617D8DBF100354AE3 /* SortingViewController.h */,
-				4D364E7717D8DBF100354AE3 /* SortingViewController.m */,
-				4D364E7317D8D51B00354AE3 /* MainViewController.h */,
-				4D364E7417D8D51B00354AE3 /* MainViewController.m */,
+				4D90EC9717F9FC3100086489 /* UINavigationController+Search.h */,
+				4D90EC9817F9FC3100086489 /* UINavigationController+Search.m */,
+				4DEA74DA17E60A3B004CB646 /* CoreDataTableViewController.h */,
+				4DEA74DB17E60A3B004CB646 /* CoreDataTableViewController.m */,
+				4DEA74DD17E60DCD004CB646 /* NoteTVC.h */,
+				4DEA74DE17E60DCD004CB646 /* NoteTVC.m */,
+				4DEA74E017E60DF4004CB646 /* Unused */,
 			);
 			name = Controller;
 			path = controller;
@@ -75,7 +119,10 @@
 		4D87AEE417A8FBA400F66084 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4DC36EC817F9E3BF004BBEBD /* Note+Create.h */,
+				4DC36EC917F9E3BF004BBEBD /* Note+Create.m */,
 				4D022CD917A94E1400A78423 /* Model.xcdatamodeld */,
+				4DEA74C117E5AE4E004CB646 /* Dynamic Generated */,
 			);
 			name = Model;
 			path = model;
@@ -84,6 +131,7 @@
 		4DB3816F17893E5E00AAB49E = {
 			isa = PBXGroup;
 			children = (
+				4D90EC8617F9E9F800086489 /* Issues.rtf */,
 				4DB3818117893E5E00AAB49E /* Social Networking Notes */,
 				4DB3817A17893E5E00AAB49E /* Frameworks */,
 				4DB3817917893E5E00AAB49E /* Products */,
@@ -101,6 +149,8 @@
 		4DB3817A17893E5E00AAB49E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4DC47F8B17FB2585006D00BF /* Accounts.framework */,
+				4DEA74C217E5AF5E004CB646 /* CoreData.framework */,
 				4DB3817B17893E5E00AAB49E /* UIKit.framework */,
 				4DB3817D17893E5E00AAB49E /* Foundation.framework */,
 				4DB3817F17893E5E00AAB49E /* CoreGraphics.framework */,
@@ -111,11 +161,16 @@
 		4DB3818117893E5E00AAB49E /* Social Networking Notes */ = {
 			isa = PBXGroup;
 			children = (
+				4DC47F8D17FB2982006D00BF /* AccountStore.h */,
+				4DC47F8E17FB2982006D00BF /* AccountStore.m */,
+				4DED360A17E617D400CB7FF5 /* DatabaseManagedDocument.h */,
+				4DED360B17E617D400CB7FF5 /* DatabaseManagedDocument.m */,
 				4DB3818A17893E5E00AAB49E /* AppDelegate.h */,
 				4DB3818B17893E5E00AAB49E /* AppDelegate.m */,
 				4DB3819317893E5E00AAB49E /* MainStoryboard_iPhone.storyboard */,
 				4DB3819617893E5E00AAB49E /* MainStoryboard_iPad.storyboard */,
 				4D364E7217D8D4BE00354AE3 /* Controller */,
+				4DED360917E6157000CB7FF5 /* Server */,
 				4D87AEE417A8FBA400F66084 /* Model */,
 				4DB381AC17893EC400AAB49E /* Images */,
 				4DB3818217893E5E00AAB49E /* Supporting Files */,
@@ -142,6 +197,44 @@
 			children = (
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		4DEA74C117E5AE4E004CB646 /* Dynamic Generated */ = {
+			isa = PBXGroup;
+			children = (
+				4D90EC9117F9F4A900086489 /* Multimedia.h */,
+				4D90EC9217F9F4A900086489 /* Multimedia.m */,
+				4D90EC8E17F9F4A900086489 /* Contact.h */,
+				4D90EC8F17F9F4A900086489 /* Contact.m */,
+				4D90EC8B17F9F4A900086489 /* FacebookAccount.h */,
+				4D90EC8C17F9F4A900086489 /* FacebookAccount.m */,
+				4D90EC8817F9F4A800086489 /* Note.h */,
+				4D90EC8917F9F4A800086489 /* Note.m */,
+			);
+			name = "Dynamic Generated";
+			path = "dynamic generated";
+			sourceTree = "<group>";
+		};
+		4DEA74E017E60DF4004CB646 /* Unused */ = {
+			isa = PBXGroup;
+			children = (
+				4D364E7617D8DBF100354AE3 /* SortingViewController.h */,
+				4D364E7717D8DBF100354AE3 /* SortingViewController.m */,
+				4D364E7317D8D51B00354AE3 /* OldNoteTVC.h */,
+				4D364E7417D8D51B00354AE3 /* OldNoteTVC.m */,
+			);
+			name = Unused;
+			path = unused;
+			sourceTree = "<group>";
+		};
+		4DED360917E6157000CB7FF5 /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				4DED360617E6156800CB7FF5 /* ServerCommunicator.h */,
+				4DED360717E6156800CB7FF5 /* ServerCommunicator.m */,
+			);
+			name = Server;
+			path = server;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,6 +294,7 @@
 				4DB3819217893E5E00AAB49E /* Default-568h@2x.png in Resources */,
 				4DB3819517893E5E00AAB49E /* MainStoryboard_iPhone.storyboard in Resources */,
 				4DB3819817893E5E00AAB49E /* MainStoryboard_iPad.storyboard in Resources */,
+				4D90EC8717F9E9F900086489 /* Issues.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,11 +305,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D90EC8A17F9F4A800086489 /* Note.m in Sources */,
+				4DC47F8F17FB2982006D00BF /* AccountStore.m in Sources */,
 				4DB3818817893E5E00AAB49E /* main.m in Sources */,
 				4DB3818C17893E5E00AAB49E /* AppDelegate.m in Sources */,
 				4D022CDB17A94E1400A78423 /* Model.xcdatamodeld in Sources */,
-				4D364E7517D8D51B00354AE3 /* MainViewController.m in Sources */,
+				4D90EC9017F9F4A900086489 /* Contact.m in Sources */,
+				4DC36ECA17F9E3BF004BBEBD /* Note+Create.m in Sources */,
+				4D364E7517D8D51B00354AE3 /* OldNoteTVC.m in Sources */,
+				4D90EC9917F9FC3100086489 /* UINavigationController+Search.m in Sources */,
 				4D364E7817D8DBF100354AE3 /* SortingViewController.m in Sources */,
+				4DEA74DC17E60A3B004CB646 /* CoreDataTableViewController.m in Sources */,
+				4DEA74DF17E60DCE004CB646 /* NoteTVC.m in Sources */,
+				4D90EC8D17F9F4A900086489 /* FacebookAccount.m in Sources */,
+				4DED360817E6156800CB7FF5 /* ServerCommunicator.m in Sources */,
+				4D90EC9317F9F4A900086489 /* Multimedia.m in Sources */,
+				4DED360C17E617D400CB7FF5 /* DatabaseManagedDocument.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +360,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -287,6 +393,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
