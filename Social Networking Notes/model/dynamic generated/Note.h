@@ -2,7 +2,7 @@
 //  Note.h
 //  Social Networking Notes
 //
-//  Created by 戴鵬洋 on 13/10/1.
+//  Created by 戴鵬洋 on 13/10/8.
 //  Copyright (c) 2013年 Dai Peng-Yang. All rights reserved.
 //
 
@@ -21,6 +21,7 @@
 @property (nonatomic, retain) NSNumber * read;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * uid;
+@property (nonatomic, retain) NSNumber * synced;
 @property (nonatomic, retain) NSOrderedSet *media;
 @property (nonatomic, retain) NSSet *recievers;
 @property (nonatomic, retain) Contact *sender;

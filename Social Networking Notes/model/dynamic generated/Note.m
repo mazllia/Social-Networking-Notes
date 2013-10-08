@@ -2,7 +2,7 @@
 //  Note.m
 //  Social Networking Notes
 //
-//  Created by 戴鵬洋 on 13/10/1.
+//  Created by 戴鵬洋 on 13/10/8.
 //  Copyright (c) 2013年 Dai Peng-Yang. All rights reserved.
 //
 
@@ -21,6 +21,7 @@
 @dynamic read;
 @dynamic title;
 @dynamic uid;
+@dynamic synced;
 @dynamic media;
 @dynamic recievers;
 @dynamic sender;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F37" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F45" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Contact" representedClassName="Contact" syncable="YES">
         <attribute name="hasFB" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="isVIP" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
@@ -35,6 +35,7 @@
         <attribute name="dueTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="read" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="synced" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="media" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Multimedia" inverseName="whichNotesInclude" inverseEntity="Multimedia" syncable="YES"/>
@@ -45,6 +46,6 @@
         <element name="Contact" positionX="1035" positionY="198" width="128" height="180"/>
         <element name="FacebookAccount" positionX="1276" positionY="90" width="128" height="252"/>
         <element name="Multimedia" positionX="585" positionY="243" width="128" height="126"/>
-        <element name="Note" positionX="783" positionY="162" width="128" height="252"/>
+        <element name="Note" positionX="783" positionY="162" width="128" height="270"/>
     </elements>
 </model>
