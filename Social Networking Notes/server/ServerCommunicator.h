@@ -25,5 +25,15 @@
  @return NoteUID; nil when failed.
  */
 - (NSString *)pushNotes:(Note *)note toRecivers:(NSArray *)recievers;
+/*
+ 
+*/
+- (NSString *)serverCreateWithSender:(NSString *)sender_uid
+                            receiver_list:(NSMutableArray *)receiver_uid_list
+                            sendTime:(NSString *)send_time
+                             dueTime:(NSString *)alert_time
+                       mediaFileName:(NSMutableArray *) file_name_list
+                             context:(NSString *)context
+                            location:(NSString*) location;
 
 @end
