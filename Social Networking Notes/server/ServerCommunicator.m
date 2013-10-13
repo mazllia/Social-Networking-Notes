@@ -78,16 +78,33 @@
  @em BUG
  Need decision: how the note uid passes
  */
-- (NSString *)serverCreateWithSender:(NSString *)senderUID
-							reciever:(NSString *)recieverUID
-							 dueTime:(NSDate *)dueTime
-							   title:(NSString *)title
-					   mediaFileName:(NSString *)mediaFileName
-{
-	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@=%@&%@=%@&%@=%@&%@=%@&%@=%@", pushURL, kSenderUID, senderUID, kRecieverUID, recieverUID, kDueTime, dueTime, kTitle, title, kMediaFileName, mediaFileName] relativeToURL:serverRootURL];
-	[NSURLRequest requestWithURL:url];
-	/// @em bug
-	// Get the NoteUID
+- (NSString *)serverCreateWithSender:(NSString *)sender_uid
+                       receiver_list:(NSMutableArray *)receiver_uid_list
+                            sendTime:(NSString *)send_time
+                             dueTime:(NSString *)alert_time
+                       mediaFileName:(NSMutableArray *) file_name_list
+                             context:(NSString *)context
+                            location:(NSString*) location{
+    
+    	NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
+    	[data setValue:sender_uid forKey:@"sender_uid" ];
+    	[data setValue:receiver_uid_list forKey:@"receiver_uid_list" ];
+    	[data setValue:send_time forKey:@"send_time"];
+    	[data setValue:alert_time forKey:@"alert_time" ];
+    	[data setValue:file_name_list forKey:@"file_name_list" ];
+    	[data setValue:context forKey:@"context" ];
+    	[data setValue:location forKey:@"location" ];
+    
+    	NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data options:NSJSONWritingPrettyPrinted error:nil];
+    	NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+    	NSString *str =[NSString stringWithFormat:@"http://people.cs.nctu.edu.tw/~chiangcw/create_sticky.php?json_note=%@",jsonString];
+    	NSString* str2 =[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    	NSURL *url = [NSURL URLWithString:str2];
+    	//NSLog(@"%@",url);
+    
+    	NSString *response = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+    	return response;
 }
 
 /**
