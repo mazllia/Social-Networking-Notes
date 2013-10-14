@@ -85,26 +85,58 @@
                        mediaFileName:(NSMutableArray *) file_name_list
                              context:(NSString *)context
                             location:(NSString*) location{
+    //handle receiver_uid_list data
+    NSMutableArray *receiver_data = [[NSMutableArray alloc] init];
+    for(NSString * receiver in receiver_uid_list){
+        NSMutableDictionary *r =[[NSMutableDictionary alloc] init];
+        [r setValue:receiver forKey:@"receiver_uid" ];
+        [receiver_data addObject:r];
+    }
+    //handle file_name_list data
+    NSMutableArray *file_name_data = [[NSMutableArray alloc] init];
+    for(NSString * file_name in file_name_list){
+        NSMutableDictionary *f =[[NSMutableDictionary alloc] init];
+        [f setValue:file_name forKey:@"file_name" ];
+        [file_name_data addObject:f];
+    }
+    //tranform to json data
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
+    [data setValue:sender_uid forKey:@"sender_uid" ];
+    [data setValue:receiver_data forKey:@"receiver_uid_list" ];
+    [data setValue:send_time forKey:@"send_time"];
+    [data setValue:alert_time forKey:@"alert_time" ];
+    [data setValue:file_name_data forKey:@"file_name_list" ];
+    [data setValue:context forKey:@"context" ];
+    [data setValue:location forKey:@"location" ];
     
-    	NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
-    	[data setValue:sender_uid forKey:@"sender_uid" ];
-    	[data setValue:receiver_uid_list forKey:@"receiver_uid_list" ];
-    	[data setValue:send_time forKey:@"send_time"];
-    	[data setValue:alert_time forKey:@"alert_time" ];
-    	[data setValue:file_name_list forKey:@"file_name_list" ];
-    	[data setValue:context forKey:@"context" ];
-    	[data setValue:location forKey:@"location" ];
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     
-    	NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data options:NSJSONWritingPrettyPrinted error:nil];
-    	NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSString *str =[NSString stringWithFormat:@"http://people.cs.nctu.edu.tw/~chiangcw/create_sticky.php?json_note=%@",jsonString];
+    NSString* str2 =[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *url = [NSURL URLWithString:str2];
     
-    	NSString *str =[NSString stringWithFormat:@"http://people.cs.nctu.edu.tw/~chiangcw/create_sticky.php?json_note=%@",jsonString];
-    	NSString* str2 =[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    	NSURL *url = [NSURL URLWithString:str2];
-    	//NSLog(@"%@",url);
+    //開始與server 連線
+    NSString *response;
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setTimeoutInterval: 3.0]; // Will timeout after 3 seconds
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue currentQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               
+                               if (data != nil && error == nil)
+                               {
+                                   NSString *sourceHTML = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                   response = [NSString stringWithFormat:@"%@",sourceHTML];
+                               }
+                               else
+                               {
+                                   NSLog(@"error!");
+                               }
+                               
+    }];
     
-    	NSString *response = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
-    	return response;
+    return response;
 }
 
 /**
