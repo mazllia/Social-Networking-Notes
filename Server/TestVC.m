@@ -7,6 +7,7 @@
 //
 
 #import "TestVC.h"
+#import "DatabaseManagedDocument.h"
 
 @interface TestVC ()
 - (IBAction)buttonTapped;

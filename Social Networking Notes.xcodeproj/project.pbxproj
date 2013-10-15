@@ -11,8 +11,6 @@
 		4D180F7B1803E37B0062B130 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D180F7A1803E37B0062B130 /* Note.m */; };
 		4D364E7517D8D51B00354AE3 /* OldNoteTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D364E7417D8D51B00354AE3 /* OldNoteTVC.m */; };
 		4D364E7817D8DBF100354AE3 /* SortingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D364E7717D8DBF100354AE3 /* SortingViewController.m */; };
-		4D90EC8D17F9F4A900086489 /* FacebookAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D90EC8C17F9F4A900086489 /* FacebookAccount.m */; };
-		4D90EC9017F9F4A900086489 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D90EC8F17F9F4A900086489 /* Contact.m */; };
 		4D90EC9317F9F4A900086489 /* Multimedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D90EC9217F9F4A900086489 /* Multimedia.m */; };
 		4D90EC9917F9FC3100086489 /* UINavigationController+Search.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D90EC9817F9FC3100086489 /* UINavigationController+Search.m */; };
 		4DB3817C17893E5E00AAB49E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB3817B17893E5E00AAB49E /* UIKit.framework */; };
@@ -45,11 +43,14 @@
 		4DC36ECA17F9E3BF004BBEBD /* Note+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC36EC917F9E3BF004BBEBD /* Note+Create.m */; };
 		4DC47F8C17FB2585006D00BF /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DC47F8B17FB2585006D00BF /* Accounts.framework */; };
 		4DC47F8F17FB2982006D00BF /* AccountStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC47F8E17FB2982006D00BF /* AccountStore.m */; };
+		4DCBDBD6180D6F89009618A7 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DCBDBD5180D6F89009618A7 /* Contact.m */; };
 		4DEA74C317E5AF5E004CB646 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEA74C217E5AF5E004CB646 /* CoreData.framework */; };
 		4DEA74DC17E60A3B004CB646 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DEA74DB17E60A3B004CB646 /* CoreDataTableViewController.m */; };
 		4DEA74DF17E60DCE004CB646 /* NoteTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DEA74DE17E60DCD004CB646 /* NoteTVC.m */; };
 		4DED360817E6156800CB7FF5 /* ServerCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DED360717E6156800CB7FF5 /* ServerCommunicator.m */; };
 		4DED360C17E617D400CB7FF5 /* DatabaseManagedDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DED360B17E617D400CB7FF5 /* DatabaseManagedDocument.m */; };
+		4DFCAFE81804F67B009CBF0C /* Contact+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFCAFE71804F67B009CBF0C /* Contact+Create.m */; };
+		4DFCAFE91804F67B009CBF0C /* Contact+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFCAFE71804F67B009CBF0C /* Contact+Create.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,10 +61,6 @@
 		4D364E7417D8D51B00354AE3 /* OldNoteTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OldNoteTVC.m; path = ../OldNoteTVC.m; sourceTree = "<group>"; };
 		4D364E7617D8DBF100354AE3 /* SortingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SortingViewController.h; path = ../SortingViewController.h; sourceTree = "<group>"; };
 		4D364E7717D8DBF100354AE3 /* SortingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SortingViewController.m; path = ../SortingViewController.m; sourceTree = "<group>"; };
-		4D90EC8B17F9F4A900086489 /* FacebookAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookAccount.h; sourceTree = "<group>"; };
-		4D90EC8C17F9F4A900086489 /* FacebookAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookAccount.m; sourceTree = "<group>"; };
-		4D90EC8E17F9F4A900086489 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
-		4D90EC8F17F9F4A900086489 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
 		4D90EC9117F9F4A900086489 /* Multimedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Multimedia.h; sourceTree = "<group>"; };
 		4D90EC9217F9F4A900086489 /* Multimedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Multimedia.m; sourceTree = "<group>"; };
 		4D90EC9717F9FC3100086489 /* UINavigationController+Search.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Search.h"; sourceTree = "<group>"; };
@@ -99,6 +96,8 @@
 		4DC47F8B17FB2585006D00BF /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		4DC47F8D17FB2982006D00BF /* AccountStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountStore.h; sourceTree = "<group>"; };
 		4DC47F8E17FB2982006D00BF /* AccountStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountStore.m; sourceTree = "<group>"; };
+		4DCBDBD4180D6F89009618A7 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
+		4DCBDBD5180D6F89009618A7 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
 		4DEA74C217E5AF5E004CB646 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		4DEA74DA17E60A3B004CB646 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		4DEA74DB17E60A3B004CB646 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
@@ -108,6 +107,8 @@
 		4DED360717E6156800CB7FF5 /* ServerCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerCommunicator.m; sourceTree = "<group>"; };
 		4DED360A17E617D400CB7FF5 /* DatabaseManagedDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseManagedDocument.h; sourceTree = "<group>"; };
 		4DED360B17E617D400CB7FF5 /* DatabaseManagedDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseManagedDocument.m; sourceTree = "<group>"; };
+		4DFCAFE61804F67B009CBF0C /* Contact+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Contact+Create.h"; sourceTree = "<group>"; };
+		4DFCAFE71804F67B009CBF0C /* Contact+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Contact+Create.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +156,8 @@
 		4D87AEE417A8FBA400F66084 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4DFCAFE61804F67B009CBF0C /* Contact+Create.h */,
+				4DFCAFE71804F67B009CBF0C /* Contact+Create.m */,
 				4DC36EC817F9E3BF004BBEBD /* Note+Create.h */,
 				4DC36EC917F9E3BF004BBEBD /* Note+Create.m */,
 				4D022CD917A94E1400A78423 /* Model.xcdatamodeld */,
@@ -264,14 +267,12 @@
 		4DEA74C117E5AE4E004CB646 /* Dynamic Generated */ = {
 			isa = PBXGroup;
 			children = (
+				4DCBDBD4180D6F89009618A7 /* Contact.h */,
+				4DCBDBD5180D6F89009618A7 /* Contact.m */,
 				4D180F791803E37B0062B130 /* Note.h */,
 				4D180F7A1803E37B0062B130 /* Note.m */,
 				4D90EC9117F9F4A900086489 /* Multimedia.h */,
 				4D90EC9217F9F4A900086489 /* Multimedia.m */,
-				4D90EC8E17F9F4A900086489 /* Contact.h */,
-				4D90EC8F17F9F4A900086489 /* Contact.m */,
-				4D90EC8B17F9F4A900086489 /* FacebookAccount.h */,
-				4D90EC8C17F9F4A900086489 /* FacebookAccount.m */,
 			);
 			name = "Dynamic Generated";
 			path = "dynamic generated";
@@ -394,11 +395,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DCBDBD6180D6F89009618A7 /* Contact.m in Sources */,
 				4DC47F8F17FB2982006D00BF /* AccountStore.m in Sources */,
 				4DB3818817893E5E00AAB49E /* main.m in Sources */,
 				4DB3818C17893E5E00AAB49E /* AppDelegate.m in Sources */,
 				4D022CDB17A94E1400A78423 /* Model.xcdatamodeld in Sources */,
-				4D90EC9017F9F4A900086489 /* Contact.m in Sources */,
+				4DFCAFE81804F67B009CBF0C /* Contact+Create.m in Sources */,
 				4DC36ECA17F9E3BF004BBEBD /* Note+Create.m in Sources */,
 				4D364E7517D8D51B00354AE3 /* OldNoteTVC.m in Sources */,
 				4D180F7B1803E37B0062B130 /* Note.m in Sources */,
@@ -406,7 +408,6 @@
 				4D364E7817D8DBF100354AE3 /* SortingViewController.m in Sources */,
 				4DEA74DC17E60A3B004CB646 /* CoreDataTableViewController.m in Sources */,
 				4DEA74DF17E60DCE004CB646 /* NoteTVC.m in Sources */,
-				4D90EC8D17F9F4A900086489 /* FacebookAccount.m in Sources */,
 				4DED360817E6156800CB7FF5 /* ServerCommunicator.m in Sources */,
 				4D90EC9317F9F4A900086489 /* Multimedia.m in Sources */,
 				4DED360C17E617D400CB7FF5 /* DatabaseManagedDocument.m in Sources */,
@@ -425,6 +426,7 @@
 				4DBFDB9D180039D800627D62 /* DatabaseManagedDocument.m in Sources */,
 				4DBFDB991800379000627D62 /* TestVC.m in Sources */,
 				4DBFDB791800358900627D62 /* AppDelegate.m in Sources */,
+				4DFCAFE91804F67B009CBF0C /* Contact+Create.m in Sources */,
 				4DBFDB751800358900627D62 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

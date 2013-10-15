@@ -14,9 +14,4 @@
 	#import <UIKit/UIKit.h>
 	#import <Foundation/Foundation.h>
 
-	#import "DatabaseManagedDocument.h"
-	#import "AccountStore.h"
-	#import "Note+Create.h"
-	#import "ServerCommunicator.h"
-
 #endif
