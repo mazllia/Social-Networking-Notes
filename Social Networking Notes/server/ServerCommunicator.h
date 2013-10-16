@@ -7,23 +7,49 @@
 //
 
 #import <Foundation/Foundation.h>
-@class Note;
+
+/**
+ Key for JSON Array/Dictionary
+ 1. Note
+ 2. Multimedia
+ 3. Contact
+ */
+#define kNoteUID @"sticky_uid"
+#define kSenderUID @"sender_uid"
+#define KRecieverUIDList @"receiver_uid_list"
+#define kRecieverUID @"reciever_uid"
+#define kDueTime @"alert_time"
+#define kCreateTime @""
+#define kTitle @"context"
+#define kLocation @"location"
+#define kAccepted @""
+#define kRead @""
+#define kArchive @""
+
+#define kMediaType @""
+#define kMediaFileName @"file_name"
+
+#define kContactUID @""
+#define kFbAccountIdentifier @""
+#define kIsVIP @""
+#define kNickName @""
+
+#define kRecievingJSONArrayName @"json_note"
+#define kSendingJSONArrayName @"sticky_attribute_list"
 
 @interface ServerCommunicator : NSObject
 
 /**
  Get new notes from server.
- You should not call this function in mainThread
  @return array of notes
  */
-- (NSArray *)pullNotesWith:(NSString *)contactID;
+- (NSArray *)lastestNotes;
 
 /**
  Create new notes to server.
- You should not call this function in mainThread
  @param recievers: array of "Contact uid"
  @return NoteUID; nil when failed.
  */
-- (NSString *)pushNotes:(Note *)note toRecivers:(NSArray *)recievers;
+- (NSString *)pushNotes:(NSArray *)notes toRecivers:(NSArray *)recievers;
 
 @end

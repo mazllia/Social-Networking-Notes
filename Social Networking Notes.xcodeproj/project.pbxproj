@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4D022CDB17A94E1400A78423 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D022CD917A94E1400A78423 /* Model.xcdatamodeld */; };
-		4D180F7B1803E37B0062B130 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D180F7A1803E37B0062B130 /* Note.m */; };
 		4D364E7517D8D51B00354AE3 /* OldNoteTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D364E7417D8D51B00354AE3 /* OldNoteTVC.m */; };
 		4D364E7817D8DBF100354AE3 /* SortingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D364E7717D8DBF100354AE3 /* SortingViewController.m */; };
+		4D6197FD180E5D5E0088DD48 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6197FC180E5D5E0088DD48 /* Note.m */; };
+		4D71E6A0180D910900E03071 /* NSObject+ClassName.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D71E69F180D910900E03071 /* NSObject+ClassName.m */; };
 		4D90EC9317F9F4A900086489 /* Multimedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D90EC9217F9F4A900086489 /* Multimedia.m */; };
 		4D90EC9917F9FC3100086489 /* UINavigationController+Search.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D90EC9817F9FC3100086489 /* UINavigationController+Search.m */; };
 		4DB3817C17893E5E00AAB49E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB3817B17893E5E00AAB49E /* UIKit.framework */; };
@@ -55,12 +56,14 @@
 
 /* Begin PBXFileReference section */
 		4D022CDA17A94E1400A78423 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		4D180F791803E37B0062B130 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
-		4D180F7A1803E37B0062B130 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 		4D364E7317D8D51B00354AE3 /* OldNoteTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OldNoteTVC.h; path = ../OldNoteTVC.h; sourceTree = "<group>"; };
 		4D364E7417D8D51B00354AE3 /* OldNoteTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OldNoteTVC.m; path = ../OldNoteTVC.m; sourceTree = "<group>"; };
 		4D364E7617D8DBF100354AE3 /* SortingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SortingViewController.h; path = ../SortingViewController.h; sourceTree = "<group>"; };
 		4D364E7717D8DBF100354AE3 /* SortingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SortingViewController.m; path = ../SortingViewController.m; sourceTree = "<group>"; };
+		4D6197FB180E5D5E0088DD48 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		4D6197FC180E5D5E0088DD48 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		4D71E69E180D910900E03071 /* NSObject+ClassName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ClassName.h"; sourceTree = "<group>"; };
+		4D71E69F180D910900E03071 /* NSObject+ClassName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ClassName.m"; sourceTree = "<group>"; };
 		4D90EC9117F9F4A900086489 /* Multimedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Multimedia.h; sourceTree = "<group>"; };
 		4D90EC9217F9F4A900086489 /* Multimedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Multimedia.m; sourceTree = "<group>"; };
 		4D90EC9717F9FC3100086489 /* UINavigationController+Search.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Search.h"; sourceTree = "<group>"; };
@@ -156,6 +159,8 @@
 		4D87AEE417A8FBA400F66084 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4D71E69E180D910900E03071 /* NSObject+ClassName.h */,
+				4D71E69F180D910900E03071 /* NSObject+ClassName.m */,
 				4DFCAFE61804F67B009CBF0C /* Contact+Create.h */,
 				4DFCAFE71804F67B009CBF0C /* Contact+Create.m */,
 				4DC36EC817F9E3BF004BBEBD /* Note+Create.h */,
@@ -267,10 +272,10 @@
 		4DEA74C117E5AE4E004CB646 /* Dynamic Generated */ = {
 			isa = PBXGroup;
 			children = (
+				4D6197FB180E5D5E0088DD48 /* Note.h */,
+				4D6197FC180E5D5E0088DD48 /* Note.m */,
 				4DCBDBD4180D6F89009618A7 /* Contact.h */,
 				4DCBDBD5180D6F89009618A7 /* Contact.m */,
-				4D180F791803E37B0062B130 /* Note.h */,
-				4D180F7A1803E37B0062B130 /* Note.m */,
 				4D90EC9117F9F4A900086489 /* Multimedia.h */,
 				4D90EC9217F9F4A900086489 /* Multimedia.m */,
 			);
@@ -396,14 +401,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DCBDBD6180D6F89009618A7 /* Contact.m in Sources */,
+				4D6197FD180E5D5E0088DD48 /* Note.m in Sources */,
 				4DC47F8F17FB2982006D00BF /* AccountStore.m in Sources */,
 				4DB3818817893E5E00AAB49E /* main.m in Sources */,
 				4DB3818C17893E5E00AAB49E /* AppDelegate.m in Sources */,
 				4D022CDB17A94E1400A78423 /* Model.xcdatamodeld in Sources */,
 				4DFCAFE81804F67B009CBF0C /* Contact+Create.m in Sources */,
+				4D71E6A0180D910900E03071 /* NSObject+ClassName.m in Sources */,
 				4DC36ECA17F9E3BF004BBEBD /* Note+Create.m in Sources */,
 				4D364E7517D8D51B00354AE3 /* OldNoteTVC.m in Sources */,
-				4D180F7B1803E37B0062B130 /* Note.m in Sources */,
 				4D90EC9917F9FC3100086489 /* UINavigationController+Search.m in Sources */,
 				4D364E7817D8DBF100354AE3 /* SortingViewController.m in Sources */,
 				4DEA74DC17E60A3B004CB646 /* CoreDataTableViewController.m in Sources */,

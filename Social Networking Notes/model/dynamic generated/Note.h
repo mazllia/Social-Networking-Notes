@@ -2,7 +2,7 @@
 //  Note.h
 //  Social Networking Notes
 //
-//  Created by 戴鵬洋 on 13/10/8.
+//  Created by 戴鵬洋 on 13/10/16.
 //  Copyright (c) 2013年 Dai Peng-Yang. All rights reserved.
 //
 
@@ -14,14 +14,14 @@
 @interface Note : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * accepted;
-@property (nonatomic, retain) NSNumber * archieved;
+@property (nonatomic, retain) NSNumber * archived;
 @property (nonatomic, retain) NSDate * createTime;
 @property (nonatomic, retain) NSDate * dueTime;
 @property (nonatomic, retain) NSString * location;
 @property (nonatomic, retain) NSNumber * read;
+@property (nonatomic, retain) NSNumber * synced;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * uid;
-@property (nonatomic, retain) NSNumber * synced;
 @property (nonatomic, retain) NSOrderedSet *media;
 @property (nonatomic, retain) NSSet *recievers;
 @property (nonatomic, retain) Contact *sender;
