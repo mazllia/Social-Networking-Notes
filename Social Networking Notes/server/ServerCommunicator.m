@@ -83,14 +83,15 @@
 
     //tranform to json data
 
-    NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
-    [data setValue:senderUID forKey:@"sender_uid" ];
-    [data setValue:receiverData forKey:@"receiver_uid_list" ];
-    [data setValue:createTime forKey:@"send_time"];
-    [data setValue:dueTime forKey:@"alert_time" ];
-    [data setValue:mediaFileNameData forKey:@"file_name_list" ];
-    [data setValue:context forKey:@"context" ];
-    [data setValue:location forKey:@"location" ];
+    NSDictionary *data = @{
+        @"sender_uid":senderUID,
+        @"receiver_uid_list":receiverData,
+        @"send_time":createTime,
+        @"alert_time":dueTime,
+        @"file_name_list":mediaFileNameData,
+        @"context":context,
+        @"location":location
+    };
 
     
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data options:NSJSONWritingPrettyPrinted error:nil];
