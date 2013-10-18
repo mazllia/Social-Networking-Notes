@@ -120,7 +120,82 @@
         return stickyUID;
     }
 }
+//
+//
+- (void)uploadFile:(NSString *)stickyUID fileData:(NSData *)paramData filePath:(NSString *)path fileName:(NSString *)Name{
 
+    self.receivedData=[[NSMutableData alloc] init];
+
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+    [request setTimeoutInterval:30];
+    [request setHTTPMethod:@"POST"];
+
+    NSString *boundary = @"0xKhTmLbOuNdArY";//NSURLConnection is very sensitive to format.
+    // set Content-Type in HTTP header
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
+    [request setValue:contentType forHTTPHeaderField: @"Content-Type"];
+    
+    // post body
+    NSMutableData *body = [NSMutableData data];
+
+    // add params (all params are strings)
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"path"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"%@\r\n",path] dataUsingEncoding:NSUTF8StringEncoding]];
+
+    // add image data
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n",@"File",Name] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:paramData];
+    [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+
+    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    // setting the body of the post to the reqeust
+    [request setHTTPBody:body];
+    // set the content-length
+    NSString *postLength = [NSString stringWithFormat:@"%d", [body length]];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+
+    // set URL
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@=%@",serverRootURL,pushSetMultimediaURL,kNoteUID,stickyUID]];
+    NSLog(@"%@",url);
+    [request setURL:url];
+    
+    [NSURLConnection connectionWithRequest:request delegate:self];
+    //進入NSURLConnection Delegate
+}
+
+//#pragma mark -
+
+#pragma mark NSURLConnection Delegate
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    // store data
+    NSLog(@"didReceiveResponse");
+    [self.receivedData setLength:0];      //通常在這裡會先清空回傳值的暫存
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+
+    NSLog(@"didReceiveData");
+    [self.receivedData appendData:data];    //可能多次收到多次回傳值，把新的回傳值加在原有回傳值後面
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+
+    // 錯誤例外處理
+    NSLog(@"didFailWithError");
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    
+    // disconnect
+    NSString *checkData=[NSString stringWithFormat:@"%@",[[NSString alloc] initWithData:self.receivedData encoding:NSUTF8StringEncoding]];
+    NSLog(@"%@",checkData);
+}
+//-----------------------------------------------------------------
 
 
 @end
