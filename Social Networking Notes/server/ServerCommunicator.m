@@ -77,7 +77,8 @@
     NSMutableArray *mediaFileNameData = [[NSMutableArray alloc] init];
     for(Multimedia* mediaFileName in mediaFiles){
         NSMutableDictionary *f =[[NSMutableDictionary alloc] init];
-        [f setValue:mediaFileName.fileName forKey:@"file_name" ];
+        NSString *fileName = [mediaFileName.localUrl lastPathComponent];
+        [f setValue:fileName forKey:@"file_name" ];
         [mediaFileNameData addObject:f];
     }
 
