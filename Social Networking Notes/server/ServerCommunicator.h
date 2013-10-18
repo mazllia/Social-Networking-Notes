@@ -26,14 +26,13 @@
  */
 - (NSString *)pushNotes:(Note *)note toRecivers:(NSArray *)recievers;
 /*
- 
+ upload note's file to server.
 */
-- (NSString *)serverCreateWithSender:(NSString *)sender_uid
-                            receiver_list:(NSMutableArray *)receiver_uid_list
-                            sendTime:(NSString *)send_time
-                             dueTime:(NSString *)alert_time
-                       mediaFileName:(NSMutableArray *) file_name_list
-                             context:(NSString *)context
-                            location:(NSString*) location;
+- (void)uploadFile:(NSString *)stickyUID fileData:(NSData *)paramData filePath:(NSString *)path fileName:(NSString *)Name
+
+/*
+ use for get information from uploading file
+*/
+@property (nonatomic,strong) NSMutableData *receivedData;
 
 @end
