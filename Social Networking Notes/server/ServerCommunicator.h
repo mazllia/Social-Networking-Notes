@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 @class Note;
 
-@interface ServerCommunicator : NSObject
+@interface ServerCommunicator : NSObject<NSURLConnectionDelegate,NSURLSessionDownloadDelegate>
 
 /**
  Get new notes from server.
@@ -29,10 +29,20 @@
  upload note's file to server.
 */
 - (void)uploadFile:(NSString *)stickyUID fileData:(NSData *)paramData filePath:(NSString *)path fileName:(NSString *)Name
+/*
+ dwonload note's file to server.
+*/
+- (void) downloadFile:(NSString *)stickyUID fileName:(NSString *)fileName fileSaveProsition:(NSURL *)SaveProsition
 
 /*
  use for get information from uploading file
 */
 @property (nonatomic,strong) NSMutableData *receivedData;
+
+/*
+ use for api downloadFile:fileName:fileSaveProsition:
+ 
+*/
+@property (nonatomic,strong) NSMutableData *SaveProsition;
 
 @end
