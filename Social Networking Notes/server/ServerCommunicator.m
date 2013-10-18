@@ -50,6 +50,27 @@
                         location:note.location];
 }
 
+- (NSArray *)serverGetNotesForUser:(NSString *)userID
+{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@=%@",serverRootURL,pullURL,kRecieverUID,userID]];
+    NSLog(@"%@",url);
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setTimeoutInterval: 2.0]; // Will timeout after 2 seconds
+    NSURLResponse *response;
+    NSError *error;
+    NSData *responseData =[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    if(error != nil){
+        NSLog(@"error");
+        return nil;
+    }
+
+    else{
+        NSArray *jsonData = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
+        return jsonData;
+    }
+}
+
 /**
  Push(1)
  @return NoteUID
