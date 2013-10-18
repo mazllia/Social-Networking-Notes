@@ -195,7 +195,53 @@
     NSString *checkData=[NSString stringWithFormat:@"%@",[[NSString alloc] initWithData:self.receivedData encoding:NSUTF8StringEncoding]];
     NSLog(@"%@",checkData);
 }
+
 //-----------------------------------------------------------------
 
+-(void) downloadFile:(NSString *)stickyUID fileName:(NSString *)fileName fileSaveProsition:(NSURL *) SaveProsition{
 
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@/%@",serverRootURL,pullMultimediaURL,stickyUID,fileName]];
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate:self delegateQueue: [NSOperationQueue mainQueue]];
+
+    NSURLSessionDownloadTask * downloadTask =[ defaultSession downloadTaskWithURL:url];
+    self.SaveProsition = SaveProsition;
+    [downloadTask resume];
+}
+
+//NSURLSessionDwonloadDelegate
+//-------------------
+-(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
+{
+    NSLog(@"Temporary File :%@\n", location);
+    NSError *err = nil;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+
+    if ([fileManager moveItemAtURL:location
+                             toURL:self.SaveProsition
+                             error: &err])
+
+    {
+        NSLog(@"File is saved to =%@",self.SaveProsition);
+    }
+    else
+    {
+        NSLog(@"failed to move: %@",[err userInfo]);
+    }
+}
+
+-(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
+
+{
+    //You can get progress here
+    NSLog(@"Received: %lld bytes (Downloaded: %lld bytes)  Expected: %lld bytes.\n",
+          bytesWritten, totalBytesWritten, totalBytesExpectedToWrite);
+}
+
+-(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes
+
+{
+    NSLog(@"download error");
+}
+//--------
 @end
