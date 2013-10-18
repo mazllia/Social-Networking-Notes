@@ -26,6 +26,11 @@
  */
 - (NSString *)pushNotes:(Note *)note toRecivers:(NSArray *)recievers;
 /*
+ receive note from server
+*/
+- (NSArray *)serverGetNotesForUser:(NSString *)userID
+
+/*
  upload note's file to server.
 */
 - (void)uploadFile:(NSString *)stickyUID fileData:(NSData *)paramData filePath:(NSString *)path fileName:(NSString *)Name
