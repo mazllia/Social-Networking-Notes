@@ -18,6 +18,7 @@
  */
 - (NSArray *)pullNotesWith:(NSString *)contactID;
 
+- (BOOL)modifySendedNote:(Note *)note noteUID:(NSString *)noteUID toRecivers:(NSArray *)recivers
 /**
  Create new notes to server.
  You should not call this function in mainThread
