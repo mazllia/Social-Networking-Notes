@@ -30,6 +30,8 @@
 #define noteStateURL @"check_notestate.php?"
 
 #define toReadURL @"already_read.php?"
+#define setVIPURL @"set_vip.php?"
+#define cancelVIPURL @"cancel_vip.php?"
 
 #define kSenderUID @"sender_uid"
 #define kRecieverUID @"reciever_uid"
@@ -385,6 +387,47 @@
     }
     else{
 
+        return 0;
+    }
+}
+
+- (BOOL) setSomenoeToVip:(NSString *)userUID someoneYouLove:(NSString *)LoveUID
+{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@=%@&%@=%@",serverRootURL,setVIPURL,kUserUID,userUID,kRecieverUID,LoveUID]];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setTimeoutInterval: 2.0]; // Will timeout after 2 seconds
+    NSURLResponse *response;
+    NSError *error;
+    NSData *responseData =[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSString *responseInformation=[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+    //NSLog(@"%@",responseInformation);
+    if(error == nil && [responseInformation isEqualToString:@"success"]){
+        //NSLog(@"success");
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+
+- (BOOL) cancelSomeoneVip:(NSString *)userUID someoneYouLoveBefore:(NSString *)LoveUID
+
+{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@=%@&%@=%@",serverRootURL,cancelVIPURL,kUserUID,userUID,kRecieverUID,LoveUID]];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setTimeoutInterval: 2.0]; // Will timeout after 2 seconds
+    NSURLResponse *response;
+    NSError *error;
+    NSData *responseData =[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSString *responseInformation=[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+    //NSLog(@"%@",responseInformation);
+    if(error == nil && [responseInformation isEqualToString:@"success"]){
+        //NSLog(@"success");
+        return 1;
+    }
+    else{
         return 0;
     }
 }
