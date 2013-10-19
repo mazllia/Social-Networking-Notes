@@ -40,6 +40,7 @@
 */
 - (void) downloadFile:(NSString *)stickyUID fileName:(NSString *)fileName fileSaveProsition:(NSURL *)SaveProsition
 
+-(NSString *) checkNoteifAccepted:(NSString *)noteUID receiverUID:(NSString *)receiverUID
 /*
  use for get information from uploading file
 */
