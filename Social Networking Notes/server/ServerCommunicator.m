@@ -25,7 +25,9 @@
 // kNoteUID
 #define pullInitMultimediaURL @"ask_upload_file.php?"
 // kNoteUID, kMediaFileName
-#define pullMultimediaURL @"UpLoad/%@/%@"
+#define pullMultimediaURL @"UpLoad/"
+
+#define ifAcceptedURL @"if_accepted.php?"
 
 #define kSenderUID @"sender_uid"
 #define kRecieverUID @"reciever_uid"
@@ -345,4 +347,23 @@
     NSLog(@"download error");
 }
 //--------
+-(NSString *) checkNoteifAccepted:(NSString *)noteUID receiverUID:(NSString *)receiverUID
+
+{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@=%@&%@=%@",serverRootURL,ifAccepted,kNoteUID,noteUID,kRecieverUID,receiverUID]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setTimeoutInterval: 2.0]; // Will timeout after 2 seconds
+    NSURLResponse *response;
+    NSError *error;
+    NSData *responseData =[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSString *responseInformation=[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+    //NSLog(@"%@",responseInformation);
+    if(error == nil ){
+        //NSLog(@"success");
+        return responseInformation;
+    }
+    else{
+        return nil;
+    }
+}
 @end
