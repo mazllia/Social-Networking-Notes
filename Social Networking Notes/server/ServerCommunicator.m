@@ -29,6 +29,8 @@
 
 #define noteStateURL @"check_notestate.php?"
 
+#define toReadURL @"already_read.php?"
+
 #define kSenderUID @"sender_uid"
 #define kRecieverUID @"reciever_uid"
 #define kNoteUID @"sticky_uid"
@@ -366,4 +368,25 @@
         return nil;
     }
 }
+
+- (BOOL) updateNoteStateToRead:(NSString *)noteUID userUID:(NSString *)userUID
+{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@=%@&%@=%@",serverRootURL,toReadURL,kNoteUID,noteUID,kRecieverUID,userUID]];
+
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setTimeoutInterval: 2.0]; // Will timeout after 2 seconds
+    NSURLResponse *response;
+    NSError *error;
+    NSData *responseData =[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSString *responseInformation=[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+    //NSLog(@"%@",responseInformation);
+    if(error == nil && [responseInformation isEqualToString:@"success"]){
+        return 1;
+    }
+    else{
+
+        return 0;
+    }
+}
+
 @end
