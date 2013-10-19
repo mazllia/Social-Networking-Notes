@@ -43,6 +43,10 @@
 -(NSString *) checkNoteState:(NSString *)noteUID receiverUID:(NSString *)receiverUID
 
 - (BOOL) updateNoteStateToRead:(NSString *)noteUID userUID:(NSString *)userUID
+
+- (BOOL) setSomenoeToVip:(NSString *)userUID someoneYouLove:(NSString *)LoveUID
+
+- (BOOL) cancelSomeoneVip:(NSString *)userUID someoneYouLoveBefore:(NSString *)LoveUID
 /*
  use for get information from uploading file
 */
