@@ -27,7 +27,7 @@
 // kNoteUID, kMediaFileName
 #define pullMultimediaURL @"UpLoad/"
 
-#define ifAcceptedURL @"if_accepted.php?"
+#define noteStateURL @"check_notestate.php?"
 
 #define kSenderUID @"sender_uid"
 #define kRecieverUID @"reciever_uid"
@@ -347,10 +347,10 @@
     NSLog(@"download error");
 }
 //--------
--(NSString *) checkNoteifAccepted:(NSString *)noteUID receiverUID:(NSString *)receiverUID
+-(NSString *) checkNoteState:(NSString *)noteUID receiverUID:(NSString *)receiverUID
 
 {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@=%@&%@=%@",serverRootURL,ifAccepted,kNoteUID,noteUID,kRecieverUID,receiverUID]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@=%@&%@=%@",serverRootURL,noteStateURL,kNoteUID,noteUID,kRecieverUID,receiverUID]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setTimeoutInterval: 2.0]; // Will timeout after 2 seconds
     NSURLResponse *response;
