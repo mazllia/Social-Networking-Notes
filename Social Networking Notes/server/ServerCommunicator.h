@@ -41,6 +41,8 @@
 - (void) downloadFile:(NSString *)stickyUID fileName:(NSString *)fileName fileSaveProsition:(NSURL *)SaveProsition
 
 -(NSString *) checkNoteState:(NSString *)noteUID receiverUID:(NSString *)receiverUID
+
+- (BOOL) updateNoteStateToRead:(NSString *)noteUID userUID:(NSString *)userUID
 /*
  use for get information from uploading file
 */
