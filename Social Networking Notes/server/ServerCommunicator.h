@@ -18,7 +18,7 @@
  */
 - (NSArray *)pullNotesWith:(NSString *)contactID;
 
-- (BOOL)modifySendedNote:(Note *)note noteUID:(NSString *)noteUID toRecivers:(NSArray *)recivers
+- (BOOL)modifySendedNote:(Note *)note noteUID:(NSString *)noteUID toRecivers:(NSArray *)recivers;
 /**
  Create new notes to server.
  You should not call this function in mainThread
@@ -29,24 +29,26 @@
 /*
  receive note from server
 */
-- (NSArray *)serverGetNotesForUser:(NSString *)userID
+- (NSArray *)serverGetNotesForUser:(NSString *)userID;
+
+- (NSArray *)getVipList:(NSString *)userUID;
 
 /*
  upload note's file to server.
 */
-- (void)uploadFile:(NSString *)stickyUID fileData:(NSData *)paramData filePath:(NSString *)path fileName:(NSString *)Name
+- (void)uploadFile:(NSString *)stickyUID fileData:(NSData *)paramData filePath:(NSString *)path fileName:(NSString *)Name;
 /*
  dwonload note's file to server.
 */
-- (void) downloadFile:(NSString *)stickyUID fileName:(NSString *)fileName fileSaveProsition:(NSURL *)SaveProsition
+- (void) downloadFile:(NSString *)stickyUID fileName:(NSString *)fileName fileSaveProsition:(NSURL *)SaveProsition;
 
--(NSString *) checkNoteState:(NSString *)noteUID receiverUID:(NSString *)receiverUID
+-(NSString *) checkNoteState:(NSString *)noteUID receiverUID:(NSString *)receiverUID;
 
-- (BOOL) updateNoteStateToRead:(NSString *)noteUID userUID:(NSString *)userUID
+- (BOOL) updateNoteStateToRead:(NSString *)noteUID userUID:(NSString *)userUID;
 
-- (BOOL) setSomenoeToVip:(NSString *)userUID someoneYouLove:(NSString *)LoveUID
+- (BOOL) setSomenoeToVip:(NSString *)userUID someoneYouLove:(NSString *)LoveUID;
 
-- (BOOL) cancelSomeoneVip:(NSString *)userUID someoneYouLoveBefore:(NSString *)LoveUID
+- (BOOL) cancelSomeoneVip:(NSString *)userUID someoneYouLoveBefore:(NSString *)LoveUID;
 /*
  use for get information from uploading file
 */
