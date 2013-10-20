@@ -22,6 +22,8 @@
 
 // kRecieverUID
 #define pullURL @"receive_sticky.php?"
+
+#define vipContentURL @"vip_content.php?"
 // kNoteUID
 #define pullInitMultimediaURL @"ask_upload_file.php?"
 // kNoteUID, kMediaFileName
