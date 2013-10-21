@@ -10,7 +10,14 @@
 
 @interface NSObject (ClassName)
 
+/**
+ Get the class name (e.g. NSArray, NSMutableDictionary) as a NSString
+ */
 + (NSString *)className;
+
+/**
+ Get the class's superclass name (e.g. NSArray, NSMutableDictionary) as a NSString
+ */
 + (NSString *)superClassName;
 
 @end

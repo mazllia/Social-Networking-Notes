@@ -17,7 +17,7 @@
 
 + (NSString *)superClassName
 {
-	return [[super class] description];
+	return [[self superclass] description];
 }
 
 @end
