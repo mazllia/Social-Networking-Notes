@@ -14,28 +14,28 @@
  2. Multimedia
  3. Contact
  */
-#define kNoteUID @"sticky_uid"
-#define kSenderUID @"sender_uid"
-#define KRecieverUIDList @"receiver_uid_list"
-#define kRecieverUID @"reciever_uid"
-#define kDueTime @"alert_time"
-#define kCreateTime @""
-#define kTitle @"context"
-#define kLocation @"location"
-#define kAccepted @""
-#define kRead @""
-#define kArchive @""
+#define ServerNoteUID @"sticky_uid"
+#define ServerNoteSenderUID @"sender_uid"
+#define ServerNoteRecieverUIDList @"receiver_uid_list"
+#define ServerNoteRecieverUID @"reciever_uid"
+#define ServerNoteDueTime @"alert_time"
+#define ServerNoteCreateTime @""
+#define ServerNoteTitle @"context"
+#define ServerNoteLocation @"location"
+#define ServerNoteAccepted @""
+#define ServerNoteRead @""
+#define ServerNoteArchive @""
 
-#define kMediaType @""
-#define kMediaFileName @"file_name"
+#define ServerMediaType @""
+#define ServerMediaFileName @"file_name"
 
-#define kContactUID @""
-#define kFbAccountIdentifier @""
-#define kIsVIP @""
-#define kNickName @""
+#define ServerContactUID @""
+#define ServerContactFbAccountIdentifier @""
+#define ServerContactIsVIP @""
+#define ServerContactNickName @""
 
-#define kRecievingJSONArrayName @"json_note"
-#define kSendingJSONArrayName @"sticky_attribute_list"
+#define ServerJSONArrayNameRecieving @"json_note"
+#define ServerJSONArrayNameSending @"sticky_attribute_list"
 
 @interface ServerCommunicator : NSObject
 
@@ -43,13 +43,13 @@
  Get new notes from server.
  @return array of notes
  */
-- (NSArray *)lastestNotes;
++ (NSArray *)lastestNotes;
 
 /**
  Create new notes to server.
- @param recievers: array of "Contact uid"
+ @param receivers array of "Contact uid"
  @return NoteUID; nil when failed.
  */
-- (NSString *)pushNotes:(NSArray *)notes toRecivers:(NSArray *)recievers;
++ (NSString *)pushNotes:(NSArray *)notes toReceivers:(NSArray *)receivers;
 
 @end
