@@ -18,7 +18,7 @@ static AccountStore *sharedAccount = nil;
 	if (!sharedAccount) {
 		sharedAccount = [[super allocWithZone:NULL] init];
 	}
-	return self;
+	return sharedAccount;
 }
 
 + (id)allocWithZone:(struct _NSZone *)zone

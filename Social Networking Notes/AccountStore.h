@@ -8,6 +8,10 @@
 
 #import <Accounts/Accounts.h>
 
+/**
+ Only for singleton, no more additional methods
+ */
+
 @interface AccountStore : ACAccountStore
 
 + (id)allocWithZone:(NSZone *)zone;
