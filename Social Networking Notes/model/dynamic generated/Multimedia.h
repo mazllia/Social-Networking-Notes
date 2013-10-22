@@ -2,7 +2,7 @@
 //  Multimedia.h
 //  Social Networking Notes
 //
-//  Created by 戴鵬洋 on 13/10/1.
+//  Created by 戴鵬洋 on 13/10/22.
 //  Copyright (c) 2013年 Dai Peng-Yang. All rights reserved.
 //
 
@@ -13,8 +13,7 @@
 
 @interface Multimedia : NSManagedObject
 
-@property (nonatomic, retain) NSString * cloudUrl;
-@property (nonatomic, retain) NSString * localUrl;
+@property (nonatomic, retain) NSString * fileName;
 @property (nonatomic, retain) NSString * type;
 @property (nonatomic, retain) NSSet *whichNotesInclude;
 @end

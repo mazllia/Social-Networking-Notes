@@ -16,8 +16,8 @@
  */
 #define ServerNoteUID @"sticky_uid"
 #define ServerNoteSenderUID @"sender_uid"
-#define ServerNoteRecieverUIDList @"receiver_uid_list"
-#define ServerNoteRecieverUID @"reciever_uid"
+#define ServerNoteReceiverUIDList @"receiver_uid_list"
+#define ServerNoteReceiverUID @"reciever_uid"
 #define ServerNoteDueTime @"alert_time"
 #define ServerNoteCreateTime @""
 #define ServerNoteTitle @"context"
@@ -37,19 +37,59 @@
 #define ServerJSONArrayNameRecieving @"json_note"
 #define ServerJSONArrayNameSending @"sticky_attribute_list"
 
-@interface ServerCommunicator : NSObject
+@class Note;
 
-/**
- Get new notes from server.
- @return array of notes
+@interface ServerCommunicator : NSObject<NSURLConnectionDelegate,NSURLSessionDownloadDelegate>
+
+/*
+ use for get information from uploading file
  */
-+ (NSArray *)lastestNotes;
+@property (nonatomic,strong) NSMutableData *receivedData;
+
+/*
+ use for api downloadFile:fileName:fileSaveProsition:
+ */
+@property (nonatomic,strong) NSURL *saveProsition;
+
+#pragma mark - Note
+
+- (BOOL)modifySendedNote:(Note *)note noteUID:(NSString *)noteUID toReceivers:(NSArray *)receivers;
 
 /**
  Create new notes to server.
  @param receivers array of "Contact uid"
  @return NoteUID; nil when failed.
  */
-+ (NSString *)pushNotes:(NSArray *)notes toReceivers:(NSArray *)receivers;
+- (NSString *)pushNotes:(Note *)note toReceivers:(NSArray *)receivers;
+
+/*
+ Get new notes from server.
+ @return array of notes
+ */
+- (NSArray *)serverGetNotesForUser:(NSString *)userID;
+
+-(NSString *) checkNoteState:(NSString *)noteUID receiverUID:(NSString *)receiverUID;
+
+- (BOOL) updateNoteStateToRead:(NSString *)noteUID userUID:(NSString *)userUID;
+
+#pragma mark - Contact
+
+- (NSArray *)getVipList:(NSString *)userUID;
+
+- (BOOL) setSomenoeToVip:(NSString *)userUID someoneYouLove:(NSString *)LoveUID;
+
+- (BOOL) cancelSomeoneVip:(NSString *)userUID someoneYouLoveBefore:(NSString *)LoveUID;
+
+#pragma mark - Files
+
+/*
+ upload note's file to server.
+ */
+- (void)uploadFile:(NSString *)stickyUID fileData:(NSData *)paramData filePath:(NSString *)path fileName:(NSString *)Name;
+
+/*
+ dwonload note's file to server.
+ */
+- (void) downloadFile:(NSString *)stickyUID fileName:(NSString *)fileName fileSaveProsition:(NSURL *)saveProsition;
 
 @end
