@@ -10,7 +10,7 @@
 
 @class Contact;
 @interface DatabaseManagedDocument : UIManagedDocument
-- (void)fetchFromServer;
+//- (void)fetchFromServer;
 
 + (id)sharedDatabase;
 + (id)allocWithZone:(NSZone *)zone;

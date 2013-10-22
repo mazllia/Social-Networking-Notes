@@ -7,7 +7,7 @@
 //
 
 #import "DatabaseManagedDocument.h"
-#import "ServerCommunicator.h"
+//#import "ServerCommunicator.h"
 
 @implementation DatabaseManagedDocument
 static DatabaseManagedDocument *sharedDatabaseManagedDocument = nil;
@@ -23,7 +23,7 @@ static DatabaseManagedDocument *sharedDatabaseManagedDocument = nil;
 			  NSLog(@"Error creating managed document");
 			  return;
 		  }
-		  [self fetchFromServer];
+//		  [self fetchFromServer];
 	  }];
 	} else if (self.documentState == UIDocumentStateClosed) {
 		// exists on disk, but we need to open it
@@ -32,23 +32,23 @@ static DatabaseManagedDocument *sharedDatabaseManagedDocument = nil;
 				NSLog(@"Error creating managed document");
 				return;
 			}
-			[self fetchFromServer];
+//			[self fetchFromServer];
 		}];
 	} else if (self.documentState == UIDocumentStateNormal) {
 		// already open and ready to use
-		[self fetchFromServer];
+//		[self fetchFromServer];
 	}
 }
 
 #pragma mark - Server
 
-- (void)fetchFromServer
-{
-	ServerCommunicator *serverCommunicator = [[ServerCommunicator alloc] init];
-	// 1. If notes not sync, then push
-	// 2. Get new notes
-	[serverCommunicator pullNotesWith:<#(NSString *)#>]
-}
+//- (void)fetchFromServer
+//{
+//	ServerCommunicator *serverCommunicator = [[ServerCommunicator alloc] init];
+//	// 1. If notes not sync, then push
+//	// 2. Get new notes
+//	[serverCommunicator pullNotesWith:<#(NSString *)#>]
+//}
 
 #pragma mark - Singleton
 
@@ -57,12 +57,12 @@ static DatabaseManagedDocument *sharedDatabaseManagedDocument = nil;
 	if (!sharedDatabaseManagedDocument) {
 		sharedDatabaseManagedDocument = [[super allocWithZone:NULL] init];
 		
-		NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentationDirectory inDomains:NSUserDomainMask] lastObject];
+		NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 		[url URLByAppendingPathComponent:@"Default Database"];
 		sharedDatabaseManagedDocument = [[self alloc] initWithFileURL:url];
 		
 		[sharedDatabaseManagedDocument getDatabaseReadyFromDisk];
-		[sharedDatabaseManagedDocument fetchFromServer];
+//		[sharedDatabaseManagedDocument fetchFromServer];
 	}
 	return sharedDatabaseManagedDocument;
 }

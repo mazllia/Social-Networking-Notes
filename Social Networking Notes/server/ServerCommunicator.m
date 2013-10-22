@@ -7,34 +7,31 @@
 //
 
 #import "ServerCommunicator.h"
-#import "Contact.h"
+#import "AccountStore.h"
+#import "Contact+Create.h"
 #import "Multimedia.h"
 #import "Note+Create.h"
 // Server
 #define serverRootURL [NSURL URLWithString:@"http://people.cs.nctu.edu.tw/~chiangcw/"]
 
-// kSenderUID, kRecieverUID, kDueTime, kTitle, kMediaFileName
+// Push(1)
 #define pushURL @"create_sticky.php?"
-// kNoteUID
+// Push(2)
 #define pushSetMultimediaURL @"upload.php?"
 
-// kRecieverUID
+// Pull(1)
 #define pullURL @"receive_sticky.php?"
-// kNoteUID
+// Pull(2)
 #define pullInitMultimediaURL @"ask_upload_file.php?"
-// kNoteUID, kMediaFileName
+// Pull(2)
 #define pullMultimediaURL @"UpLoad/%@/%@"
 
-#define kSenderUID @"sender_uid"
-#define kRecieverUID @"reciever_uid"
-#define kNoteUID @"sticky_uid"
-#define kDueTime @"alert_time"
-#define kTitle @"context"
-#define kMediaFileName @"file_name"
+@interface ServerCommunicator ()
+@property (nonatomic) NSString *userUID;
+@end
 
 @implementation ServerCommunicator
-
-- (NSArray *)pullNotesWith:(NSString *)contactID
+- (NSArray *)lastestNotes
 {
 	/// @em BUG
 	// need __block?
@@ -42,7 +39,10 @@
 	
 	NSOperationQueue *opQueue = [[NSOperationQueue alloc] init];
 	[opQueue addOperationWithBlock:^{
-		for (NSDictionary *noteInfo in [self serverGetNotesForUser:contactID]) {
+		NSData *JSONData = [NSJSONSerialization dataWithJSONObject:[self serverGetNotesForUser:contactID]
+														   options:NSJSONReadingMutableContainers
+															 error:<#(NSError *__autoreleasing *)#>] ;
+		for (NSDictionary *noteInfo in ) {
 			Note *tmpNote = [[Note alloc] initWithRecievers:@[contactID]
 														uid:noteInfo[kNoteUID]
 													  title:noteInfo[kTitle]
@@ -58,7 +58,7 @@
 	
 }
 
-- (BOOL)pushNotes:(Note *)note toRecivers:(NSArray *)recievers
+- (NSString *)pushNotes:notes toRecivers:(NSArray *)recievers
 {
 	
 	for (Contact *contact in recievers) {
@@ -66,7 +66,19 @@
 	}
 }
 
-#pragma mark -
+#pragma mark - KVC
+- (NSString *)userUID
+{
+	if (!_userUID) {
+		NSArray *fbAccounts = [[AccountStore new] accountsWithAccountType:ACAccountTypeIdentifierFacebook];
+		if (!fbAccounts || fbAccounts.count != 1) {
+			[[NSException exceptionWithName:@"ServerCommunicator Error" reason:@"Not only one facebook account available!" userInfo:nil] raise];
+		} else {
+			_userUID = [(ACAccount *)[fbAccounts firstObject] identifier];
+		}
+	}
+	return _userUID;
+}
 
 #pragma mark - Server Internal Internet API
 // Warning: All server internal internet API shall be executed in background thread
@@ -78,6 +90,7 @@
  @em BUG
  Need decision: how the note uid passes
  */
+#define kMediaFileNameList @"file_name_list"
 - (NSString *)serverCreateWithSender:(NSString *)senderUID
 							reciever:(NSString *)recieverUID
 							 dueTime:(NSDate *)dueTime
@@ -108,7 +121,6 @@
  Pull(1)
  @return array of nsdictionary
  */
-#define kJSONArrayName sticky_attribute_list
 - (NSArray *)serverGetNotesForUser:(NSString *)userID
 {
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@=%@", pullURL, kRecieverUID, userID] relativeToURL:serverRootURL];

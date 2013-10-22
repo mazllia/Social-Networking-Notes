@@ -10,9 +10,10 @@
 		4D022CDB17A94E1400A78423 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D022CD917A94E1400A78423 /* Model.xcdatamodeld */; };
 		4D364E7517D8D51B00354AE3 /* OldNoteTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D364E7417D8D51B00354AE3 /* OldNoteTVC.m */; };
 		4D364E7817D8DBF100354AE3 /* SortingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D364E7717D8DBF100354AE3 /* SortingViewController.m */; };
-		4D6197FD180E5D5E0088DD48 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6197FC180E5D5E0088DD48 /* Note.m */; };
+		4D60092E1813A3870005EE9A /* Multimedia+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60092D1813A3870005EE9A /* Multimedia+Create.m */; };
+		4D6009341813AFE70005EE9A /* Multimedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6009331813AFE70005EE9A /* Multimedia.m */; };
+		4D6009371813AFE80005EE9A /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6009361813AFE80005EE9A /* Note.m */; };
 		4D71E6A0180D910900E03071 /* NSObject+ClassName.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D71E69F180D910900E03071 /* NSObject+ClassName.m */; };
-		4D90EC9317F9F4A900086489 /* Multimedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D90EC9217F9F4A900086489 /* Multimedia.m */; };
 		4D90EC9917F9FC3100086489 /* UINavigationController+Search.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D90EC9817F9FC3100086489 /* UINavigationController+Search.m */; };
 		4DB3817C17893E5E00AAB49E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB3817B17893E5E00AAB49E /* UIKit.framework */; };
 		4DB3817E17893E5E00AAB49E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB3817D17893E5E00AAB49E /* Foundation.framework */; };
@@ -25,21 +26,20 @@
 		4DB3819217893E5E00AAB49E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DB3819117893E5E00AAB49E /* Default-568h@2x.png */; };
 		4DB3819517893E5E00AAB49E /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DB3819317893E5E00AAB49E /* MainStoryboard_iPhone.storyboard */; };
 		4DB3819817893E5E00AAB49E /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DB3819617893E5E00AAB49E /* MainStoryboard_iPad.storyboard */; };
+		4DB7B17A1813F1120044CDC3 /* Storyboard.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = 4DBFDB95180036C300627D62 /* Storyboard.storyboard */; };
+		4DB7B17C1813F1120044CDC3 /* TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBFDB981800379000627D62 /* TestVC.m */; };
+		4DB7B17E1813F1120044CDC3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBFDB781800358900627D62 /* AppDelegate.m */; };
+		4DB7B17F1813F1120044CDC3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBFDB741800358900627D62 /* main.m */; };
+		4DB7B1801813F1360044CDC3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEA74C217E5AF5E004CB646 /* CoreData.framework */; };
+		4DB7B1811813F3970044CDC3 /* AccountStore.h in Sources */ = {isa = PBXBuildFile; fileRef = 4DC47F8D17FB2982006D00BF /* AccountStore.h */; };
+		4DB7B1821813F3970044CDC3 /* AccountStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC47F8E17FB2982006D00BF /* AccountStore.m */; };
+		4DB7B1841813F9060044CDC3 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB7B1831813F9060044CDC3 /* Social.framework */; };
 		4DBFDB6B1800358800627D62 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB3817D17893E5E00AAB49E /* Foundation.framework */; };
 		4DBFDB6C1800358800627D62 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB3817F17893E5E00AAB49E /* CoreGraphics.framework */; };
 		4DBFDB6D1800358800627D62 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB3817B17893E5E00AAB49E /* UIKit.framework */; };
 		4DBFDB731800358900627D62 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4DBFDB711800358900627D62 /* InfoPlist.strings */; };
-		4DBFDB751800358900627D62 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBFDB741800358900627D62 /* main.m */; };
-		4DBFDB791800358900627D62 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBFDB781800358900627D62 /* AppDelegate.m */; };
 		4DBFDB7B1800358900627D62 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DBFDB7A1800358900627D62 /* Images.xcassets */; };
 		4DBFDB96180036C300627D62 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DBFDB95180036C300627D62 /* Storyboard.storyboard */; };
-		4DBFDB991800379000627D62 /* TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBFDB981800379000627D62 /* TestVC.m */; };
-		4DBFDB9A180039D800627D62 /* AccountStore.h in Sources */ = {isa = PBXBuildFile; fileRef = 4DC47F8D17FB2982006D00BF /* AccountStore.h */; };
-		4DBFDB9B180039D800627D62 /* AccountStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC47F8E17FB2982006D00BF /* AccountStore.m */; };
-		4DBFDB9C180039D800627D62 /* DatabaseManagedDocument.h in Sources */ = {isa = PBXBuildFile; fileRef = 4DED360A17E617D400CB7FF5 /* DatabaseManagedDocument.h */; };
-		4DBFDB9D180039D800627D62 /* DatabaseManagedDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DED360B17E617D400CB7FF5 /* DatabaseManagedDocument.m */; };
-		4DBFDBA018003A0400627D62 /* Note+Create.h in Sources */ = {isa = PBXBuildFile; fileRef = 4DC36EC817F9E3BF004BBEBD /* Note+Create.h */; };
-		4DBFDBA118003A0400627D62 /* Note+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC36EC917F9E3BF004BBEBD /* Note+Create.m */; };
 		4DBFDBA518003C2A00627D62 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DC47F8B17FB2585006D00BF /* Accounts.framework */; };
 		4DC36ECA17F9E3BF004BBEBD /* Note+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC36EC917F9E3BF004BBEBD /* Note+Create.m */; };
 		4DC47F8C17FB2585006D00BF /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DC47F8B17FB2585006D00BF /* Accounts.framework */; };
@@ -51,7 +51,6 @@
 		4DED360817E6156800CB7FF5 /* ServerCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DED360717E6156800CB7FF5 /* ServerCommunicator.m */; };
 		4DED360C17E617D400CB7FF5 /* DatabaseManagedDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DED360B17E617D400CB7FF5 /* DatabaseManagedDocument.m */; };
 		4DFCAFE81804F67B009CBF0C /* Contact+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFCAFE71804F67B009CBF0C /* Contact+Create.m */; };
-		4DFCAFE91804F67B009CBF0C /* Contact+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFCAFE71804F67B009CBF0C /* Contact+Create.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,12 +59,14 @@
 		4D364E7417D8D51B00354AE3 /* OldNoteTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OldNoteTVC.m; path = ../OldNoteTVC.m; sourceTree = "<group>"; };
 		4D364E7617D8DBF100354AE3 /* SortingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SortingViewController.h; path = ../SortingViewController.h; sourceTree = "<group>"; };
 		4D364E7717D8DBF100354AE3 /* SortingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SortingViewController.m; path = ../SortingViewController.m; sourceTree = "<group>"; };
-		4D6197FB180E5D5E0088DD48 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
-		4D6197FC180E5D5E0088DD48 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		4D60092C1813A3870005EE9A /* Multimedia+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Multimedia+Create.h"; sourceTree = "<group>"; };
+		4D60092D1813A3870005EE9A /* Multimedia+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Multimedia+Create.m"; sourceTree = "<group>"; };
+		4D6009321813AFE70005EE9A /* Multimedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Multimedia.h; sourceTree = "<group>"; };
+		4D6009331813AFE70005EE9A /* Multimedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Multimedia.m; sourceTree = "<group>"; };
+		4D6009351813AFE80005EE9A /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		4D6009361813AFE80005EE9A /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 		4D71E69E180D910900E03071 /* NSObject+ClassName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ClassName.h"; sourceTree = "<group>"; };
 		4D71E69F180D910900E03071 /* NSObject+ClassName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ClassName.m"; sourceTree = "<group>"; };
-		4D90EC9117F9F4A900086489 /* Multimedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Multimedia.h; sourceTree = "<group>"; };
-		4D90EC9217F9F4A900086489 /* Multimedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Multimedia.m; sourceTree = "<group>"; };
 		4D90EC9717F9FC3100086489 /* UINavigationController+Search.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Search.h"; sourceTree = "<group>"; };
 		4D90EC9817F9FC3100086489 /* UINavigationController+Search.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Search.m"; sourceTree = "<group>"; };
 		4DB3817817893E5E00AAB49E /* Social Networking Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Social Networking Notes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +84,7 @@
 		4DB3819117893E5E00AAB49E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4DB3819417893E5E00AAB49E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		4DB3819717893E5E00AAB49E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		4DB7B1831813F9060044CDC3 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		4DBFDB6A1800358800627D62 /* Server.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Server.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DBFDB701800358900627D62 /* Server-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Server-Info.plist"; sourceTree = "<group>"; };
 		4DBFDB721800358900627D62 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -131,6 +133,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DB7B1841813F9060044CDC3 /* Social.framework in Frameworks */,
+				4DB7B1801813F1360044CDC3 /* CoreData.framework in Frameworks */,
 				4DBFDBA518003C2A00627D62 /* Accounts.framework in Frameworks */,
 				4DBFDB6C1800358800627D62 /* CoreGraphics.framework in Frameworks */,
 				4DBFDB6D1800358800627D62 /* UIKit.framework in Frameworks */,
@@ -159,6 +163,8 @@
 		4D87AEE417A8FBA400F66084 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4D60092C1813A3870005EE9A /* Multimedia+Create.h */,
+				4D60092D1813A3870005EE9A /* Multimedia+Create.m */,
 				4D71E69E180D910900E03071 /* NSObject+ClassName.h */,
 				4D71E69F180D910900E03071 /* NSObject+ClassName.m */,
 				4DFCAFE61804F67B009CBF0C /* Contact+Create.h */,
@@ -194,6 +200,7 @@
 		4DB3817A17893E5E00AAB49E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4DB7B1831813F9060044CDC3 /* Social.framework */,
 				4DC47F8B17FB2585006D00BF /* Accounts.framework */,
 				4DEA74C217E5AF5E004CB646 /* CoreData.framework */,
 				4DB3817B17893E5E00AAB49E /* UIKit.framework */,
@@ -272,12 +279,12 @@
 		4DEA74C117E5AE4E004CB646 /* Dynamic Generated */ = {
 			isa = PBXGroup;
 			children = (
-				4D6197FB180E5D5E0088DD48 /* Note.h */,
-				4D6197FC180E5D5E0088DD48 /* Note.m */,
+				4D6009351813AFE80005EE9A /* Note.h */,
+				4D6009361813AFE80005EE9A /* Note.m */,
+				4D6009321813AFE70005EE9A /* Multimedia.h */,
+				4D6009331813AFE70005EE9A /* Multimedia.m */,
 				4DCBDBD4180D6F89009618A7 /* Contact.h */,
 				4DCBDBD5180D6F89009618A7 /* Contact.m */,
-				4D90EC9117F9F4A900086489 /* Multimedia.h */,
-				4D90EC9217F9F4A900086489 /* Multimedia.m */,
 			);
 			name = "Dynamic Generated";
 			path = "dynamic generated";
@@ -401,11 +408,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DCBDBD6180D6F89009618A7 /* Contact.m in Sources */,
-				4D6197FD180E5D5E0088DD48 /* Note.m in Sources */,
 				4DC47F8F17FB2982006D00BF /* AccountStore.m in Sources */,
 				4DB3818817893E5E00AAB49E /* main.m in Sources */,
 				4DB3818C17893E5E00AAB49E /* AppDelegate.m in Sources */,
+				4D6009371813AFE80005EE9A /* Note.m in Sources */,
 				4D022CDB17A94E1400A78423 /* Model.xcdatamodeld in Sources */,
+				4D60092E1813A3870005EE9A /* Multimedia+Create.m in Sources */,
 				4DFCAFE81804F67B009CBF0C /* Contact+Create.m in Sources */,
 				4D71E6A0180D910900E03071 /* NSObject+ClassName.m in Sources */,
 				4DC36ECA17F9E3BF004BBEBD /* Note+Create.m in Sources */,
@@ -415,7 +423,7 @@
 				4DEA74DC17E60A3B004CB646 /* CoreDataTableViewController.m in Sources */,
 				4DEA74DF17E60DCE004CB646 /* NoteTVC.m in Sources */,
 				4DED360817E6156800CB7FF5 /* ServerCommunicator.m in Sources */,
-				4D90EC9317F9F4A900086489 /* Multimedia.m in Sources */,
+				4D6009341813AFE70005EE9A /* Multimedia.m in Sources */,
 				4DED360C17E617D400CB7FF5 /* DatabaseManagedDocument.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,16 +432,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DBFDBA018003A0400627D62 /* Note+Create.h in Sources */,
-				4DBFDBA118003A0400627D62 /* Note+Create.m in Sources */,
-				4DBFDB9A180039D800627D62 /* AccountStore.h in Sources */,
-				4DBFDB9B180039D800627D62 /* AccountStore.m in Sources */,
-				4DBFDB9C180039D800627D62 /* DatabaseManagedDocument.h in Sources */,
-				4DBFDB9D180039D800627D62 /* DatabaseManagedDocument.m in Sources */,
-				4DBFDB991800379000627D62 /* TestVC.m in Sources */,
-				4DBFDB791800358900627D62 /* AppDelegate.m in Sources */,
-				4DFCAFE91804F67B009CBF0C /* Contact+Create.m in Sources */,
-				4DBFDB751800358900627D62 /* main.m in Sources */,
+				4DB7B1811813F3970044CDC3 /* AccountStore.h in Sources */,
+				4DB7B1821813F3970044CDC3 /* AccountStore.m in Sources */,
+				4DB7B17A1813F1120044CDC3 /* Storyboard.storyboard in Sources */,
+				4DB7B17C1813F1120044CDC3 /* TestVC.m in Sources */,
+				4DB7B17E1813F1120044CDC3 /* AppDelegate.m in Sources */,
+				4DB7B17F1813F1120044CDC3 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
