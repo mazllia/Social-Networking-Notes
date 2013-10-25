@@ -28,7 +28,13 @@
 #define setVIPURL @"set_vip.php?"
 #define cancelVIPURL @"cancel_vip.php?"
 
-#define kUserUID @"user_uid"
+#define createAcountURL @"create_account.php?"
+#define askToBeFriendURL @"ask_friend.php?"
+#define receiveAskToBeFriendURL @"receive_friendAsk.php?"
+#define replyAskToBeFriendURL @"reply_askFriend.php?"
+#define receiveReplyAskToBeFriendURL @"receive_friendAskReply.php?"
+#define getContactListURL @"contact_list.php?"
+
 
 @implementation ServerCommunicator
 - (NSString *)pushNotes:(Note *)note toReceivers:(NSArray *)receivers
@@ -435,6 +441,148 @@
     }
     else{
         return 0;
+    }
+}
+
+- (NSString *)createAccount:(Contact *)account
+{
+    NSDictionary *data =@{
+        ServerContactNickName:account.nickName
+        };
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+
+    NSString *str =[NSString stringWithFormat:@"%@%@json_account=%@",serverRootURL,createAcountURL,jsonString];
+    NSString* str2 =[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *url = [NSURL URLWithString:str2];
+
+    //開始與server 連線
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setTimeoutInterval: 2.0]; // Will timeout after 2 seconds
+    NSURLResponse *response;
+    NSError *error;
+    NSData *responseData =[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    if(error != nil){
+        NSLog(@"error");
+        return nil;
+    } else{
+        NSString *contactUID=[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+        //NSLog(@"%@",stickyUID);
+        return contactUID;
+    }
+}
+
+- (NSArray *)getContactList:(NSString *)userUID
+{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@=%@",serverRootURL,getContactListURL,ServerNoteUserUID,userUID]];
+    NSLog(@"%@",url);
+    //開始與server 連線
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setTimeoutInterval: 2.0]; // Will timeout after 2 seconds
+    NSURLResponse *response;
+    NSError *error;
+    NSData *responseData =[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+
+    if(error == nil ){
+        NSLog(@"success");
+        NSString *r =[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+        NSLog(@"%@",r);
+        NSArray *jsonData = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
+        return jsonData;
+    } else{
+        return Nil;
+    }
+}
+
+
+- (NSString *)sendTheRequestToBeFriend:(NSString *)senderUID receiver:(NSString *)receiverUID
+{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@=%@&%@=%@",serverRootURL,askToBeFriendURL,ServerNoteSenderUID,senderUID,ServerNoteReceiverUID,receiverUID]];
+    NSLog(@"%@",url);
+
+    //開始與server 連線
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setTimeoutInterval: 2.0]; // Will timeout after 2 seconds
+    NSURLResponse *response;
+    NSError *error;
+    NSData *responseData =[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSString *r=[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+    if(error == nil && [r isEqualToString:@"success"]){
+        NSLog(@"success");
+        return @"success";
+    } else{
+        return Nil;
+    }
+}
+
+- (NSArray *)receiveTheRequestToBeFriend:(NSString *)userUID
+
+{
+
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@=%@",serverRootURL,receiveAskToBeFriendURL,ServerNoteUserUID,userUID]];
+    NSLog(@"%@",url);
+    //開始與server 連線
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setTimeoutInterval: 2.0]; // Will timeout after 2 seconds
+    NSURLResponse *response;
+    NSError *error;
+    NSData *responseData =[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    
+    if(error == nil ){
+        NSLog(@"success");
+        NSString *r =[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+        NSLog(@"%@",r);
+        NSArray *jsonData = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
+        
+        return jsonData;
+    } else{
+        return Nil;
+    }
+}
+
+- (NSString *)replyTheRequestToBeFriend:(NSString *)userUID senderUID:(NSString *)senderUID reply:(NSString *)reply
+
+{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@=%@&%@=%@&%@=%@",serverRootURL,replyAskToBeFriendURL,ServerNoteUserUID,userUID,ServerNoteSenderUID,senderUID,ServerContactReply,reply]];
+    NSLog(@"%@",url);
+    //開始與server 連線
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setTimeoutInterval: 2.0]; // Will timeout after 2 seconds
+    NSURLResponse *response;
+    NSError *error;
+    NSData *responseData =[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSString *r=[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+    if(error == nil && [r isEqualToString:@"success"]){
+        NSLog(@"success");
+        return @"success";
+    } else{
+        return Nil;
+    }
+}
+
+
+- (NSArray *)receiveTheReplyToBeFriend:(NSString *)userUID
+{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@=%@",serverRootURL,receiveReplyAskToBeFriendURL,ServerNoteUserUID,userUID]];
+    NSLog(@"%@",url);
+    //開始與server 連線
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setTimeoutInterval: 2.0]; // Will timeout after 2 seconds
+    NSURLResponse *response;
+    NSError *error;
+    NSData *responseData =[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    
+    if(error == nil ){
+        NSLog(@"success");
+        NSString *r =[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+        NSLog(@"%@",r);
+        
+        NSArray *jsonData = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
+
+        return jsonData;
+    } else{
+        return Nil;
     }
 }
 
