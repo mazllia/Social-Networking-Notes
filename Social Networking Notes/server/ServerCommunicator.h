@@ -14,6 +14,7 @@
  2. Multimedia
  3. Contact
  */
+#define ServerNoteUserUID @"user_uid"
 #define ServerNoteUID @"sticky_uid"
 #define ServerNoteSenderUID @"sender_uid"
 #define ServerNoteReceiverUIDList @"receiver_uid_list"
@@ -26,13 +27,14 @@
 #define ServerNoteRead @""
 #define ServerNoteArchive @""
 
-#define ServerMediaType @""
+#define ServerMediaType @"file_type"
 #define ServerMediaFileName @"file_name"
 
 #define ServerContactUID @""
-#define ServerContactFbAccountIdentifier @""
-#define ServerContactIsVIP @""
-#define ServerContactNickName @""
+#define ServerContactFbAccountIdentifier @"fb_uid"
+#define ServerContactIsVIP @"is_vip"
+#define ServerContactNickName @"nick_name"
+#define ServerContactReply @"reply"
 
 #define ServerJSONArrayNameRecieving @"json_note"
 #define ServerJSONArrayNameSending @"sticky_attribute_list"
@@ -79,6 +81,18 @@
 - (BOOL) setSomenoeToVip:(NSString *)userUID someoneYouLove:(NSString *)LoveUID;
 
 - (BOOL) cancelSomeoneVip:(NSString *)userUID someoneYouLoveBefore:(NSString *)LoveUID;
+
+- (NSString *)createAccount:(Contact *)account;
+
+- (NSArray *)getContactList:(NSString *)userUID;
+
+- (NSString *)sendTheRequestToBeFriend:(NSString *)senderUID receiver:(NSString *)receiverUID;
+
+- (NSArray *)receiveTheRequestToBeFriend:(NSString *)userUID;
+
+- (NSString *)replyTheRequestToBeFriend:(NSString *)userUID senderUID:(NSString *)senderUID reply:(NSString *)reply;
+
+- (NSArray *)receiveTheReplyToBeFriend:(NSString *)userUID;
 
 #pragma mark - Files
 
