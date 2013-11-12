@@ -16,7 +16,7 @@
 + (instancetype)noteWithServerInfo:(NSDictionary *)noteDictionary
 							sender:(Contact *)sender
 						 receivers:(NSArray *)receivers
-							 media:(NSOrderedSet *)media
+							 media:(NSArray *)media
 			inManagedObjectContext:(NSManagedObjectContext *)context
 {
 	id note;
@@ -37,6 +37,8 @@
 	 3. Valid
 	 */
 	if (!matches || [matches count]>1) {
+		if (noteDictionary[ServerNoteUID]==-1)
+			break;
 		[[NSException exceptionWithName:@"Note(Create) Fetch Error" reason:[err localizedDescription] userInfo:nil] raise];
 	} else if ([matches count]==0) {
 		note = [[self alloc] initWithServerInfo:noteDictionary sender:sender receivers:receivers media:media className:[self className] inManagedObjectContext:context];
@@ -57,7 +59,7 @@
 - (instancetype)initWithServerInfo:(NSDictionary *)noteDictionary
 							sender:(Contact *)sender
 						 receivers:(NSArray *)receivers
-							 media:(NSOrderedSet *)media
+							 media:(NSArray *)media
 						 className:(NSString *)className
 			inManagedObjectContext:(NSManagedObjectContext *)context
 {
@@ -79,7 +81,7 @@
 	// Deal with relationships: Contact & Multimedia
 	self.sender = sender;
 	[self addRecievers:[NSSet setWithArray:receivers]];
-	[self addMedia:media];
+	[self addMedia:[NSOrderedSet orderedSetWithArray:media]];
 	
 	return self;
 }

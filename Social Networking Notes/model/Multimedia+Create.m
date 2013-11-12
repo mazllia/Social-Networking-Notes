@@ -22,11 +22,8 @@
 	/*
 	 Perform fetch from disk
 	 */
-	NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(Multimedia *evaluatedObject, NSDictionary *bindings) {
-		return [[evaluatedObject.localUrl lastPathComponent] isEqualToString:multimediaDictionary[ServerMediaFileName]];
-	}];
 	NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[self className]];
-	[fetchRequest setPredicate: predicate];
+	[fetchRequest setPredicate: [NSPredicate predicateWithFormat:@"fileName = %@", multimediaDictionary[ServerMediaFileName]]];
 	
 	NSError *err;
 	NSArray *matches = [context executeFetchRequest:fetchRequest error:&err];
@@ -51,12 +48,17 @@
 
 - (NSData *)data
 {
-	return [[NSFileManager defaultManager] contentsAtPath:self.localUrl];
+	return [[NSFileManager defaultManager] contentsAtPath:[self localURL]];
 }
 
-- (NSString *)fileName
+- (NSString *)localURL
 {
-	return [self.localUrl lastPathComponent];
+	NSError *err;
+	NSString *documentURL = [[[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:&err] absoluteString];
+	if (err) {
+		[[NSException exceptionWithName:@"Multimedia(Create) localURL Directory" reason:[err localizedDescription] userInfo:nil] raise];
+	}
+	return [documentURL stringByAppendingPathComponent:self.fileName];
 }
 
 #pragma mark - Private APIs
@@ -75,13 +77,12 @@
 	self = [NSEntityDescription insertNewObjectForEntityForName:className inManagedObjectContext:context];
 	
 	// Deal with properties
+	self.fileName = multimediaDictionary[ServerMediaFileName];
 	
-	// Get the account id and generate the cloudURL
-	self.cloudUrl = ;
+	// Save the data file
+	[data writeToURL:[self localURL] atomically:YES];
 	
-	// Get the account id and save to /Documents/<#account>/ as cloudURL did
-	NSString *localSearchPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, NO) firstObject] stringByAppendingPathComponent:<#(NSString *)#>;
-	self.localUrl = [[NSFileManager defaultManager] createFileAtPath: contents:data attributes:nil];
+	return self;
 }
 
 @end

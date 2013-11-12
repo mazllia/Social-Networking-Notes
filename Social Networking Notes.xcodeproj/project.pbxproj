@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		4D022CDB17A94E1400A78423 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D022CD917A94E1400A78423 /* Model.xcdatamodeld */; };
+		4D326447183250D000FD067A /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD839B018165480003B5DF9 /* FacebookSDK.framework */; };
 		4D364E7517D8D51B00354AE3 /* OldNoteTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D364E7417D8D51B00354AE3 /* OldNoteTVC.m */; };
 		4D364E7817D8DBF100354AE3 /* SortingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D364E7717D8DBF100354AE3 /* SortingViewController.m */; };
+		4D3B6224181624AE0002669F /* Multimedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D3B6223181624AE0002669F /* Multimedia.m */; };
 		4D60092E1813A3870005EE9A /* Multimedia+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60092D1813A3870005EE9A /* Multimedia+Create.m */; };
-		4D6009341813AFE70005EE9A /* Multimedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6009331813AFE70005EE9A /* Multimedia.m */; };
 		4D6009371813AFE80005EE9A /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6009361813AFE80005EE9A /* Note.m */; };
 		4D71E6A0180D910900E03071 /* NSObject+ClassName.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D71E69F180D910900E03071 /* NSObject+ClassName.m */; };
 		4D90EC9917F9FC3100086489 /* UINavigationController+Search.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D90EC9817F9FC3100086489 /* UINavigationController+Search.m */; };
@@ -26,25 +27,20 @@
 		4DB3819217893E5E00AAB49E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DB3819117893E5E00AAB49E /* Default-568h@2x.png */; };
 		4DB3819517893E5E00AAB49E /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DB3819317893E5E00AAB49E /* MainStoryboard_iPhone.storyboard */; };
 		4DB3819817893E5E00AAB49E /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DB3819617893E5E00AAB49E /* MainStoryboard_iPad.storyboard */; };
-		4DB7B17A1813F1120044CDC3 /* Storyboard.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = 4DBFDB95180036C300627D62 /* Storyboard.storyboard */; };
-		4DB7B17C1813F1120044CDC3 /* TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBFDB981800379000627D62 /* TestVC.m */; };
 		4DB7B17E1813F1120044CDC3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBFDB781800358900627D62 /* AppDelegate.m */; };
 		4DB7B17F1813F1120044CDC3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBFDB741800358900627D62 /* main.m */; };
-		4DB7B1801813F1360044CDC3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEA74C217E5AF5E004CB646 /* CoreData.framework */; };
-		4DB7B1811813F3970044CDC3 /* AccountStore.h in Sources */ = {isa = PBXBuildFile; fileRef = 4DC47F8D17FB2982006D00BF /* AccountStore.h */; };
-		4DB7B1821813F3970044CDC3 /* AccountStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC47F8E17FB2982006D00BF /* AccountStore.m */; };
-		4DB7B1841813F9060044CDC3 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB7B1831813F9060044CDC3 /* Social.framework */; };
 		4DBFDB6B1800358800627D62 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB3817D17893E5E00AAB49E /* Foundation.framework */; };
 		4DBFDB6C1800358800627D62 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB3817F17893E5E00AAB49E /* CoreGraphics.framework */; };
 		4DBFDB6D1800358800627D62 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB3817B17893E5E00AAB49E /* UIKit.framework */; };
 		4DBFDB731800358900627D62 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4DBFDB711800358900627D62 /* InfoPlist.strings */; };
 		4DBFDB7B1800358900627D62 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DBFDB7A1800358900627D62 /* Images.xcassets */; };
 		4DBFDB96180036C300627D62 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DBFDB95180036C300627D62 /* Storyboard.storyboard */; };
-		4DBFDBA518003C2A00627D62 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DC47F8B17FB2585006D00BF /* Accounts.framework */; };
 		4DC36ECA17F9E3BF004BBEBD /* Note+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC36EC917F9E3BF004BBEBD /* Note+Create.m */; };
 		4DC47F8C17FB2585006D00BF /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DC47F8B17FB2585006D00BF /* Accounts.framework */; };
 		4DC47F8F17FB2982006D00BF /* AccountStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC47F8E17FB2982006D00BF /* AccountStore.m */; };
 		4DCBDBD6180D6F89009618A7 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DCBDBD5180D6F89009618A7 /* Contact.m */; };
+		4DD839AF18164FB2003B5DF9 /* TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBFDB981800379000627D62 /* TestVC.m */; };
+		4DD839B118165480003B5DF9 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD839B018165480003B5DF9 /* FacebookSDK.framework */; };
 		4DEA74C317E5AF5E004CB646 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEA74C217E5AF5E004CB646 /* CoreData.framework */; };
 		4DEA74DC17E60A3B004CB646 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DEA74DB17E60A3B004CB646 /* CoreDataTableViewController.m */; };
 		4DEA74DF17E60DCE004CB646 /* NoteTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DEA74DE17E60DCD004CB646 /* NoteTVC.m */; };
@@ -59,10 +55,10 @@
 		4D364E7417D8D51B00354AE3 /* OldNoteTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OldNoteTVC.m; path = ../OldNoteTVC.m; sourceTree = "<group>"; };
 		4D364E7617D8DBF100354AE3 /* SortingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SortingViewController.h; path = ../SortingViewController.h; sourceTree = "<group>"; };
 		4D364E7717D8DBF100354AE3 /* SortingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SortingViewController.m; path = ../SortingViewController.m; sourceTree = "<group>"; };
+		4D3B6222181624AE0002669F /* Multimedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Multimedia.h; sourceTree = "<group>"; };
+		4D3B6223181624AE0002669F /* Multimedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Multimedia.m; sourceTree = "<group>"; };
 		4D60092C1813A3870005EE9A /* Multimedia+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Multimedia+Create.h"; sourceTree = "<group>"; };
 		4D60092D1813A3870005EE9A /* Multimedia+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Multimedia+Create.m"; sourceTree = "<group>"; };
-		4D6009321813AFE70005EE9A /* Multimedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Multimedia.h; sourceTree = "<group>"; };
-		4D6009331813AFE70005EE9A /* Multimedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Multimedia.m; sourceTree = "<group>"; };
 		4D6009351813AFE80005EE9A /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
 		4D6009361813AFE80005EE9A /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 		4D71E69E180D910900E03071 /* NSObject+ClassName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ClassName.h"; sourceTree = "<group>"; };
@@ -103,6 +99,7 @@
 		4DC47F8E17FB2982006D00BF /* AccountStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountStore.m; sourceTree = "<group>"; };
 		4DCBDBD4180D6F89009618A7 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
 		4DCBDBD5180D6F89009618A7 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
+		4DD839B018165480003B5DF9 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		4DEA74C217E5AF5E004CB646 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		4DEA74DA17E60A3B004CB646 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		4DEA74DB17E60A3B004CB646 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
@@ -121,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D326447183250D000FD067A /* FacebookSDK.framework in Frameworks */,
 				4DC47F8C17FB2585006D00BF /* Accounts.framework in Frameworks */,
 				4DEA74C317E5AF5E004CB646 /* CoreData.framework in Frameworks */,
 				4DB3817C17893E5E00AAB49E /* UIKit.framework in Frameworks */,
@@ -133,9 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DB7B1841813F9060044CDC3 /* Social.framework in Frameworks */,
-				4DB7B1801813F1360044CDC3 /* CoreData.framework in Frameworks */,
-				4DBFDBA518003C2A00627D62 /* Accounts.framework in Frameworks */,
+				4DD839B118165480003B5DF9 /* FacebookSDK.framework in Frameworks */,
 				4DBFDB6C1800358800627D62 /* CoreGraphics.framework in Frameworks */,
 				4DBFDB6D1800358800627D62 /* UIKit.framework in Frameworks */,
 				4DBFDB6B1800358800627D62 /* Foundation.framework in Frameworks */,
@@ -200,6 +196,7 @@
 		4DB3817A17893E5E00AAB49E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4DD839B018165480003B5DF9 /* FacebookSDK.framework */,
 				4DB7B1831813F9060044CDC3 /* Social.framework */,
 				4DC47F8B17FB2585006D00BF /* Accounts.framework */,
 				4DEA74C217E5AF5E004CB646 /* CoreData.framework */,
@@ -279,10 +276,10 @@
 		4DEA74C117E5AE4E004CB646 /* Dynamic Generated */ = {
 			isa = PBXGroup;
 			children = (
+				4D3B6222181624AE0002669F /* Multimedia.h */,
+				4D3B6223181624AE0002669F /* Multimedia.m */,
 				4D6009351813AFE80005EE9A /* Note.h */,
 				4D6009361813AFE80005EE9A /* Note.m */,
-				4D6009321813AFE70005EE9A /* Multimedia.h */,
-				4D6009331813AFE70005EE9A /* Multimedia.m */,
 				4DCBDBD4180D6F89009618A7 /* Contact.h */,
 				4DCBDBD5180D6F89009618A7 /* Contact.m */,
 			);
@@ -407,6 +404,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D3B6224181624AE0002669F /* Multimedia.m in Sources */,
 				4DCBDBD6180D6F89009618A7 /* Contact.m in Sources */,
 				4DC47F8F17FB2982006D00BF /* AccountStore.m in Sources */,
 				4DB3818817893E5E00AAB49E /* main.m in Sources */,
@@ -423,7 +421,6 @@
 				4DEA74DC17E60A3B004CB646 /* CoreDataTableViewController.m in Sources */,
 				4DEA74DF17E60DCE004CB646 /* NoteTVC.m in Sources */,
 				4DED360817E6156800CB7FF5 /* ServerCommunicator.m in Sources */,
-				4D6009341813AFE70005EE9A /* Multimedia.m in Sources */,
 				4DED360C17E617D400CB7FF5 /* DatabaseManagedDocument.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -432,10 +429,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DB7B1811813F3970044CDC3 /* AccountStore.h in Sources */,
-				4DB7B1821813F3970044CDC3 /* AccountStore.m in Sources */,
-				4DB7B17A1813F1120044CDC3 /* Storyboard.storyboard in Sources */,
-				4DB7B17C1813F1120044CDC3 /* TestVC.m in Sources */,
+				4DD839AF18164FB2003B5DF9 /* TestVC.m in Sources */,
 				4DB7B17E1813F1120044CDC3 /* AppDelegate.m in Sources */,
 				4DB7B17F1813F1120044CDC3 /* main.m in Sources */,
 			);
@@ -542,9 +536,14 @@
 		4DB381AA17893E5E00AAB49E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Mazllia/Documents/FacebookSDK,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Social Networking Notes/Social Networking Notes-Prefix.pch";
 				INFOPLIST_FILE = "Social Networking Notes/Social Networking Notes-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -553,9 +552,14 @@
 		4DB381AB17893E5E00AAB49E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Mazllia/Documents/FacebookSDK,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Social Networking Notes/Social Networking Notes-Prefix.pch";
 				INFOPLIST_FILE = "Social Networking Notes/Social Networking Notes-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -570,6 +574,10 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Mazllia/Documents/FacebookSDK,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Server/Server-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -582,6 +590,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "Server/Server-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -597,6 +606,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Mazllia/Documents/FacebookSDK,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Server/Server-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -605,6 +618,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "Server/Server-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

@@ -12,6 +12,6 @@
 @interface DatabaseManagedDocument : UIManagedDocument
 //- (void)fetchFromServer;
 
-+ (id)sharedDatabase;
-+ (id)allocWithZone:(NSZone *)zone;
++ (instancetype)sharedDatabase;
++ (instancetype)allocWithZone:(NSZone *)zone;
 @end

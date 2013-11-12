@@ -7,43 +7,82 @@
 //
 
 #import "TestVC.h"
-#import "AccountStore.h"
-
-@import Social;
+#import <FacebookSDK/FacebookSDK.h>
+//#import "DatabaseManagedDocument.h"
+//#import "ServerCommunicator.h"
+//#import "Contact+Create.h"
+//#import "Note+Create.h"
 
 @interface TestVC ()
-- (IBAction)buttonTapped;
-@property (weak, nonatomic) IBOutlet UITextView *textView;
-@property (strong, nonatomic) AccountStore *accountStore;
+@property (strong, nonatomic) id<FBGraphUser> user;
 
+@property (weak, nonatomic) IBOutlet UILabel *userName;
+@property (weak, nonatomic) IBOutlet FBLoginView *loginView;
+@property (weak, nonatomic) IBOutlet FBProfilePictureView *profilePictureView;
+@property (weak, nonatomic) IBOutlet UIButton *friendListButtom;
+
+- (IBAction)buttonTapped;
 @end
 
 @implementation TestVC
 
-- (AccountStore *)accountStore
+- (void)viewDidLoad
 {
-	if (!_accountStore) {
-		_accountStore = [AccountStore sharedAccount];
-	}
-	return _accountStore;
+//	self.fbLoginView.readPermissions = @[@"basic_info"];
 }
 
-- (IBAction)buttonTapped {
-	ACAccountType *accountType = [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
+- (IBAction)buttonTapped
+{
+//	ServerCommunicator *serverCommunicator = [[ServerCommunicator alloc] init];
+//	NSDictionary *noteInfo = @{ServerNoteDueTime: [NSDate new],
+//							   ServerNoteLocation: @"here",
+//							   ServerNoteCreateTime: [NSDate new]
+//							   };
+//	Contact *aContact = [Contact contactWithServerInfo:@{ServerContactUID: @"1", ServerContactFbAccountIdentifier: @"1823"} inManagedObjectContext:[DatabaseManagedDocument sharedDatabase].managedObjectContext];
+//	NSArray *receiver = @[aContact];
+//	Note *aNote = [Note noteWithServerInfo:noteInfo sender:aContact receivers:receiver media:nil inManagedObjectContext:[DatabaseManagedDocument sharedDatabase].managedObjectContext];
+//	[serverCommunicator pushNotes:aNote toReceivers: [aNote.recievers allObjects]];
 	
-	NSDictionary *facebookDictionary = @{
-		ACFacebookAppIdKey: @"174186899453258",
-//		ACFacebookPermissionsKey: @"email"
-	};
-	[self.accountStore requestAccessToAccountsWithType:accountType options:facebookDictionary completion:^(BOOL granted, NSError *error) {
-		NSLog(@"%@", [error localizedDescription]);
-		if (granted) {
-			NSLog(@"1");
-			NSArray *array = [self.accountStore accountsWithAccountType:accountType];
-		} else {
-			NSLog(@"2");
+	FBFriendPickerViewController *friendVC = [[FBFriendPickerViewController alloc] init];
+	[friendVC loadData];
+	[friendVC presentModallyFromViewController:self animated:YES handler:^(FBViewController *sender, BOOL donePressed) {
+		NSString *message;
+		if (donePressed) {
+			if (![friendVC.selection count]) {
+				message = @"You did not select anyone.";
+			} else {
+				message = [NSString stringWithFormat:@"You've selected %i friend(s).", [friendVC.selection count]];
+			}
+			[[[UIAlertView alloc] initWithTitle:@"Friends:" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
 		}
 	}];
+}
+
+#pragma mark - FBLoginView Delegate
+
+- (void)loginView:(FBLoginView *)loginView handleError:(NSError *)error
+{
+	[[[UIAlertView alloc] initWithTitle:@"FBLoginError" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Okay, debug time!" otherButtonTitles: nil] show];
+}
+
+- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)user
+{
+	self.user = user;
+	self.profilePictureView.profileID = user.id;
+	self.userName.text = user.name;
+}
+
+- (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView
+{
+	self.friendListButtom.enabled = YES;
+}
+
+- (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView
+{
+	self.user = nil;
+	self.profilePictureView.profileID = nil;
+	self.userName.text = @"";
+	self.friendListButtom.enabled = NO;
 }
 
 @end

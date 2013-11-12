@@ -10,7 +10,7 @@
 @interface Note (Create)
 
 /**
- This method queries or creates (save to database) a Note to you with provided server info. @see ServerCommunicatior.h
+ This method queries or creates (save to database) a Note to you with provided server info. For @e creation, you must assign property @b uid. @see ServerCommunicatior.h
  @param noteDictionary
  Please use the @e ServerCommunicator.h defined key in @e NSDictionary. This dictionary should at least contain @b ServerNoteUID to perform @b query; if @b creation is needed, you need to provide all @b ServerNote* in @e ServerCommunicator.h.
  @param sender
@@ -26,7 +26,7 @@
 + (instancetype)noteWithServerInfo:(NSDictionary *)noteDictionary
 							sender:(Contact *)sender
 						 receivers:(NSArray *)receivers
-							 media:(NSOrderedSet *)media
+							 media:(NSArray *)media
 			inManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end

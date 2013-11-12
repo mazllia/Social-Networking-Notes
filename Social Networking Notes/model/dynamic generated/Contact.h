@@ -16,7 +16,7 @@
 @property (nonatomic, retain) NSNumber * isVIP;
 @property (nonatomic, retain) NSString * nickName;
 @property (nonatomic, retain) NSString * uid;
-@property (nonatomic, retain) ACAccount *fbAccount;
+@property (nonatomic, retain) id<FBGraphUser> fbAccount;
 @property (nonatomic, retain) NSSet *notesHaveCreated;
 @property (nonatomic, retain) NSSet *notesHaveRecieved;
 @end

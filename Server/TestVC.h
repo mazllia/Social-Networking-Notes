@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TestVC : UIViewController
+@interface TestVC : UIViewController<FBLoginViewDelegate>
 
 @end

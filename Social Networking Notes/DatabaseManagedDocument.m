@@ -52,7 +52,7 @@ static DatabaseManagedDocument *sharedDatabaseManagedDocument = nil;
 
 #pragma mark - Singleton
 
-+ (id)sharedDatabase
++ (instancetype)sharedDatabase
 {
 	if (!sharedDatabaseManagedDocument) {
 		sharedDatabaseManagedDocument = [[super allocWithZone:NULL] init];
@@ -67,7 +67,7 @@ static DatabaseManagedDocument *sharedDatabaseManagedDocument = nil;
 	return sharedDatabaseManagedDocument;
 }
 
-+ (id)allocWithZone:(NSZone *)zone
++ (instancetype)allocWithZone:(NSZone *)zone
 {
 	return [self sharedDatabase];
 }

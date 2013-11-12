@@ -8,6 +8,12 @@
 
 #import "Multimedia.h"
 
+typedef enum {
+	MultimediaTypePicturePNG,
+	MultimediaTypePictureJPEG,
+	MultimediaTypeVideo,
+} MultimediaType;
+
 @interface Multimedia (Create)
 
 /**
@@ -26,15 +32,11 @@
 				  inManagedObjectContext:(NSManagedObjectContext *)context;
 
 /**
- You should use this method to get the
+ Use this method to get the @e NSData
  @return the saved-to-disk data
  */
 - (NSData *)data;
 
-/**
- A convenient method for you to get [localURL lastPathComponent]
- @return [localURL lastPathComponent] file name
- */
-- (NSString *)fileName;
+- (NSString *)localURL;
 
 @end
