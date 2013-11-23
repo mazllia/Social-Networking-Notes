@@ -17,93 +17,80 @@
 #define ServerNoteUserUID @"user_uid"
 #define ServerNoteUID @"sticky_uid"
 #define ServerNoteSenderUID @"sender_uid"
-#define ServerNoteReceiverUIDList @"receiver_uid_list"
-#define ServerNoteReceiverUID @"reciever_uid"
+#define ServerNoteReceiverList @"receiver_list"
+#define ServerNoteReceiverUID @"receiver_uid"
 #define ServerNoteDueTime @"alert_time"
-#define ServerNoteCreateTime @""
+#define ServerNoteCreateTime @"send_time"
 #define ServerNoteTitle @"context"
 #define ServerNoteLocation @"location"
-#define ServerNoteAccepted @""
-#define ServerNoteRead @""
-#define ServerNoteArchive @""
+#define ServerNoteAccepted @"accepted"
+#define ServerNoteRead @"read"
+// Wrong spelling
+#define ServerNoteArchive @"archieved"
 
 #define ServerMediaType @"file_type"
+// rename is better
+#define ServerMediaFileList @"file_name_list"
 #define ServerMediaFileName @"file_name"
+#define ServerMediaSync @""
 
-#define ServerContactUID @""
-#define ServerContactFbAccountIdentifier @"fb_uid"
-#define ServerContactIsVIP @"is_vip"
+#define ServerContactUID @"contact_uid"
+#define ServerContactFbAccountIdentifier @"facebook_uid"
+#define ServerContactIsVIP @"isvip"
 #define ServerContactNickName @"nick_name"
-#define ServerContactReply @"reply"
 
 #define ServerJSONArrayNameRecieving @"json_note"
 #define ServerJSONArrayNameSending @"sticky_attribute_list"
+
+typedef enum {
+    ServerActionPush,
+    ServerActionPull
+} ServerAction;
+
+/**
+ Let delegate to handle sync status.
+ */
+@protocol ServerCommunicatorDelegate <NSObject>
+@required
+/**
+ @param syncedNoteDictionaries Dictionaries with constant @e ServerNote* key and its value pairs
+ */
+- (void)serverCommunicatorNotesSynced:(NSArray *)syncedNoteDictionaries fromAction:(ServerAction)action;
+/**
+ @param syncedContactDictionaries Dictionaries with constant @e ServerContact* key and its value pairs
+ */
+- (void)serverCommunicatorContactSynced:(NSArray *)syncedContactDictionaries fromAction:(ServerAction)action;
+@end
 
 @class Note;
 
 @interface ServerCommunicator : NSObject<NSURLConnectionDelegate,NSURLSessionDownloadDelegate>
 
-/*
- use for get information from uploading file
- */
-@property (nonatomic,strong) NSMutableData *receivedData;
-
-/*
- use for api downloadFile:fileName:fileSaveProsition:
- */
-@property (nonatomic,strong) NSURL *saveProsition;
-
-#pragma mark - Note
-
-- (BOOL)modifySendedNote:(Note *)note noteUID:(NSString *)noteUID toReceivers:(NSArray *)receivers;
+- (instancetype)initWithDelegate:(id<ServerCommunicatorDelegate>)delegate;
 
 /**
- Create new notes to server.
- @param receivers array of "Contact uid"
- @return NoteUID; nil when failed.
+ 當使用者第一次使用app時，使用這api跟server索取ContactUID (假如使用的facebookUID 已經存在，則回傳該 facebookUID 綁定的ContactUID。
+ @return ContactUID
  */
-- (NSString *)pushNotes:(Note *)note toReceivers:(NSArray *)receivers;
+- (NSString *)registerUserAccount;
 
-/*
- Get new notes from server.
- @return array of notes
+/**
+ Tell the server user's all friends and get our users, which is a subset of user's all friends. Evoking @e serverCommunicatorContactSynced method.
+ @param fbFriends Array of Facebook uid @e NSString
+ @return NO if server is unavailable
  */
-- (NSArray *)serverGetNotesForUser:(NSString *)userID;
+- (BOOL)getAvailableUsersFromFBFriends:(NSArray *)fbFriends;
 
--(NSString *) checkNoteState:(NSString *)noteUID receiverUID:(NSString *)receiverUID;
-
-- (BOOL) updateNoteStateToRead:(NSString *)noteUID userUID:(NSString *)userUID;
-
-#pragma mark - Contact
-
-- (NSArray *)getVipList:(NSString *)userUID;
-
-- (BOOL) setSomenoeToVip:(NSString *)userUID someoneYouLove:(NSString *)LoveUID;
-
-- (BOOL) cancelSomeoneVip:(NSString *)userUID someoneYouLoveBefore:(NSString *)LoveUID;
-
-- (NSString *)createAccount:(Contact *)account;
-
-- (NSArray *)getContactList:(NSString *)userUID;
-
-- (NSString *)sendTheRequestToBeFriend:(NSString *)senderUID receiver:(NSString *)receiverUID;
-
-- (NSArray *)receiveTheRequestToBeFriend:(NSString *)userUID;
-
-- (NSString *)replyTheRequestToBeFriend:(NSString *)userUID senderUID:(NSString *)senderUID reply:(NSString *)reply;
-
-- (NSArray *)receiveTheReplyToBeFriend:(NSString *)userUID;
-
-#pragma mark - Files
-
-/*
- upload note's file to server.
+/**
+ Accept un-synced @e NSManagedObject classes, including creation and modification, and upload it to our server. Evoking @e serverCommunicatorNotesSynced and @e serverCommunicatorContactsSynced method.
+ @return NO if server is unavailable
  */
-- (void)uploadFile:(NSString *)stickyUID fileData:(NSData *)paramData filePath:(NSString *)path fileName:(NSString *)Name;
+- (BOOL)pushNotes:(NSArray *)notes contacts:(NSArray *)contacts;
 
-/*
- dwonload note's file to server.
+/**
+ Get all notes, from the purpose of user's devices sync and user friend's note sending. Evoking @e serverCommunicatorNotesSynced method.
+ @return NO if server is unavailable
  */
-- (void) downloadFile:(NSString *)stickyUID fileName:(NSString *)fileName fileSaveProsition:(NSURL *)saveProsition;
+- (BOOL)getLastestNotes;
 
 @end

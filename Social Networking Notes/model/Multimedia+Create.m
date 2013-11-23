@@ -43,7 +43,6 @@
 	}
 	
 	return multimedia;
-
 }
 
 - (NSData *)data
@@ -80,7 +79,7 @@
 	self.fileName = multimediaDictionary[ServerMediaFileName];
 	
 	// Save the data file
-	[data writeToURL:[self localURL] atomically:YES];
+	[data writeToURL:[NSURL URLWithString:[self localURL]] atomically:YES];
 	
 	return self;
 }

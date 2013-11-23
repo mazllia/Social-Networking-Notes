@@ -7,29 +7,26 @@
 //
 
 #import "AppDelegate.h"
-#import "AccountStore.h"
 #import "DatabaseManagedDocument.h"
 #import "Contact.h"
 
 @implementation AppDelegate
 {
 	DatabaseManagedDocument *_db;
-	AccountStore *_userAccount;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    // attempt to extract a token from the url
+    return [FBAppCall handleOpenURL:url
+                  sourceApplication:sourceApplication
+                    fallbackHandler:^(FBAppCall *call) {
+                        NSLog(@"In fallback handler");
+                    }];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	// Initiate the user
-	_userAccount = [AccountStore sharedAccount];
-	ACAccountType *fbAccountType = [_userAccount accountTypeWithAccountTypeIdentifier:@"ACAccountTypeIdentifierFacebook"];
-	if ([[_userAccount accountsWithAccountType:fbAccountType] count] == 0) {
-		[[[UIAlertView alloc] initWithTitle:@"Account Error!"
-									message:@"We cannot reach your Facebook account in system preferences, please set it before you use this application."
-								   delegate:nil
-						  cancelButtonTitle:@"Quit"
-						  otherButtonTitles:nil] show];
-		[self applicationWillTerminate:[UIApplication sharedApplication]];
-	}
 	// Initiate the database
 	_db = [DatabaseManagedDocument sharedDatabase];
     // Override point for customization after application launch.
@@ -57,12 +54,15 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
 	// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+	[FBAppEvents activateApp];
+	[FBAppCall handleDidBecomeActive];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-	[_db saveToURL:_db.fileURL forSaveOperation:UIDocumentSaveForOverwriting completionHandler:nil];
 	// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+	[_db saveToURL:_db.fileURL forSaveOperation:UIDocumentSaveForOverwriting completionHandler:nil];
+	[[FBSession activeSession] close];
 }
 
 @end

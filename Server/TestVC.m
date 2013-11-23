@@ -7,42 +7,74 @@
 //
 
 #import "TestVC.h"
-#import <FacebookSDK/FacebookSDK.h>
-//#import "DatabaseManagedDocument.h"
-//#import "ServerCommunicator.h"
-//#import "Contact+Create.h"
-//#import "Note+Create.h"
+#import "DatabaseManagedDocument.h"
+#import "FBCommunicator.h"
+
+#import "ServerCommunicator.h" // For parsing only
+
+#import "Contact+Create.h"
+#import "Note+Create.h"
+#import "Multimedia+Create.h"
 
 @interface TestVC ()
-@property (strong, nonatomic) id<FBGraphUser> user;
 
+@property (weak, nonatomic) id<FBGraphUser> me;
 @property (weak, nonatomic) IBOutlet UILabel *userName;
 @property (weak, nonatomic) IBOutlet FBLoginView *loginView;
 @property (weak, nonatomic) IBOutlet FBProfilePictureView *profilePictureView;
 @property (weak, nonatomic) IBOutlet UIButton *friendListButtom;
+@property (weak, nonatomic) IBOutlet UILabel *yourID;
+@property (weak, nonatomic) IBOutlet UIButton *parseJSONButton;
 
+- (IBAction)parseJSON;
 - (IBAction)buttonTapped;
+
 @end
 
 @implementation TestVC
 
 - (void)viewDidLoad
 {
-//	self.fbLoginView.readPermissions = @[@"basic_info"];
+	FBCommunicator *fb = [FBCommunicator sharedCommunicator];
+}
+
+- (IBAction)parseJSON
+{
+	NSError *err;
+	NSArray *noteArray = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:@"/Users/Mazllia/Downloads/testStick.txt"] options:nil error:&err];
+	NSArray *contactArray = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:@"/Users/Mazllia/Downloads/testContact.txt"] options:nil error:&err];
+	NSManagedObjectContext *managedObjectContext = [DatabaseManagedDocument sharedDatabase].managedObjectContext;
+	
+	// Insert or update new
+	for (NSDictionary *contactDictionary in contactArray) {
+		Contact *newContact = [Contact contactWithServerInfo:contactDictionary inManagedObjectContext:managedObjectContext];
+	}
+	
+	for (NSDictionary *noteDictionary in noteArray) {
+		Contact *sender = [Contact contactWithServerInfo:@{ServerContactUID: noteDictionary[ServerNoteSenderUID]} inManagedObjectContext:managedObjectContext];
+		
+		NSMutableArray *receivers = [NSMutableArray arrayWithCapacity:[(NSArray *)noteDictionary[ServerNoteReceiverList] count]];
+		for (NSDictionary *receiverInfo in noteDictionary[ServerNoteReceiverList]) {
+			Contact *receiver = [Contact contactWithServerInfo:@{ServerContactUID: receiverInfo[ServerNoteReceiverUID]} inManagedObjectContext:managedObjectContext];
+			[receivers addObject:receiver];
+		}
+		
+		NSMutableArray *multimedia = [NSMutableArray arrayWithCapacity:[(NSArray *)noteDictionary[ServerMediaFileList] count]];
+		for (NSDictionary *multimediaInfo in noteDictionary[ServerMediaFileList]) {
+			Multimedia *multimedium = [Multimedia multimediaWithServerInfo:multimediaInfo data:nil inManagedObjectContext:managedObjectContext];
+			[multimedia addObject:multimedium];
+		}
+		
+		Note *newNote = [Note noteWithServerInfo:noteDictionary sender:sender receivers:receivers media:multimedia inManagedObjectContext:managedObjectContext];
+	}
+	
+//	[[DatabaseManagedDocument sharedDatabase] savePresentedItemChangesWithCompletionHandler:^(NSError *errorOrNil) {
+//		NSLog(@"Saving DB: %@", errorOrNil.localizedDescription);
+//	}];
 }
 
 - (IBAction)buttonTapped
 {
-//	ServerCommunicator *serverCommunicator = [[ServerCommunicator alloc] init];
-//	NSDictionary *noteInfo = @{ServerNoteDueTime: [NSDate new],
-//							   ServerNoteLocation: @"here",
-//							   ServerNoteCreateTime: [NSDate new]
-//							   };
-//	Contact *aContact = [Contact contactWithServerInfo:@{ServerContactUID: @"1", ServerContactFbAccountIdentifier: @"1823"} inManagedObjectContext:[DatabaseManagedDocument sharedDatabase].managedObjectContext];
-//	NSArray *receiver = @[aContact];
-//	Note *aNote = [Note noteWithServerInfo:noteInfo sender:aContact receivers:receiver media:nil inManagedObjectContext:[DatabaseManagedDocument sharedDatabase].managedObjectContext];
-//	[serverCommunicator pushNotes:aNote toReceivers: [aNote.recievers allObjects]];
-	
 	FBFriendPickerViewController *friendVC = [[FBFriendPickerViewController alloc] init];
 	[friendVC loadData];
 	[friendVC presentModallyFromViewController:self animated:YES handler:^(FBViewController *sender, BOOL donePressed) {
@@ -58,6 +90,16 @@
 	}];
 }
 
+- (id<FBGraphUser>)me
+{
+	return [FBCommunicator sharedCommunicator].me;
+}
+
+- (void)setMe:(id<FBGraphUser>)me
+{
+	[FBCommunicator sharedCommunicator].me = me;
+}
+
 #pragma mark - FBLoginView Delegate
 
 - (void)loginView:(FBLoginView *)loginView handleError:(NSError *)error
@@ -67,7 +109,8 @@
 
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)user
 {
-	self.user = user;
+	self.me = user;
+	self.yourID.text = [user id];
 	self.profilePictureView.profileID = user.id;
 	self.userName.text = user.name;
 }
@@ -75,14 +118,17 @@
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView
 {
 	self.friendListButtom.enabled = YES;
+	self.parseJSONButton.enabled = YES;
 }
 
 - (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView
 {
-	self.user = nil;
+	self.me = nil;
+	self.yourID.text = nil;
 	self.profilePictureView.profileID = nil;
 	self.userName.text = @"";
 	self.friendListButtom.enabled = NO;
+	self.parseJSONButton.enabled = NO;
 }
 
 @end

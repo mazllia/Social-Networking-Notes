@@ -2,21 +2,22 @@
 //  Contact.h
 //  Social Networking Notes
 //
-//  Created by 戴鵬洋 on 13/10/15.
+//  Created by 戴鵬洋 on 2013/11/22.
 //  Copyright (c) 2013年 Dai Peng-Yang. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Note, ACAccount;
+@class Note;
 
 @interface Contact : NSManagedObject
 
+@property (nonatomic, retain) id<FBGraphUser> fbAccount;
 @property (nonatomic, retain) NSNumber * isVIP;
 @property (nonatomic, retain) NSString * nickName;
+@property (nonatomic, retain) NSNumber * synced;
 @property (nonatomic, retain) NSString * uid;
-@property (nonatomic, retain) id<FBGraphUser> fbAccount;
 @property (nonatomic, retain) NSSet *notesHaveCreated;
 @property (nonatomic, retain) NSSet *notesHaveRecieved;
 @end

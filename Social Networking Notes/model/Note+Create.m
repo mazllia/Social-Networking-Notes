@@ -7,6 +7,8 @@
 //
 
 #import "Note+Create.h"
+
+#import "Multimedia.h"
 #import "NSObject+ClassName.h"
 
 #import "ServerCommunicator.h"	// For parsing dictionary purpose
@@ -33,13 +35,14 @@
 	/*
 	 Check if fetch result valid & perform actions
 	 1. Invalid
-	 2. Not existed in data base
-	 3. Valid
+	 2. Invalid only if this Note is newly created and not yet synced with server
+	 3. Not existed in data base
+	 4. Valid
 	 */
-	if (!matches || [matches count]>1) {
-		if (noteDictionary[ServerNoteUID]==-1)
-			break;
+	if (!matches) {
 		[[NSException exceptionWithName:@"Note(Create) Fetch Error" reason:[err localizedDescription] userInfo:nil] raise];
+	} else if ([matches count]>1 && noteDictionary[ServerNoteUID]) {
+		[[NSException exceptionWithName:@"Note(Create) Fetch Error" reason:@"Multiple Notes with same uid" userInfo:nil] raise];
 	} else if ([matches count]==0) {
 		note = [[self alloc] initWithServerInfo:noteDictionary sender:sender receivers:receivers media:media className:[self className] inManagedObjectContext:context];
 	} else {
@@ -47,6 +50,17 @@
 	}
 	
 	return note;
+}
+
+- (BOOL)allSynced
+{
+	BOOL mediaSynced = YES;
+	for (Multimedia *media in self.media) {
+		if (!media.synced)
+			mediaSynced = NO;
+	}
+	
+	return self.synced && mediaSynced;
 }
 
 #pragma mark - Private APIs
@@ -71,17 +85,29 @@
 	self.title = noteDictionary[ServerNoteTitle];
 	self.location = noteDictionary[ServerNoteLocation];
 	
-	self.dueTime = noteDictionary[ServerNoteDueTime];
-	self.createTime = noteDictionary[ServerNoteCreateTime];
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+	self.dueTime =  [dateFormatter dateFromString:noteDictionary[ServerNoteDueTime]];
+	self.createTime = [dateFormatter dateFromString:noteDictionary[ServerNoteCreateTime]];
 	
-	self.archived = noteDictionary[ServerNoteArchive];
-	self.read = noteDictionary[ServerNoteRead];
-	self.accepted = noteDictionary[ServerNoteAccepted];
+	self.archived = [NSNumber numberWithBool:(BOOL)noteDictionary[ServerNoteArchive]];;
+	
+	// Future support these properties for individual receivers
+	for (NSDictionary *aReceiver in noteDictionary[ServerNoteReceiverList]) {
+		self.read = [NSNumber numberWithBool:[self.read boolValue] & (BOOL)aReceiver[ServerNoteRead]];
+		self.accepted = [NSNumber numberWithBool:[self.accepted boolValue] & (BOOL)aReceiver[ServerNoteAccepted]];
+	}
 	
 	// Deal with relationships: Contact & Multimedia
 	self.sender = sender;
 	[self addRecievers:[NSSet setWithArray:receivers]];
-	[self addMedia:[NSOrderedSet orderedSetWithArray:media]];
+	
+	for (Multimedia *insertMultimedia in media) {
+		[insertMultimedia addWhichNotesIncludeObject:self];
+		/// @bug why cannot use addMedia?
+//		[self addMediaObject:insertMultimedia];
+	}
+//	[self addMedia:[NSOrderedSet orderedSetWithArray:media]];
 	
 	return self;
 }

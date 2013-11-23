@@ -7,62 +7,50 @@
 //
 
 #import "DatabaseManagedDocument.h"
-//#import "ServerCommunicator.h"
 
 @implementation DatabaseManagedDocument
 static DatabaseManagedDocument *sharedDatabaseManagedDocument = nil;
 
+- (id)initWithFileURL:(NSURL *)url
+{
+	self = [super initWithFileURL:url];
+	if (self) {
+		[self getDatabaseReadyFromDisk];
+	}
+	return self;
+}
+
+#pragma mark - Private APIs
+
 - (void)getDatabaseReadyFromDisk
 {
-	if (![[NSFileManager defaultManager] fileExistsAtPath:[self.fileURL path]]) {
+	if (![[NSFileManager defaultManager] fileExistsAtPath:[self.fileURL absoluteString]]) {
 		// does not exist on disk, so create it
 		[self saveToURL:self.fileURL
 	   forSaveOperation:UIDocumentSaveForCreating
 	  completionHandler:^(BOOL success) {
-		  if (!success) {
-			  NSLog(@"Error creating managed document");
-			  return;
-		  }
-//		  [self fetchFromServer];
+		  if (!success)
+			  [[NSException exceptionWithName:@"Database Managed Document" reason:@"Error creating managed document" userInfo:nil] raise];
 	  }];
 	} else if (self.documentState == UIDocumentStateClosed) {
 		// exists on disk, but we need to open it
 		[self openWithCompletionHandler:^(BOOL success) {
-			if (!success) {
-				NSLog(@"Error creating managed document");
-				return;
-			}
-//			[self fetchFromServer];
+			if (!success)
+				[[NSException exceptionWithName:@"Database Managed Document" reason:@"Error creating managed document" userInfo:nil] raise];
 		}];
 	} else if (self.documentState == UIDocumentStateNormal) {
 		// already open and ready to use
-//		[self fetchFromServer];
 	}
 }
-
-#pragma mark - Server
-
-//- (void)fetchFromServer
-//{
-//	ServerCommunicator *serverCommunicator = [[ServerCommunicator alloc] init];
-//	// 1. If notes not sync, then push
-//	// 2. Get new notes
-//	[serverCommunicator pullNotesWith:<#(NSString *)#>]
-//}
 
 #pragma mark - Singleton
 
 + (instancetype)sharedDatabase
 {
 	if (!sharedDatabaseManagedDocument) {
-		sharedDatabaseManagedDocument = [[super allocWithZone:NULL] init];
-		
 		NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 		[url URLByAppendingPathComponent:@"Default Database"];
-		sharedDatabaseManagedDocument = [[self alloc] initWithFileURL:url];
-		
-		[sharedDatabaseManagedDocument getDatabaseReadyFromDisk];
-//		[sharedDatabaseManagedDocument fetchFromServer];
+		sharedDatabaseManagedDocument = [[super allocWithZone:NULL] initWithFileURL:url];
 	}
 	return sharedDatabaseManagedDocument;
 }
@@ -71,7 +59,5 @@ static DatabaseManagedDocument *sharedDatabaseManagedDocument = nil;
 {
 	return [self sharedDatabase];
 }
-
-
 
 @end

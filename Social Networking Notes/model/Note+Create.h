@@ -29,4 +29,9 @@
 							 media:(NSArray *)media
 			inManagedObjectContext:(NSManagedObjectContext *)context;
 
+/**
+ Check if this Note is synced all the @e Multimedia in the relationship @b media are synced
+ */
+- (BOOL)allSynced;
+
 @end

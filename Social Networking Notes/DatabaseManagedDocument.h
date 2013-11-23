@@ -10,8 +10,10 @@
 
 @class Contact;
 @interface DatabaseManagedDocument : UIManagedDocument
-//- (void)fetchFromServer;
 
+- (id)initWithFileURL:(NSURL *)url;
+
+// Singleton
 + (instancetype)sharedDatabase;
 + (instancetype)allocWithZone:(NSZone *)zone;
 @end

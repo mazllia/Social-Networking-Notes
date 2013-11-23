@@ -17,11 +17,11 @@ typedef enum {
 @interface Multimedia (Create)
 
 /**
- This method creates (save to database) a Multimedia to you with provided server info. You should @b never use this method to perform @b query; use @e Note's relationship instead. The relationships of Contact will be managed by @em Note(Creation). @see ServerCommunicatior.h
+ This method creates (also save data to database if needed) a Multimedia with provided server info. The relationships of Contact will be managed by @em Note(Creation). @see ServerCommunicatior.h
  @param multimediaDictionary
  Please use the @e ServerCommunicator.h defined key in @e NSDictionary.
  @param data
- The real data stored in @e NSData awaiting to save to disk. Psas @b nill to perform query only.
+ The real data stored in @e NSData awaiting to save to disk. Psas @b nil if file exists in the -localURL.
  @param context
  Specify in which @e NSManagedObjectContext should be saved.
  @return Returns a new or queried Contact

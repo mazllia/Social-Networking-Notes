@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F45" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13A603" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Contact" representedClassName="Contact" syncable="YES">
         <attribute name="fbAccount" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="isVIP" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="nickName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="synced" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="notesHaveCreated" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="sender" inverseEntity="Note" syncable="YES"/>
         <relationship name="notesHaveRecieved" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="recievers" inverseEntity="Note" syncable="YES"/>
@@ -22,6 +23,7 @@
     </entity>
     <entity name="Multimedia" representedClassName="Multimedia" syncable="YES">
         <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="synced" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="whichNotesInclude" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="media" inverseEntity="Note" syncable="YES"/>
     </entity>
@@ -40,9 +42,9 @@
         <relationship name="sender" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="notesHaveCreated" inverseEntity="Contact" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Contact" positionX="1035" positionY="198" width="128" height="162"/>
+        <element name="Contact" positionX="1035" positionY="198" width="128" height="180"/>
         <element name="FacebookAccount" positionX="1276" positionY="90" width="128" height="234"/>
-        <element name="Multimedia" positionX="592" positionY="270" width="128" height="108"/>
+        <element name="Multimedia" positionX="592" positionY="270" width="128" height="126"/>
         <element name="Note" positionX="783" positionY="162" width="128" height="270"/>
     </elements>
 </model>
