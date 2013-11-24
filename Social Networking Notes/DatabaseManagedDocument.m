@@ -24,7 +24,7 @@ static DatabaseManagedDocument *sharedDatabaseManagedDocument = nil;
 
 - (void)getDatabaseReadyFromDisk
 {
-	if (![[NSFileManager defaultManager] fileExistsAtPath:[self.fileURL absoluteString]]) {
+	if (![[NSFileManager defaultManager] fileExistsAtPath:[self.fileURL path]]) {
 		// does not exist on disk, so create it
 		[self saveToURL:self.fileURL
 	   forSaveOperation:UIDocumentSaveForCreating
@@ -49,7 +49,7 @@ static DatabaseManagedDocument *sharedDatabaseManagedDocument = nil;
 {
 	if (!sharedDatabaseManagedDocument) {
 		NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-		[url URLByAppendingPathComponent:@"Default Database"];
+		url = [url URLByAppendingPathComponent:@"Default Database"];
 		sharedDatabaseManagedDocument = [[super allocWithZone:NULL] initWithFileURL:url];
 	}
 	return sharedDatabaseManagedDocument;
