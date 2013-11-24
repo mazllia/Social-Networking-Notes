@@ -1,12 +1,15 @@
 //
-//  ServerFetcher.h
-//  Social Networking Notes
+//  ServerCommunicatorViewController.h
+//  ServerCommunicator
 //
-//  Created by 戴鵬洋 on 13/9/16.
-//  Copyright (c) 2013年 Dai Peng-Yang. All rights reserved.
+//  Created by JACKY183 on 13/10/16.
+//  Copyright (c) 2013年 JACKY183. All rights reserved.
 //
+// Server
+#import "Note.h"
+#import "Contact.h"
+#import "Multimedia.h"
 
-#import <Foundation/Foundation.h>
 
 /**
  Key for JSON Array/Dictionary
@@ -25,31 +28,27 @@
 #define ServerNoteLocation @"location"
 #define ServerNoteAccepted @"accepted"
 #define ServerNoteRead @"read"
-// Wrong spelling
-#define ServerNoteArchive @"archieved"
+#define ServerNoteArchive @"archived"
 
 #define ServerMediaType @"file_type"
-// rename is better
-#define ServerMediaFileList @"file_name_list"
 #define ServerMediaFileName @"file_name"
-#define ServerMediaSync @""
+#define ServerMediaFileList @"file_list"
+#define ServerMediaSync @"sync"
 
 #define ServerContactUID @"contact_uid"
 #define ServerContactFbAccountIdentifier @"facebook_uid"
 #define ServerContactIsVIP @"isvip"
 #define ServerContactNickName @"nick_name"
 
-#define ServerJSONArrayNameRecieving @"json_note"
-#define ServerJSONArrayNameSending @"sticky_attribute_list"
-
-typedef enum {
+typedef enum{
     ServerActionPush,
     ServerActionPull
-} ServerAction;
+}ServerAction;
 
 /**
  Let delegate to handle sync status.
  */
+
 @protocol ServerCommunicatorDelegate <NSObject>
 @required
 /**
@@ -60,11 +59,15 @@ typedef enum {
  @param syncedContactDictionaries Dictionaries with constant @e ServerContact* key and its value pairs
  */
 - (void)serverCommunicatorContactSynced:(NSArray *)syncedContactDictionaries fromAction:(ServerAction)action;
+
 @end
 
-@class Note;
+@interface ServerCommunicator : NSObject <NSURLConnectionDelegate,NSURLSessionDownloadDelegate>
 
-@interface ServerCommunicator : NSObject<NSURLConnectionDelegate,NSURLSessionDownloadDelegate>
+/**
+ @class ServerCommunicator
+ To sync with server. Handles *NSManagedObject*s and returns *NSDictionary* and *NSArray* parsed from server's JSON.
+ */
 
 - (instancetype)initWithDelegate:(id<ServerCommunicatorDelegate>)delegate;
 
@@ -93,4 +96,5 @@ typedef enum {
  */
 - (BOOL)getLastestNotes;
 
+@property (weak, nonatomic) id<ServerCommunicatorDelegate> delegate;
 @end

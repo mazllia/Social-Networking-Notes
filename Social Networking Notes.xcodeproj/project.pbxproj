@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4D022CDB17A94E1400A78423 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D022CD917A94E1400A78423 /* Model.xcdatamodeld */; };
+		4D23A3C8184045A500463B8E /* ServerSynchronizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA5E28F183683840013AC29 /* ServerSynchronizer.m */; };
+		4D23A3C9184045B100463B8E /* ServerCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DED360717E6156800CB7FF5 /* ServerCommunicator.m */; };
+		4D23A3CC1840489500463B8E /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D23A3CB1840489500463B8E /* Note.m */; };
+		4D23A3CD1840489500463B8E /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D23A3CB1840489500463B8E /* Note.m */; };
 		4D326447183250D000FD067A /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD839B018165480003B5DF9 /* FacebookSDK.framework */; };
 		4D364E7517D8D51B00354AE3 /* OldNoteTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D364E7417D8D51B00354AE3 /* OldNoteTVC.m */; };
 		4D364E7817D8DBF100354AE3 /* SortingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D364E7717D8DBF100354AE3 /* SortingViewController.m */; };
@@ -55,12 +59,12 @@
 		4DFD5EAE183FB3A80031AAC3 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD5EAC183FB3A70031AAC3 /* Contact.m */; };
 		4DFD5EB1183FB3A90031AAC3 /* Multimedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD5EB0183FB3A90031AAC3 /* Multimedia.m */; };
 		4DFD5EB2183FB3A90031AAC3 /* Multimedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD5EB0183FB3A90031AAC3 /* Multimedia.m */; };
-		4DFD5EB5183FB3A90031AAC3 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD5EB4183FB3A90031AAC3 /* Note.m */; };
-		4DFD5EB6183FB3A90031AAC3 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD5EB4183FB3A90031AAC3 /* Note.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4D022CDA17A94E1400A78423 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		4D23A3CA1840489500463B8E /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		4D23A3CB1840489500463B8E /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 		4D364E7317D8D51B00354AE3 /* OldNoteTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OldNoteTVC.h; path = ../OldNoteTVC.h; sourceTree = "<group>"; };
 		4D364E7417D8D51B00354AE3 /* OldNoteTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OldNoteTVC.m; path = ../OldNoteTVC.m; sourceTree = "<group>"; };
 		4D364E7617D8DBF100354AE3 /* SortingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SortingViewController.h; path = ../SortingViewController.h; sourceTree = "<group>"; };
@@ -119,8 +123,6 @@
 		4DFD5EAC183FB3A70031AAC3 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
 		4DFD5EAF183FB3A90031AAC3 /* Multimedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Multimedia.h; sourceTree = "<group>"; };
 		4DFD5EB0183FB3A90031AAC3 /* Multimedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Multimedia.m; sourceTree = "<group>"; };
-		4DFD5EB3183FB3A90031AAC3 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
-		4DFD5EB4183FB3A90031AAC3 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,8 +283,8 @@
 		4DEA74C117E5AE4E004CB646 /* Dynamic Generated */ = {
 			isa = PBXGroup;
 			children = (
-				4DFD5EB3183FB3A90031AAC3 /* Note.h */,
-				4DFD5EB4183FB3A90031AAC3 /* Note.m */,
+				4D23A3CA1840489500463B8E /* Note.h */,
+				4D23A3CB1840489500463B8E /* Note.m */,
 				4DFD5EAF183FB3A90031AAC3 /* Multimedia.h */,
 				4DFD5EB0183FB3A90031AAC3 /* Multimedia.m */,
 				4DFD5EAB183FB3A70031AAC3 /* Contact.h */,
@@ -418,7 +420,7 @@
 				4D022CDB17A94E1400A78423 /* Model.xcdatamodeld in Sources */,
 				4D60092E1813A3870005EE9A /* Multimedia+Create.m in Sources */,
 				4DFCAFE81804F67B009CBF0C /* Contact+Create.m in Sources */,
-				4DFD5EB5183FB3A90031AAC3 /* Note.m in Sources */,
+				4D23A3CC1840489500463B8E /* Note.m in Sources */,
 				4D71E6A0180D910900E03071 /* NSObject+ClassName.m in Sources */,
 				4D4FFBB6183CB9230034F604 /* FBCommunicator.m in Sources */,
 				4DC36ECA17F9E3BF004BBEBD /* Note+Create.m in Sources */,
@@ -439,7 +441,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DFD5EB6183FB3A90031AAC3 /* Note.m in Sources */,
+				4D23A3CD1840489500463B8E /* Note.m in Sources */,
+				4D23A3C9184045B100463B8E /* ServerCommunicator.m in Sources */,
+				4D23A3C8184045A500463B8E /* ServerSynchronizer.m in Sources */,
 				4D9EA811183F36B900AF3753 /* Model.xcdatamodeld in Sources */,
 				4D9EA809183F36A300AF3753 /* DatabaseManagedDocument.m in Sources */,
 				4DFD5EB2183FB3A90031AAC3 /* Multimedia.m in Sources */,

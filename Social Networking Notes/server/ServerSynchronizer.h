@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class Contact;
 /**
  A singleton class scan through local Core Data and sync with cloud server, providing manual and automatic sync.
  @discussion Only use this class after user account is initialized.
@@ -26,14 +27,13 @@
 @property (nonatomic, readonly) BOOL syncing;
 
 /**
+ Current login user of this device as a Contact instance
+ */
+@property (nonatomic, strong, readonly) Contact *currentUser;
+/**
  Manually sync all data.
  */
 - (void)sync;
-
-/**
- Check if new friends using this APP and update core data Contact(s)
- */
-- (void)updateAvailableFriends;
 
 /**
  Use this class method to reach the singleton synchronizer

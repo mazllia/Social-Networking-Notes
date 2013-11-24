@@ -23,6 +23,7 @@
 @property (nonatomic, strong, readonly) ServerCommunicator *communicator;
 @property (nonatomic, strong) NSOperationQueue *syncQueue;
 @property (nonatomic, strong) NSTimer *autoSyncTimer;
+@property (readwrite) Contact *currentUser;
 
 @property (nonatomic, strong) NSManagedObjectContext *dataContext;
 
@@ -64,7 +65,7 @@ static id sharedServerSynchronizer = nil;
 			[self.communicator getLastestNotes];
 		}];
 		[pullOperation addExecutionBlock:^{
-			[self.communicator getAvailableUsersFromFBFriends:[self getFBFriendsUID]];
+			[self.communicator getAvailableUsersFromFBFriends:[FBCommunicator sharedCommunicator].friendsUID];
 		}];
 		
 		NSBlockOperation *pushOperation = [NSBlockOperation blockOperationWithBlock:^{
@@ -79,7 +80,7 @@ static id sharedServerSynchronizer = nil;
 	}
 }
 
-- (BOOL)isSyncing
+- (BOOL)syncing
 {
 	return self.syncingContacts || self.syncingNotes;
 }
@@ -92,6 +93,16 @@ static id sharedServerSynchronizer = nil;
 		self.autoSyncTimer = [NSTimer scheduledTimerWithTimeInterval:_autoSyncTimeInterval target:self selector:@selector(sync) userInfo:nil repeats:YES];
 		[self.autoSyncTimer setTolerance:_autoSyncTimeInterval*0.1];
 	}
+}
+
+- (Contact *)currentUser
+{
+	if (!_currentUser) {
+		_currentUser = [Contact contactWithServerInfo:@{ServerContactUID: [self.communicator registerUserAccount],
+														ServerContactFbAccountIdentifier: [FBCommunicator sharedCommunicator].me.id}
+							   inManagedObjectContext:[DatabaseManagedDocument sharedDatabase].managedObjectContext];
+	}
+	return _currentUser;
 }
 
 #pragma mark - Private APIs
@@ -137,9 +148,7 @@ static id sharedServerSynchronizer = nil;
 	switch (action) {
 		case ServerActionPull:
 			// After pulling, local.contact.sync==NO means local contact is newer than server
-			for (NSDictionary *contactDictionary in syncedContactDictionaries) {
-				Contact *newContact = [Contact contactWithServerInfo:contactDictionary inManagedObjectContext:managedObjectContext];
-			}
+			
 			break;
 			
 		case ServerActionPush:

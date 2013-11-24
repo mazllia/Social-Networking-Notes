@@ -2,7 +2,7 @@
 //  Note.h
 //  Social Networking Notes
 //
-//  Created by 戴鵬洋 on 2013/11/22.
+//  Created by 戴鵬洋 on 2013/11/23.
 //  Copyright (c) 2013年 Dai Peng-Yang. All rights reserved.
 //
 
@@ -23,7 +23,7 @@
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * uid;
 @property (nonatomic, retain) NSOrderedSet *media;
-@property (nonatomic, retain) NSSet *recievers;
+@property (nonatomic, retain) NSSet *receivers;
 @property (nonatomic, retain) Contact *sender;
 @end
 
@@ -39,9 +39,9 @@
 - (void)removeMediaObject:(Multimedia *)value;
 - (void)addMedia:(NSOrderedSet *)values;
 - (void)removeMedia:(NSOrderedSet *)values;
-- (void)addRecieversObject:(Contact *)value;
-- (void)removeRecieversObject:(Contact *)value;
-- (void)addRecievers:(NSSet *)values;
-- (void)removeRecievers:(NSSet *)values;
+- (void)addReceiversObject:(Contact *)value;
+- (void)removeReceiversObject:(Contact *)value;
+- (void)addReceivers:(NSSet *)values;
+- (void)removeReceivers:(NSSet *)values;
 
 @end

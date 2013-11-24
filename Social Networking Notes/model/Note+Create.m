@@ -100,7 +100,7 @@
 	
 	// Deal with relationships: Contact & Multimedia
 	self.sender = sender;
-	[self addRecievers:[NSSet setWithArray:receivers]];
+	[self addReceivers:[NSSet setWithArray:receivers]];
 	
 	for (Multimedia *insertMultimedia in media) {
 		[insertMultimedia addWhichNotesIncludeObject:self];
