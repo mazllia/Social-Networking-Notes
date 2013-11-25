@@ -11,9 +11,9 @@
 @interface Contact (Create)
 
 /**
- This method queries or creates (save to database) a Contact to you with provided server info. The relationships of Contact will be managed by @em Note(Creation). @see ServerCommunicatior.h
+ This method queries or creates or modify a Contact to you with provided server info. The relationships of Contact will be managed by @em Note(Creation). @see ServerCommunicatior.h
  @param contactDictionary
- Please use the @e ServerCommunicator.h defined key in @e NSDictionary. This dictionary should at least contain @b ServerContactUID to perform query; if create is needed, you need to provide furthur information.
+ Please use the @e ServerCommunicator.h defined key in @e NSDictionary. This dictionary should at least contain @b ServerContactUID to perform query; if create or modify is needed, you need to provide all ServerContact* for creation, or partial ServerContact* for modification.
  @param context
  Specify in which @e NSManagedObjectContext should be saved.
  @return Returns a new or queried Contact

@@ -24,29 +24,32 @@
 	id note;
 	
 	/*
-	 Perform fetch from disk
+	 Perform fetch from core data
 	 */
 	NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[self className]];
-	[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"uid = %@", noteDictionary[ServerContactUID]]];
+	[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"uid = %@", noteDictionary[ServerNoteUID]]];
 	
 	NSError *err;
 	NSArray *matches = [context executeFetchRequest:fetchRequest error:&err];
 	
 	/*
 	 Check if fetch result valid & perform actions
-	 1. Invalid
-	 2. Invalid only if this Note is newly created and not yet synced with server
-	 3. Not existed in data base
-	 4. Valid
+	 1. Invalid result
+	 2. 0 match: not existed in data base, create
+		* Foolproof for paramter: noteDictionary[ServerNoteUID]
+	 3. 1 match: query only
+	 4. 1 match: modification
+		*  Foolproof for parameters: sender & receivers
 	 */
-	if (!matches) {
+	if (!matches || [matches count]>1) {
 		[[NSException exceptionWithName:@"Note(Create) Fetch Error" reason:[err localizedDescription] userInfo:nil] raise];
-	} else if ([matches count]>1 && noteDictionary[ServerNoteUID]) {
-		[[NSException exceptionWithName:@"Note(Create) Fetch Error" reason:@"Multiple Notes with same uid" userInfo:nil] raise];
-	} else if ([matches count]==0) {
-		note = [[self alloc] initWithServerInfo:noteDictionary sender:sender receivers:receivers media:media className:[self className] inManagedObjectContext:context];
-	} else {
+	} else if ([matches count]==0 && noteDictionary[ServerNoteUID]) {
+		note = [[NSEntityDescription insertNewObjectForEntityForName:[self className] inManagedObjectContext:context]
+				initWithServerInfo:noteDictionary sender:sender receivers:receivers media:media];
+	} else if ([noteDictionary count]==1) {
 		note = [matches lastObject];
+	} else if (sender && receivers) {
+		note = [[matches lastObject] initWithServerInfo:noteDictionary sender:sender receivers:receivers media:media];
 	}
 	
 	return note;
@@ -66,31 +69,24 @@
 #pragma mark - Private APIs
 
 /**
- Parse and save the server Note info-dictionary and handle the relationship to Contact and Multimedia.
- @param className
- Because the instance object class description may changed, pass from class method to identify entity name
+ Parse the server info-dictionary and handle the relationship to Contact and Multimedia.
  */
 - (instancetype)initWithServerInfo:(NSDictionary *)noteDictionary
 							sender:(Contact *)sender
 						 receivers:(NSArray *)receivers
 							 media:(NSArray *)media
-						 className:(NSString *)className
-			inManagedObjectContext:(NSManagedObjectContext *)context
 {
-	// Insert self into data base
-	self = [NSEntityDescription insertNewObjectForEntityForName:className inManagedObjectContext:context];
-	
 	// Deal with properties
 	self.uid = noteDictionary[ServerNoteUID];
-	self.title = noteDictionary[ServerNoteTitle];
-	self.location = noteDictionary[ServerNoteLocation];
+	self.title = noteDictionary[ServerNoteTitle]? noteDictionary[ServerNoteTitle]: self.title;
+	self.location = noteDictionary[ServerNoteLocation]? noteDictionary[ServerNoteLocation]: self.location;
 	
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-	self.dueTime =  [dateFormatter dateFromString:noteDictionary[ServerNoteDueTime]];
-	self.createTime = [dateFormatter dateFromString:noteDictionary[ServerNoteCreateTime]];
+	self.dueTime = noteDictionary[ServerNoteDueTime]? [dateFormatter dateFromString:noteDictionary[ServerNoteDueTime]]: self.dueTime;
+	self.createTime = noteDictionary[ServerNoteCreateTime]? [dateFormatter dateFromString:noteDictionary[ServerNoteCreateTime]]: self.createTime;
 	
-	self.archived = [NSNumber numberWithBool:(BOOL)noteDictionary[ServerNoteArchive]];;
+	self.archived = noteDictionary[ServerNoteArchive]? [NSNumber numberWithBool:(BOOL)noteDictionary[ServerNoteArchive]]: self.archived;
 	
 	// Future support these properties for individual receivers
 	for (NSDictionary *aReceiver in noteDictionary[ServerNoteReceiverList]) {
@@ -100,14 +96,9 @@
 	
 	// Deal with relationships: Contact & Multimedia
 	self.sender = sender;
-	[self addReceivers:[NSSet setWithArray:receivers]];
+	self.receivers = [NSSet setWithArray:receivers];
 	
-	for (Multimedia *insertMultimedia in media) {
-		[insertMultimedia addWhichNotesIncludeObject:self];
-		/// @bug why cannot use addMedia?
-//		[self addMediaObject:insertMultimedia];
-	}
-//	[self addMedia:[NSOrderedSet orderedSetWithArray:media]];
+	self.media = [NSOrderedSet orderedSetWithArray:media];
 	
 	return self;
 }

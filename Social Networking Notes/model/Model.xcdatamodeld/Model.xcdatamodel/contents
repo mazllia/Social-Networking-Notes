@@ -28,12 +28,12 @@
         <relationship name="whichNotesInclude" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="media" inverseEntity="Note" syncable="YES"/>
     </entity>
     <entity name="Note" representedClassName="Note" syncable="YES">
-        <attribute name="accepted" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="accepted" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="archived" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="createTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="dueTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="read" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="read" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="synced" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
@@ -42,9 +42,9 @@
         <relationship name="sender" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="notesHaveCreated" inverseEntity="Contact" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Contact" positionX="1035" positionY="198" width="128" height="180"/>
-        <element name="FacebookAccount" positionX="1276" positionY="90" width="128" height="234"/>
-        <element name="Multimedia" positionX="592" positionY="270" width="128" height="126"/>
-        <element name="Note" positionX="783" positionY="162" width="128" height="270"/>
+        <element name="Contact" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="FacebookAccount" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Multimedia" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Note" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

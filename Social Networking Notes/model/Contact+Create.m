@@ -20,7 +20,7 @@
 	id contact;
 	
 	/*
-	 Perform fetch from disk
+	 Perform fetch from core data
 	 */
 	NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[self className]];
 	[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"uid = %@", contactDictionary[ServerContactUID]]];
@@ -30,16 +30,21 @@
 
 	/*
 	 Check if fetch result valid & perform actions
-	 1. Invalid
-	 2. Not existed in data base
-	 3. Valid
+	 1. Invalid result
+	 2. 0 match: not existed in data base, create
+	 * Foolproof for paramter: noteDictionary[ServerNoteUID]
+	 3. 1 match: query only
+	 4. 1 match: modification
 	 */
 	if (!matches || [matches count]>1) {
 		[[NSException exceptionWithName:@"Contact(Create) Fetch Error" reason:[err localizedDescription] userInfo:nil] raise];
-	} else if ([matches count]==0) {
-		contact = [[self alloc] initWithServerInfo:contactDictionary className:[self className] inManagedObjectContext:context];
-	} else {
+	} else if ([matches count]==0 && contactDictionary[ServerContactUID]) {
+		contact = [[NSEntityDescription insertNewObjectForEntityForName:[self className] inManagedObjectContext:context]
+				   initWithServerInfo:contactDictionary];
+	} else if ([contactDictionary count]==1) {
 		contact = [matches lastObject];
+	} else {
+		contact = [[matches lastObject] initWithServerInfo:contactDictionary];
 	}
 	
 	return contact;
@@ -48,25 +53,18 @@
 #pragma mark - Private APIs
 
 /**
- Parse and save the server info-dictionary (the relationship will be handle in Note+Create).
- @param className
- Because the instance object class description may changed, pass from class method to identify entity name
+ Parse the server info-dictionary (the relationship will be handle in Note+Create).
  */
 - (instancetype)initWithServerInfo:(NSDictionary *)contactDictionary
-						 className:(NSString *)className
-			inManagedObjectContext:(NSManagedObjectContext *)context
 {
-	// Insert self into data base
-	self = [NSEntityDescription insertNewObjectForEntityForName:className inManagedObjectContext:context];
-	
 	// Deal with properties
 	self.uid = contactDictionary[ServerContactUID];
-	self.isVIP = [NSNumber numberWithBool:(BOOL)contactDictionary[ServerContactIsVIP]];
-	self.nickName = contactDictionary[ServerContactNickName];
+	self.isVIP = contactDictionary[ServerContactIsVIP]? [NSNumber numberWithBool:(BOOL)contactDictionary[ServerContactIsVIP]]: self.isVIP;
+	self.nickName = contactDictionary[ServerContactNickName]? contactDictionary[ServerContactNickName]: self.nickName;
 	
 	// Deal with accounts
 	// 1) If I am the contact
-	if ([[[FBCommunicator sharedCommunicator].me id] isEqualToString:contactDictionary[ServerContactFbAccountIdentifier]]) {
+	if ([[FBCommunicator sharedCommunicator].me.id isEqualToString:contactDictionary[ServerContactFbAccountIdentifier]]) {
 		self.fbAccount = contactDictionary[ServerContactFbAccountIdentifier];
 		return self;
 	}

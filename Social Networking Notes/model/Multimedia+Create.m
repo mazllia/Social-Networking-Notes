@@ -30,16 +30,21 @@
 	
 	/*
 	 Check if fetch result valid & perform actions
-	 1. Invalid
-	 2. Not existed in data base
-	 3. Valid
+	 1. Invalid result
+	 2. 0 match: not existed in data base, create
+		 * Foolproof for paramter: multimediaDictionary[ServerMediaFileName]
+	 3. 1 match: query only
+	 4. 1 match: modification
 	 */
 	if (!matches || [matches count]>1) {
 		[[NSException exceptionWithName:@"Multimedia(Create) Fetch Error" reason:[err localizedDescription] userInfo:nil] raise];
-	} else if ([matches count]==0) {
-		multimedia = [[self alloc] initWithServerInfo:multimediaDictionary data:data className:[self className] inManagedObjectContext:context];
-	} else {
+	} else if ([matches count]==0 && multimediaDictionary[ServerMediaFileName]) {
+		multimedia = [[NSEntityDescription insertNewObjectForEntityForName:[self className] inManagedObjectContext:context]
+					  initWithServerInfo:multimediaDictionary data:data];
+	} else if ([multimediaDictionary count]==1) {
 		multimedia = [matches lastObject];
+	} else {
+		multimedia = [[matches lastObject] initWithServerInfo:multimediaDictionary data:data];
 	}
 	
 	return multimedia;
@@ -53,7 +58,7 @@
 - (NSString *)localURL
 {
 	NSError *err;
-	NSString *documentURL = [[[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:&err] absoluteString];
+	NSString *documentURL = [[[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:&err] path];
 	if (err) {
 		[[NSException exceptionWithName:@"Multimedia(Create) localURL Directory" reason:[err localizedDescription] userInfo:nil] raise];
 	}
@@ -63,20 +68,14 @@
 #pragma mark - Private APIs
 
 /**
- Parse and save the server info-dictionary (the relationship will be handle in Note+Create).
- @param className
- Because the instance object class description may changed, pass from class method to identify entity name
+ Parse the server info-dictionary (the relationship will be handle in Note+Create).
  */
 - (instancetype)initWithServerInfo:(NSDictionary *)multimediaDictionary
 							  data:(NSData *)data
-						 className:(NSString *)className
-			inManagedObjectContext:(NSManagedObjectContext *)context
 {
-	// Insert self into data base
-	self = [NSEntityDescription insertNewObjectForEntityForName:className inManagedObjectContext:context];
-	
 	// Deal with properties
 	self.fileName = multimediaDictionary[ServerMediaFileName];
+	self.synced = multimediaDictionary[ServerMediaSync]? [NSNumber numberWithBool:(BOOL)multimediaDictionary[ServerMediaSync]]: self.synced;
 	
 	// Save the data file
 	[data writeToURL:[NSURL URLWithString:[self localURL]] atomically:YES];

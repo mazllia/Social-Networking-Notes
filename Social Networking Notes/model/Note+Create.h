@@ -10,15 +10,15 @@
 @interface Note (Create)
 
 /**
- This method queries or creates (save to database) a Note to you with provided server info. For @e creation, you must assign property @b uid. @see ServerCommunicatior.h
+ This method queries or creates or modify a Note to you with provided server info. For @e creation, you must assign property @b uid. @see ServerCommunicatior.h
  @param noteDictionary
- Please use the @e ServerCommunicator.h defined key in @e NSDictionary. This dictionary should at least contain @b ServerNoteUID to perform @b query; if @b creation is needed, you need to provide all @b ServerNote* in @e ServerCommunicator.h.
+ Please use the @e ServerCommunicator.h defined key in @e NSDictionary. This dictionary should at least contain @b ServerNoteUID to perform @b query; if create or modify is needed, you need to provide all ServerNote* for creation, or partial ServerNote* for modification.
  @param sender
- A @e Contact specifying who send this Note
+ A @e Contact specifying who send this Note. This parameter is ignored when query. You still need to specify this parameter while modify.
  @param receivers
- Array of @e Contact specifying who receives this Note
+ Array of @e Contact specifying who receives this Note. This parameter is ignored when query. You still need to specify this parameter while modify.
  @param media
- @b Optional parameter. Ordered set of @e Multimedia specifying the sequence and the multimedia contained in this Note
+ Ordered set of @e Multimedia specifying the sequence and the multimedia contained in this Note. This parameter is optional; ignored when query.
  @param context
  Specify in which @e NSManagedObjectContext should be saved.
  @return Returns a new or queried Note;@b nil if the necessary information is not set appropriate.
