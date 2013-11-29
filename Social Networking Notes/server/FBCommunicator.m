@@ -55,15 +55,6 @@ static id sharedFBCommunicator = nil;
 	return _friendsInfo;
 }
 
-- (NSArray *)friendsUID
-{
-	NSMutableArray *result = [NSMutableArray arrayWithCapacity:self.friendsInfo.count];
-	for (id<FBGraphUser> graphUser in self.friendsInfo) {
-		[result addObject:[graphUser id]];
-	}
-	return [result copy];
-}
-
 - (id<FBGraphUser>)me
 {
 	if (!_me) {

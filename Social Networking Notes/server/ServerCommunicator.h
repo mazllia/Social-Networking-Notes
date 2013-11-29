@@ -79,7 +79,7 @@ typedef enum{
 
 /**
  Tell the server user's all friends and get our users, which is a subset of user's all friends. Evoking @e serverCommunicatorContactSynced method.
- @param fbFriends Array of Facebook uid @e NSString
+ @param fbFriends Array of @e NSDictionary containing key = "id" value = "Facebook uid" both in @e NSString
  @return NO if server is unavailable
  */
 - (BOOL)getAvailableUsersFromFBFriends:(NSArray *)fbFriends;

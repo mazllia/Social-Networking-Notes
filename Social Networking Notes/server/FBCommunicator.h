@@ -23,10 +23,6 @@
  */
 @property (nonatomic, strong, readonly) NSArray *friendsInfo;
 /**
- Array of friends uid in @e NSString
- */
-@property (nonatomic, strong, readonly) NSArray *friendsUID;
-/**
  The current user depending on current login session.
  @param me If it is nil, evoke query to Facebook Graph APi @b me. You get nil while it is busy querying!
  */

@@ -51,6 +51,7 @@
 	self = [super init];
 	if (self) {
 		self.delegate = delegate;
+		self.operationQueue = [[NSOperationQueue alloc] init];
 	}
 	return self;
 }
@@ -406,7 +407,7 @@
             {
                 
                 NSString* fileName=file[ServerMediaFileName];
-                NSString *fileURL=[NSString stringWithFormat:@"%@%@%@/%@",serverRootURL,pullMultimediaURL,noteUID,fileName];
+                //NSString *fileURL=[NSString stringWithFormat:@"%@%@%@/%@",serverRootURL,pullMultimediaURL,noteUID,fileName];
                 //NSLog(@"%@",fileName);
                 NSString* exist = [file objectForKey:@"exist"];
                 
@@ -417,7 +418,7 @@
                 if (fileData ==nil && [exist isEqualToString:@"1"])
                 {
                     //start download file
-					[self downloadFile:fileURL fileName:fileName];
+					[self downloadFile:noteUID fileName:fileName];
                 }
                 else if(fileData !=nil && [exist isEqualToString:@"0"])
                 {
