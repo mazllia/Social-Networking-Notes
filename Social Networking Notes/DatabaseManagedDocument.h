@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define DatabaseManagedDocumentNotificationReady @"DatabaseManagedDocumentNotificationReady"
+
 @class Contact;
 @interface DatabaseManagedDocument : UIManagedDocument
 

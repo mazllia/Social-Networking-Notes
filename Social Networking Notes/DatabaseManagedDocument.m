@@ -29,17 +29,22 @@ static DatabaseManagedDocument *sharedDatabaseManagedDocument = nil;
 		[self saveToURL:self.fileURL
 	   forSaveOperation:UIDocumentSaveForCreating
 	  completionHandler:^(BOOL success) {
-		  if (!success)
+		  if (success)
+			  [[NSNotificationCenter defaultCenter] postNotificationName:DatabaseManagedDocumentNotificationReady object:self];
+		  else
 			  [[NSException exceptionWithName:@"Database Managed Document" reason:@"Error creating managed document" userInfo:nil] raise];
 	  }];
 	} else if (self.documentState == UIDocumentStateClosed) {
 		// exists on disk, but we need to open it
 		[self openWithCompletionHandler:^(BOOL success) {
-			if (!success)
+			if (success)
+				[[NSNotificationCenter defaultCenter] postNotificationName:DatabaseManagedDocumentNotificationReady object:self];
+			else
 				[[NSException exceptionWithName:@"Database Managed Document" reason:@"Error creating managed document" userInfo:nil] raise];
 		}];
 	} else if (self.documentState == UIDocumentStateNormal) {
 		// already open and ready to use
+		[[NSNotificationCenter defaultCenter] postNotificationName:DatabaseManagedDocumentNotificationReady object:self];
 	}
 }
 
