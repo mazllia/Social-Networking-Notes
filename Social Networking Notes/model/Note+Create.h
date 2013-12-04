@@ -34,4 +34,7 @@
  */
 - (BOOL)allSynced;
 
+- (instancetype)updateStatusWithServerInfo:(NSDictionary *)noteDictionary
+								 receivers:(NSArray *)receivers;
+
 @end

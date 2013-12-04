@@ -75,7 +75,7 @@
 {
 	// Deal with properties
 	self.fileName = multimediaDictionary[ServerMediaFileName];
-	self.synced = multimediaDictionary[ServerMediaSync]? [NSNumber numberWithBool:(BOOL)multimediaDictionary[ServerMediaSync]]: self.synced;
+	self.synced = multimediaDictionary[ServerMediaSync]? multimediaDictionary[ServerMediaSync]: self.synced;
 	
 	// Save the data file
 	[data writeToURL:[NSURL URLWithString:[self localURL]] atomically:YES];

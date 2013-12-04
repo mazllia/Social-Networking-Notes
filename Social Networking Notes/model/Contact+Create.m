@@ -59,13 +59,13 @@
 {
 	// Deal with properties
 	self.uid = contactDictionary[ServerContactUID];
-	self.isVIP = contactDictionary[ServerContactIsVIP]? [NSNumber numberWithBool:(BOOL)contactDictionary[ServerContactIsVIP]]: self.isVIP;
+	self.isVIP = contactDictionary[ServerContactIsVIP]? contactDictionary[ServerContactIsVIP]: self.isVIP;
 	self.nickName = contactDictionary[ServerContactNickName]? contactDictionary[ServerContactNickName]: self.nickName;
 	
 	// Deal with accounts
 	// 1) If I am the contact
 	if ([[FBCommunicator sharedCommunicator].me.id isEqualToString:contactDictionary[ServerContactFbAccountIdentifier]]) {
-		self.fbAccount = contactDictionary[ServerContactFbAccountIdentifier];
+		self.fbAccount = [FBCommunicator sharedCommunicator].me;
 		return self;
 	}
 	// 2) If one of friends is the contact

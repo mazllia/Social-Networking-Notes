@@ -59,11 +59,28 @@
 {
 	BOOL mediaSynced = YES;
 	for (Multimedia *media in self.media) {
-		if (!media.synced)
+		if (![media.synced boolValue])
 			mediaSynced = NO;
 	}
 	
-	return self.synced && mediaSynced;
+	return [self.synced boolValue] && mediaSynced;
+}
+
+/*
+ Future support these properties for individual receivers
+ */
+- (instancetype)updateStatusWithServerInfo:(NSDictionary *)noteDictionary
+								 receivers:(NSArray *)receivers
+{
+	BOOL read = YES;
+	BOOL accepted = YES;
+	for (NSDictionary *aReceiver in noteDictionary[ServerNoteReceiverList]) {
+		read = read && [aReceiver[ServerNoteRead] boolValue];
+		accepted = accepted && [aReceiver[ServerNoteAccepted] boolValue];
+	}
+	self.read = [NSNumber numberWithBool:read];
+	self.accepted = [NSNumber numberWithBool:accepted];
+	return self;
 }
 
 #pragma mark - Private APIs
@@ -76,25 +93,35 @@
 						 receivers:(NSArray *)receivers
 							 media:(NSArray *)media
 {
-	// Deal with properties
+	/*
+	 1. If info from server is old, then we only need to update Note's relational attributes
+	 2. Update all information from server otherwise.
+	 */
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+	NSDate *serverInfoDate = [dateFormatter dateFromString:noteDictionary[ServerNoteDueTime]];
+	
+	// 1
+	if ([serverInfoDate earlierDate:self.createTime]==self.createTime) {
+		return [self updateStatusWithServerInfo:noteDictionary receivers:receivers];
+	}
+	
+	// 2: Deal with properties
 	self.uid = noteDictionary[ServerNoteUID];
 	self.title = noteDictionary[ServerNoteTitle]? noteDictionary[ServerNoteTitle]: self.title;
 	self.location = noteDictionary[ServerNoteLocation]? noteDictionary[ServerNoteLocation]: self.location;
 	
-	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 	self.dueTime = noteDictionary[ServerNoteDueTime]? [dateFormatter dateFromString:noteDictionary[ServerNoteDueTime]]: self.dueTime;
 	self.createTime = noteDictionary[ServerNoteCreateTime]? [dateFormatter dateFromString:noteDictionary[ServerNoteCreateTime]]: self.createTime;
 	
-	self.archived = noteDictionary[ServerNoteArchive]? [NSNumber numberWithBool:(BOOL)noteDictionary[ServerNoteArchive]]: self.archived;
+	self.archived = noteDictionary[ServerNoteArchive]? noteDictionary[ServerNoteArchive]: self.archived;
 	
-	// Future support these properties for individual receivers
-	for (NSDictionary *aReceiver in noteDictionary[ServerNoteReceiverList]) {
-		self.read = [NSNumber numberWithBool:[self.read boolValue] & (BOOL)aReceiver[ServerNoteRead]];
-		self.accepted = [NSNumber numberWithBool:[self.accepted boolValue] & (BOOL)aReceiver[ServerNoteAccepted]];
-	}
+	self.synced = @YES;
 	
-	// Deal with relationships: Contact & Multimedia
+	// 2: Deal with status
+	self = [self updateStatusWithServerInfo:noteDictionary receivers:receivers];
+	
+	// 2: Deal with relationships: Contact & Multimedia
 	self.sender = sender;
 	self.receivers = [NSSet setWithArray:receivers];
 	

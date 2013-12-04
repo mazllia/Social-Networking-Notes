@@ -8,13 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		4D022CDB17A94E1400A78423 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D022CD917A94E1400A78423 /* Model.xcdatamodeld */; };
-		4D23A3C8184045A500463B8E /* ServerSynchronizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA5E28F183683840013AC29 /* ServerSynchronizer.m */; };
-		4D23A3C9184045B100463B8E /* ServerCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DED360717E6156800CB7FF5 /* ServerCommunicator.m */; };
+		4D062572184CE436008A584A /* FBLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D062571184CE436008A584A /* FBLoginVC.m */; };
+		4D1E3508184D006C002EA4D3 /* FriendTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E3507184D006C002EA4D3 /* FriendTVC.m */; };
 		4D23A3CC1840489500463B8E /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D23A3CB1840489500463B8E /* Note.m */; };
 		4D23A3CD1840489500463B8E /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D23A3CB1840489500463B8E /* Note.m */; };
 		4D326447183250D000FD067A /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD839B018165480003B5DF9 /* FacebookSDK.framework */; };
 		4D364E7517D8D51B00354AE3 /* OldNoteTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D364E7417D8D51B00354AE3 /* OldNoteTVC.m */; };
 		4D364E7817D8DBF100354AE3 /* SortingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D364E7717D8DBF100354AE3 /* SortingViewController.m */; };
+		4D485337184D08E100ECDA4D /* NoteDetailTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D485336184D08E100ECDA4D /* NoteDetailTVC.m */; };
+		4D48533B184D0F3900ECDA4D /* NoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D48533A184D0F3900ECDA4D /* NoteCell.m */; };
+		4D48533E184D1D3F00ECDA4D /* FriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D48533D184D1D3F00ECDA4D /* FriendCell.m */; };
 		4D4FFBB6183CB9230034F604 /* FBCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4FFBB5183CB9230034F604 /* FBCommunicator.m */; };
 		4D60092E1813A3870005EE9A /* Multimedia+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60092D1813A3870005EE9A /* Multimedia+Create.m */; };
 		4D71E6A0180D910900E03071 /* NSObject+ClassName.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D71E69F180D910900E03071 /* NSObject+ClassName.m */; };
@@ -54,6 +57,8 @@
 		4DEA74DF17E60DCE004CB646 /* NoteTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DEA74DE17E60DCD004CB646 /* NoteTVC.m */; };
 		4DED360817E6156800CB7FF5 /* ServerCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DED360717E6156800CB7FF5 /* ServerCommunicator.m */; };
 		4DED360C17E617D400CB7FF5 /* DatabaseManagedDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DED360B17E617D400CB7FF5 /* DatabaseManagedDocument.m */; };
+		4DEDA820184B17DE00B01382 /* ServerSynchronizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA5E28F183683840013AC29 /* ServerSynchronizer.m */; };
+		4DEDA821184B17DE00B01382 /* ServerCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DED360717E6156800CB7FF5 /* ServerCommunicator.m */; };
 		4DFCAFE81804F67B009CBF0C /* Contact+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFCAFE71804F67B009CBF0C /* Contact+Create.m */; };
 		4DFD5EAD183FB3A80031AAC3 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD5EAC183FB3A70031AAC3 /* Contact.m */; };
 		4DFD5EAE183FB3A80031AAC3 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD5EAC183FB3A70031AAC3 /* Contact.m */; };
@@ -63,12 +68,22 @@
 
 /* Begin PBXFileReference section */
 		4D022CDA17A94E1400A78423 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		4D062570184CE436008A584A /* FBLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoginVC.h; sourceTree = "<group>"; };
+		4D062571184CE436008A584A /* FBLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginVC.m; sourceTree = "<group>"; };
+		4D1E3506184D006C002EA4D3 /* FriendTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendTVC.h; sourceTree = "<group>"; };
+		4D1E3507184D006C002EA4D3 /* FriendTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendTVC.m; sourceTree = "<group>"; };
 		4D23A3CA1840489500463B8E /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
 		4D23A3CB1840489500463B8E /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 		4D364E7317D8D51B00354AE3 /* OldNoteTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OldNoteTVC.h; path = ../OldNoteTVC.h; sourceTree = "<group>"; };
 		4D364E7417D8D51B00354AE3 /* OldNoteTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OldNoteTVC.m; path = ../OldNoteTVC.m; sourceTree = "<group>"; };
 		4D364E7617D8DBF100354AE3 /* SortingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SortingViewController.h; path = ../SortingViewController.h; sourceTree = "<group>"; };
 		4D364E7717D8DBF100354AE3 /* SortingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SortingViewController.m; path = ../SortingViewController.m; sourceTree = "<group>"; };
+		4D485335184D08E100ECDA4D /* NoteDetailTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteDetailTVC.h; sourceTree = "<group>"; };
+		4D485336184D08E100ECDA4D /* NoteDetailTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteDetailTVC.m; sourceTree = "<group>"; };
+		4D485339184D0F3900ECDA4D /* NoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteCell.h; sourceTree = "<group>"; };
+		4D48533A184D0F3900ECDA4D /* NoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteCell.m; sourceTree = "<group>"; };
+		4D48533C184D1D3F00ECDA4D /* FriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendCell.h; sourceTree = "<group>"; };
+		4D48533D184D1D3F00ECDA4D /* FriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendCell.m; sourceTree = "<group>"; };
 		4D4FFBB4183CB9230034F604 /* FBCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBCommunicator.h; sourceTree = "<group>"; };
 		4D4FFBB5183CB9230034F604 /* FBCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBCommunicator.m; sourceTree = "<group>"; };
 		4D60092C1813A3870005EE9A /* Multimedia+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Multimedia+Create.h"; sourceTree = "<group>"; };
@@ -155,6 +170,12 @@
 		4D364E7217D8D4BE00354AE3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4D1E3506184D006C002EA4D3 /* FriendTVC.h */,
+				4D1E3507184D006C002EA4D3 /* FriendTVC.m */,
+				4D485335184D08E100ECDA4D /* NoteDetailTVC.h */,
+				4D485336184D08E100ECDA4D /* NoteDetailTVC.m */,
+				4D062570184CE436008A584A /* FBLoginVC.h */,
+				4D062571184CE436008A584A /* FBLoginVC.m */,
 				4D90EC9717F9FC3100086489 /* UINavigationController+Search.h */,
 				4D90EC9817F9FC3100086489 /* UINavigationController+Search.m */,
 				4DEA74DA17E60A3B004CB646 /* CoreDataTableViewController.h */,
@@ -165,6 +186,18 @@
 			);
 			name = Controller;
 			path = controller;
+			sourceTree = "<group>";
+		};
+		4D485338184D0EFF00ECDA4D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4D48533C184D1D3F00ECDA4D /* FriendCell.h */,
+				4D48533D184D1D3F00ECDA4D /* FriendCell.m */,
+				4D485339184D0F3900ECDA4D /* NoteCell.h */,
+				4D48533A184D0F3900ECDA4D /* NoteCell.m */,
+			);
+			name = View;
+			path = view;
 			sourceTree = "<group>";
 		};
 		4D87AEE417A8FBA400F66084 /* Model */ = {
@@ -225,6 +258,7 @@
 				4DB3818B17893E5E00AAB49E /* AppDelegate.m */,
 				4DB3819317893E5E00AAB49E /* MainStoryboard_iPhone.storyboard */,
 				4DB3819617893E5E00AAB49E /* MainStoryboard_iPad.storyboard */,
+				4D485338184D0EFF00ECDA4D /* View */,
 				4D364E7217D8D4BE00354AE3 /* Controller */,
 				4DED360917E6157000CB7FF5 /* Server */,
 				4D87AEE417A8FBA400F66084 /* Model */,
@@ -419,19 +453,24 @@
 				4DB3818C17893E5E00AAB49E /* AppDelegate.m in Sources */,
 				4D022CDB17A94E1400A78423 /* Model.xcdatamodeld in Sources */,
 				4D60092E1813A3870005EE9A /* Multimedia+Create.m in Sources */,
+				4D485337184D08E100ECDA4D /* NoteDetailTVC.m in Sources */,
 				4DFCAFE81804F67B009CBF0C /* Contact+Create.m in Sources */,
 				4D23A3CC1840489500463B8E /* Note.m in Sources */,
+				4D062572184CE436008A584A /* FBLoginVC.m in Sources */,
 				4D71E6A0180D910900E03071 /* NSObject+ClassName.m in Sources */,
 				4D4FFBB6183CB9230034F604 /* FBCommunicator.m in Sources */,
+				4D48533B184D0F3900ECDA4D /* NoteCell.m in Sources */,
 				4DC36ECA17F9E3BF004BBEBD /* Note+Create.m in Sources */,
 				4D364E7517D8D51B00354AE3 /* OldNoteTVC.m in Sources */,
 				4D90EC9917F9FC3100086489 /* UINavigationController+Search.m in Sources */,
 				4D364E7817D8DBF100354AE3 /* SortingViewController.m in Sources */,
+				4D48533E184D1D3F00ECDA4D /* FriendCell.m in Sources */,
 				4DEA74DC17E60A3B004CB646 /* CoreDataTableViewController.m in Sources */,
 				4DEA74DF17E60DCE004CB646 /* NoteTVC.m in Sources */,
 				4DED360817E6156800CB7FF5 /* ServerCommunicator.m in Sources */,
 				4DA5E290183683840013AC29 /* ServerSynchronizer.m in Sources */,
 				4DED360C17E617D400CB7FF5 /* DatabaseManagedDocument.m in Sources */,
+				4D1E3508184D006C002EA4D3 /* FriendTVC.m in Sources */,
 				4DFD5EB1183FB3A90031AAC3 /* Multimedia.m in Sources */,
 				4DFD5EAD183FB3A80031AAC3 /* Contact.m in Sources */,
 			);
@@ -441,9 +480,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DEDA820184B17DE00B01382 /* ServerSynchronizer.m in Sources */,
+				4DEDA821184B17DE00B01382 /* ServerCommunicator.m in Sources */,
 				4D23A3CD1840489500463B8E /* Note.m in Sources */,
-				4D23A3C9184045B100463B8E /* ServerCommunicator.m in Sources */,
-				4D23A3C8184045A500463B8E /* ServerSynchronizer.m in Sources */,
 				4D9EA811183F36B900AF3753 /* Model.xcdatamodeld in Sources */,
 				4D9EA809183F36A300AF3753 /* DatabaseManagedDocument.m in Sources */,
 				4DFD5EB2183FB3A90031AAC3 /* Multimedia.m in Sources */,

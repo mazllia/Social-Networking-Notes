@@ -12,6 +12,8 @@
 
 #import "ServerCommunicator.h" // For parsing only
 
+#import "ServerSynchronizer.h"
+
 #import "Contact+Create.h"
 #import "Note+Create.h"
 #import "Multimedia+Create.h"
@@ -28,6 +30,7 @@
 
 - (IBAction)parseJSON;
 - (IBAction)buttonTapped;
+- (IBAction)readJSON;
 
 @end
 
@@ -35,42 +38,61 @@
 
 - (void)viewDidLoad
 {
-	FBCommunicator *fb = [FBCommunicator sharedCommunicator];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(save) name:DatabaseManagedDocumentNotificationReady object:[DatabaseManagedDocument sharedDatabase]];
+}
+
+- (void)save{
+	NSLog(@"OKAY!");
 }
 
 - (IBAction)parseJSON
+{
+	NSArray *array = [FBCommunicator sharedCommunicator].friendsInfo;
+	
+	ServerSynchronizer *serverSync = [ServerSynchronizer sharedSynchronizer];
+	Contact *whoIsMe = [serverSync currentUser];
+	serverSync.autoSyncTimeInterval = 300;
+	[serverSync sync];
+}
+
+- (IBAction)readJSON
 {
 	NSError *err;
 	NSArray *noteArray = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:@"/Users/Mazllia/Downloads/testStick.txt"] options:nil error:&err];
 	NSArray *contactArray = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:@"/Users/Mazllia/Downloads/testContact.txt"] options:nil error:&err];
 	NSManagedObjectContext *managedObjectContext = [DatabaseManagedDocument sharedDatabase].managedObjectContext;
 	
-	// Insert or update new
-	for (NSDictionary *contactDictionary in contactArray) {
-		Contact *newContact = [Contact contactWithServerInfo:contactDictionary inManagedObjectContext:managedObjectContext];
-	}
+//	Contact *sender = [Contact contactWithServerInfo:@{ServerContactUID: noteArray[0][ServerNoteSenderUID]} inManagedObjectContext:managedObjectContext];
 	
-	for (NSDictionary *noteDictionary in noteArray) {
-		Contact *sender = [Contact contactWithServerInfo:@{ServerContactUID: noteDictionary[ServerNoteSenderUID]} inManagedObjectContext:managedObjectContext];
-		
-		NSMutableArray *receivers = [NSMutableArray arrayWithCapacity:[(NSArray *)noteDictionary[ServerNoteReceiverList] count]];
-		for (NSDictionary *receiverInfo in noteDictionary[ServerNoteReceiverList]) {
-			Contact *receiver = [Contact contactWithServerInfo:@{ServerContactUID: receiverInfo[ServerNoteReceiverUID]} inManagedObjectContext:managedObjectContext];
-			[receivers addObject:receiver];
+	[managedObjectContext performBlockAndWait:^{
+	
+		// Insert or update new
+		for (NSDictionary *contactDictionary in contactArray) {
+			Contact *newContact = [Contact contactWithServerInfo:contactDictionary inManagedObjectContext:managedObjectContext];
 		}
 		
-		NSMutableArray *multimedia = [NSMutableArray arrayWithCapacity:[(NSArray *)noteDictionary[ServerMediaFileList] count]];
-		for (NSDictionary *multimediaInfo in noteDictionary[ServerMediaFileList]) {
-			Multimedia *multimedium = [Multimedia multimediaWithServerInfo:multimediaInfo data:nil inManagedObjectContext:managedObjectContext];
-			[multimedia addObject:multimedium];
+		for (NSDictionary *noteDictionary in noteArray) {
+			Contact *sender = [Contact contactWithServerInfo:@{ServerContactUID: noteDictionary[ServerNoteSenderUID]} inManagedObjectContext:managedObjectContext];
+			
+			NSMutableArray *receivers = [NSMutableArray arrayWithCapacity:[(NSArray *)noteDictionary[ServerNoteReceiverList] count]];
+			for (NSDictionary *receiverInfo in noteDictionary[ServerNoteReceiverList]) {
+				Contact *receiver = [Contact contactWithServerInfo:@{ServerContactUID: receiverInfo[ServerNoteReceiverUID]} inManagedObjectContext:managedObjectContext];
+				[receivers addObject:receiver];
+			}
+			
+			NSMutableArray *multimedia = [NSMutableArray arrayWithCapacity:[(NSArray *)noteDictionary[ServerMediaFileList] count]];
+			for (NSDictionary *multimediaInfo in noteDictionary[ServerMediaFileList]) {
+				Multimedia *multimedium = [Multimedia multimediaWithServerInfo:multimediaInfo data:nil inManagedObjectContext:managedObjectContext];
+				[multimedia addObject:multimedium];
+			}
+			
+			Note *newNote = [Note noteWithServerInfo:noteDictionary sender:sender receivers:receivers media:multimedia inManagedObjectContext:managedObjectContext];
 		}
 		
-		Note *newNote = [Note noteWithServerInfo:noteDictionary sender:sender receivers:receivers media:multimedia inManagedObjectContext:managedObjectContext];
-	}
-	
-//	[[DatabaseManagedDocument sharedDatabase] savePresentedItemChangesWithCompletionHandler:^(NSError *errorOrNil) {
-//		NSLog(@"Saving DB: %@", errorOrNil.localizedDescription);
-//	}];
+		DatabaseManagedDocument *db = [DatabaseManagedDocument sharedDatabase];
+		[db saveToURL:db.fileURL  forSaveOperation:UIDocumentSaveForOverwriting completionHandler:nil];
+		
+	}];
 }
 
 - (IBAction)buttonTapped
@@ -88,6 +110,9 @@
 			[[[UIAlertView alloc] initWithTitle:@"Friends:" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
 		}
 	}];
+}
+
+- (IBAction)readJSON:(id)sender {
 }
 
 - (id<FBGraphUser>)me
