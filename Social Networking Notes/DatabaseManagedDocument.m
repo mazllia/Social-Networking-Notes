@@ -40,7 +40,7 @@ static DatabaseManagedDocument *sharedDatabaseManagedDocument = nil;
 			if (success)
 				[[NSNotificationCenter defaultCenter] postNotificationName:DatabaseManagedDocumentNotificationReady object:self];
 			else
-				[[NSException exceptionWithName:@"Database Managed Document" reason:@"Error creating managed document" userInfo:nil] raise];
+				[[NSException exceptionWithName:@"Database Managed Document" reason:@"Error opening managed document" userInfo:nil] raise];
 		}];
 	} else if (self.documentState == UIDocumentStateNormal) {
 		// already open and ready to use

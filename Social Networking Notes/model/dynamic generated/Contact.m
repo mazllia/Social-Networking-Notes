@@ -2,7 +2,7 @@
 //  Contact.m
 //  Social Networking Notes
 //
-//  Created by 戴鵬洋 on 2013/11/22.
+//  Created by 戴鵬洋 on 2013/12/5.
 //  Copyright (c) 2013年 Dai Peng-Yang. All rights reserved.
 //
 
@@ -12,11 +12,12 @@
 
 @implementation Contact
 
-@dynamic fbAccount;
 @dynamic isVIP;
 @dynamic nickName;
 @dynamic synced;
 @dynamic uid;
+@dynamic fbUid;
+@dynamic fbName;
 @dynamic notesHaveCreated;
 @dynamic notesHaveRecieved;
 

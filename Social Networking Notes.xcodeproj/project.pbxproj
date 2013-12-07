@@ -9,16 +9,17 @@
 /* Begin PBXBuildFile section */
 		4D022CDB17A94E1400A78423 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D022CD917A94E1400A78423 /* Model.xcdatamodeld */; };
 		4D062572184CE436008A584A /* FBLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D062571184CE436008A584A /* FBLoginVC.m */; };
+		4D1557C8184F27A7002D8A00 /* RootTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1557C7184F27A7002D8A00 /* RootTabBarViewController.m */; };
 		4D1E3508184D006C002EA4D3 /* FriendTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E3507184D006C002EA4D3 /* FriendTVC.m */; };
 		4D23A3CC1840489500463B8E /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D23A3CB1840489500463B8E /* Note.m */; };
 		4D23A3CD1840489500463B8E /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D23A3CB1840489500463B8E /* Note.m */; };
+		4D2BE5921850CD39004DB07A /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2BE5911850CD39004DB07A /* Contact.m */; };
 		4D326447183250D000FD067A /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD839B018165480003B5DF9 /* FacebookSDK.framework */; };
 		4D364E7517D8D51B00354AE3 /* OldNoteTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D364E7417D8D51B00354AE3 /* OldNoteTVC.m */; };
 		4D364E7817D8DBF100354AE3 /* SortingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D364E7717D8DBF100354AE3 /* SortingViewController.m */; };
 		4D485337184D08E100ECDA4D /* NoteDetailTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D485336184D08E100ECDA4D /* NoteDetailTVC.m */; };
 		4D48533B184D0F3900ECDA4D /* NoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D48533A184D0F3900ECDA4D /* NoteCell.m */; };
 		4D48533E184D1D3F00ECDA4D /* FriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D48533D184D1D3F00ECDA4D /* FriendCell.m */; };
-		4D4FFBB6183CB9230034F604 /* FBCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4FFBB5183CB9230034F604 /* FBCommunicator.m */; };
 		4D60092E1813A3870005EE9A /* Multimedia+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60092D1813A3870005EE9A /* Multimedia+Create.m */; };
 		4D71E6A0180D910900E03071 /* NSObject+ClassName.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D71E69F180D910900E03071 /* NSObject+ClassName.m */; };
 		4D90EC9917F9FC3100086489 /* UINavigationController+Search.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D90EC9817F9FC3100086489 /* UINavigationController+Search.m */; };
@@ -29,7 +30,6 @@
 		4D9EA80D183F36A300AF3753 /* Note+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC36EC917F9E3BF004BBEBD /* Note+Create.m */; };
 		4D9EA811183F36B900AF3753 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D022CD917A94E1400A78423 /* Model.xcdatamodeld */; };
 		4DA5E290183683840013AC29 /* ServerSynchronizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA5E28F183683840013AC29 /* ServerSynchronizer.m */; };
-		4DAEFF86183CD53D00C418D0 /* FBCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4FFBB5183CB9230034F604 /* FBCommunicator.m */; };
 		4DB3817C17893E5E00AAB49E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB3817B17893E5E00AAB49E /* UIKit.framework */; };
 		4DB3817E17893E5E00AAB49E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB3817D17893E5E00AAB49E /* Foundation.framework */; };
 		4DB3818017893E5E00AAB49E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB3817F17893E5E00AAB49E /* CoreGraphics.framework */; };
@@ -60,8 +60,6 @@
 		4DEDA820184B17DE00B01382 /* ServerSynchronizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA5E28F183683840013AC29 /* ServerSynchronizer.m */; };
 		4DEDA821184B17DE00B01382 /* ServerCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DED360717E6156800CB7FF5 /* ServerCommunicator.m */; };
 		4DFCAFE81804F67B009CBF0C /* Contact+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFCAFE71804F67B009CBF0C /* Contact+Create.m */; };
-		4DFD5EAD183FB3A80031AAC3 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD5EAC183FB3A70031AAC3 /* Contact.m */; };
-		4DFD5EAE183FB3A80031AAC3 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD5EAC183FB3A70031AAC3 /* Contact.m */; };
 		4DFD5EB1183FB3A90031AAC3 /* Multimedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD5EB0183FB3A90031AAC3 /* Multimedia.m */; };
 		4DFD5EB2183FB3A90031AAC3 /* Multimedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD5EB0183FB3A90031AAC3 /* Multimedia.m */; };
 /* End PBXBuildFile section */
@@ -70,10 +68,14 @@
 		4D022CDA17A94E1400A78423 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		4D062570184CE436008A584A /* FBLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoginVC.h; sourceTree = "<group>"; };
 		4D062571184CE436008A584A /* FBLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginVC.m; sourceTree = "<group>"; };
+		4D1557C6184F27A7002D8A00 /* RootTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTabBarViewController.h; sourceTree = "<group>"; };
+		4D1557C7184F27A7002D8A00 /* RootTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabBarViewController.m; sourceTree = "<group>"; };
 		4D1E3506184D006C002EA4D3 /* FriendTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendTVC.h; sourceTree = "<group>"; };
 		4D1E3507184D006C002EA4D3 /* FriendTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendTVC.m; sourceTree = "<group>"; };
 		4D23A3CA1840489500463B8E /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
 		4D23A3CB1840489500463B8E /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		4D2BE5901850CD38004DB07A /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
+		4D2BE5911850CD39004DB07A /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
 		4D364E7317D8D51B00354AE3 /* OldNoteTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OldNoteTVC.h; path = ../OldNoteTVC.h; sourceTree = "<group>"; };
 		4D364E7417D8D51B00354AE3 /* OldNoteTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OldNoteTVC.m; path = ../OldNoteTVC.m; sourceTree = "<group>"; };
 		4D364E7617D8DBF100354AE3 /* SortingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SortingViewController.h; path = ../SortingViewController.h; sourceTree = "<group>"; };
@@ -84,8 +86,6 @@
 		4D48533A184D0F3900ECDA4D /* NoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteCell.m; sourceTree = "<group>"; };
 		4D48533C184D1D3F00ECDA4D /* FriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendCell.h; sourceTree = "<group>"; };
 		4D48533D184D1D3F00ECDA4D /* FriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendCell.m; sourceTree = "<group>"; };
-		4D4FFBB4183CB9230034F604 /* FBCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBCommunicator.h; sourceTree = "<group>"; };
-		4D4FFBB5183CB9230034F604 /* FBCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBCommunicator.m; sourceTree = "<group>"; };
 		4D60092C1813A3870005EE9A /* Multimedia+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Multimedia+Create.h"; sourceTree = "<group>"; };
 		4D60092D1813A3870005EE9A /* Multimedia+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Multimedia+Create.m"; sourceTree = "<group>"; };
 		4D71E69E180D910900E03071 /* NSObject+ClassName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ClassName.h"; sourceTree = "<group>"; };
@@ -134,8 +134,6 @@
 		4DED360B17E617D400CB7FF5 /* DatabaseManagedDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseManagedDocument.m; sourceTree = "<group>"; };
 		4DFCAFE61804F67B009CBF0C /* Contact+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Contact+Create.h"; sourceTree = "<group>"; };
 		4DFCAFE71804F67B009CBF0C /* Contact+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Contact+Create.m"; sourceTree = "<group>"; };
-		4DFD5EAB183FB3A70031AAC3 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
-		4DFD5EAC183FB3A70031AAC3 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
 		4DFD5EAF183FB3A90031AAC3 /* Multimedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Multimedia.h; sourceTree = "<group>"; };
 		4DFD5EB0183FB3A90031AAC3 /* Multimedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Multimedia.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -256,6 +254,8 @@
 				4DED360B17E617D400CB7FF5 /* DatabaseManagedDocument.m */,
 				4DB3818A17893E5E00AAB49E /* AppDelegate.h */,
 				4DB3818B17893E5E00AAB49E /* AppDelegate.m */,
+				4D1557C6184F27A7002D8A00 /* RootTabBarViewController.h */,
+				4D1557C7184F27A7002D8A00 /* RootTabBarViewController.m */,
 				4DB3819317893E5E00AAB49E /* MainStoryboard_iPhone.storyboard */,
 				4DB3819617893E5E00AAB49E /* MainStoryboard_iPad.storyboard */,
 				4D485338184D0EFF00ECDA4D /* View */,
@@ -317,12 +317,12 @@
 		4DEA74C117E5AE4E004CB646 /* Dynamic Generated */ = {
 			isa = PBXGroup;
 			children = (
+				4D2BE5901850CD38004DB07A /* Contact.h */,
+				4D2BE5911850CD39004DB07A /* Contact.m */,
 				4D23A3CA1840489500463B8E /* Note.h */,
 				4D23A3CB1840489500463B8E /* Note.m */,
 				4DFD5EAF183FB3A90031AAC3 /* Multimedia.h */,
 				4DFD5EB0183FB3A90031AAC3 /* Multimedia.m */,
-				4DFD5EAB183FB3A70031AAC3 /* Contact.h */,
-				4DFD5EAC183FB3A70031AAC3 /* Contact.m */,
 			);
 			name = "Dynamic Generated";
 			path = "dynamic generated";
@@ -343,8 +343,6 @@
 		4DED360917E6157000CB7FF5 /* Server */ = {
 			isa = PBXGroup;
 			children = (
-				4D4FFBB4183CB9230034F604 /* FBCommunicator.h */,
-				4D4FFBB5183CB9230034F604 /* FBCommunicator.m */,
 				4DA5E28E183683840013AC29 /* ServerSynchronizer.h */,
 				4DA5E28F183683840013AC29 /* ServerSynchronizer.m */,
 				4DED360617E6156800CB7FF5 /* ServerCommunicator.h */,
@@ -456,9 +454,9 @@
 				4D485337184D08E100ECDA4D /* NoteDetailTVC.m in Sources */,
 				4DFCAFE81804F67B009CBF0C /* Contact+Create.m in Sources */,
 				4D23A3CC1840489500463B8E /* Note.m in Sources */,
+				4D2BE5921850CD39004DB07A /* Contact.m in Sources */,
 				4D062572184CE436008A584A /* FBLoginVC.m in Sources */,
 				4D71E6A0180D910900E03071 /* NSObject+ClassName.m in Sources */,
-				4D4FFBB6183CB9230034F604 /* FBCommunicator.m in Sources */,
 				4D48533B184D0F3900ECDA4D /* NoteCell.m in Sources */,
 				4DC36ECA17F9E3BF004BBEBD /* Note+Create.m in Sources */,
 				4D364E7517D8D51B00354AE3 /* OldNoteTVC.m in Sources */,
@@ -470,9 +468,9 @@
 				4DED360817E6156800CB7FF5 /* ServerCommunicator.m in Sources */,
 				4DA5E290183683840013AC29 /* ServerSynchronizer.m in Sources */,
 				4DED360C17E617D400CB7FF5 /* DatabaseManagedDocument.m in Sources */,
+				4D1557C8184F27A7002D8A00 /* RootTabBarViewController.m in Sources */,
 				4D1E3508184D006C002EA4D3 /* FriendTVC.m in Sources */,
 				4DFD5EB1183FB3A90031AAC3 /* Multimedia.m in Sources */,
-				4DFD5EAD183FB3A80031AAC3 /* Contact.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,9 +487,7 @@
 				4D9EA80A183F36A300AF3753 /* Multimedia+Create.m in Sources */,
 				4D9EA80B183F36A300AF3753 /* NSObject+ClassName.m in Sources */,
 				4D9EA80C183F36A300AF3753 /* Contact+Create.m in Sources */,
-				4DFD5EAE183FB3A80031AAC3 /* Contact.m in Sources */,
 				4D9EA80D183F36A300AF3753 /* Note+Create.m in Sources */,
-				4DAEFF86183CD53D00C418D0 /* FBCommunicator.m in Sources */,
 				4DD839AF18164FB2003B5DF9 /* TestVC.m in Sources */,
 				4DB7B17E1813F1120044CDC3 /* AppDelegate.m in Sources */,
 				4DB7B17F1813F1120044CDC3 /* main.m in Sources */,

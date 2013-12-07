@@ -10,7 +10,6 @@
 
 #define DatabaseManagedDocumentNotificationReady @"DatabaseManagedDocumentNotificationReady"
 
-@class Contact;
 @interface DatabaseManagedDocument : UIManagedDocument
 
 - (id)initWithFileURL:(NSURL *)url;

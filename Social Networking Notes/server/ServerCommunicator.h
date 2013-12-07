@@ -36,6 +36,7 @@
 #define ServerMediaSync @"sync"
 
 #define ServerContactUID @"contact_uid"
+#define ServerContactFBAccountName @"facebook_name"
 #define ServerContactFbAccountIdentifier @"facebook_uid"
 #define ServerContactIsVIP @"isvip"
 #define ServerContactNickName @"nick_name"
@@ -48,6 +49,8 @@ typedef enum{
 /**
  Let delegate to handle sync status.
  */
+
+@class Contact;
 
 @protocol ServerCommunicatorDelegate <NSObject>
 @required
@@ -69,20 +72,20 @@ typedef enum{
  To sync with server. Handles *NSManagedObject*s and returns *NSDictionary* and *NSArray* parsed from server's JSON.
  */
 
-- (instancetype)initWithDelegate:(id<ServerCommunicatorDelegate>)delegate;
+- (instancetype)initWithDelegate:(id<ServerCommunicatorDelegate>)delegate
+				 withUserContact:(Contact *)user;
 
 /**
  當使用者第一次使用app時，使用這api跟server索取ContactUID (假如使用的facebookUID 已經存在，則回傳該 facebookUID 綁定的ContactUID。
  @return ContactUID
  */
-- (NSString *)registerUserAccount;
+- (NSString *)registerUserAccount:(NSString *)facebookUID;
 
 /**
  Tell the server user's all friends and get our users, which is a subset of user's all friends. Evoking @e serverCommunicatorContactSynced method.
- @param fbFriends Array of @e NSDictionary containing key = "id" value = "Facebook uid" both in @e NSString
  @return NO if server is unavailable
  */
-- (BOOL)getAvailableUsersFromFBFriends:(NSArray *)fbFriends;
+- (BOOL)getAvailableUsersFromFBFriends;
 
 /**
  Accept un-synced @e NSManagedObject classes, including creation and modification, and upload it to our server. Evoking @e serverCommunicatorNotesSynced and @e serverCommunicatorContactsSynced method.

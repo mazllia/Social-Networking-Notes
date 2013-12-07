@@ -9,7 +9,6 @@
 #import "Contact+Create.h"
 #import "NSObject+ClassName.h"
 
-#import "FBCommunicator.h"
 #import "ServerCommunicator.h"	// For parsing dictionary purpose
 
 @implementation Contact (Create)
@@ -61,21 +60,11 @@
 	self.uid = contactDictionary[ServerContactUID];
 	self.isVIP = contactDictionary[ServerContactIsVIP]? contactDictionary[ServerContactIsVIP]: self.isVIP;
 	self.nickName = contactDictionary[ServerContactNickName]? contactDictionary[ServerContactNickName]: self.nickName;
+
+	self.fbName = contactDictionary[ServerContactFBAccountName]? contactDictionary[ServerContactFBAccountName]: self.fbName;
+	self.fbUid = contactDictionary[ServerContactFbAccountIdentifier]? contactDictionary[ServerContactFbAccountIdentifier]: self.fbName;
 	
-	// Deal with accounts
-	// 1) If I am the contact
-	if ([[FBCommunicator sharedCommunicator].me.id isEqualToString:contactDictionary[ServerContactFbAccountIdentifier]]) {
-		self.fbAccount = [FBCommunicator sharedCommunicator].me;
-		return self;
-	}
-	// 2) If one of friends is the contact
-	for (id<FBGraphUser> contact in [FBCommunicator sharedCommunicator].friendsInfo) {
-		NSString *contactUID = contactDictionary[ServerContactFbAccountIdentifier];
-		if ([[contact id] isEqualToString:contactUID]) {
-			self.fbAccount = contact;
-			break;
-		}
-	}
+	self.synced = @NO;
 	
 	return self;
 }

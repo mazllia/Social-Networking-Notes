@@ -20,7 +20,7 @@
 // kNoteUID, kMediaFileName
 #define pullMultimediaURL @"UpLoad/"
 
-
+#define getFBFriendURL  @"get_fbfriend.php"
 #define createAcountURL @"create_account.php"
 #define pushNoteURL @"push_note.php"
 #define getNoteURL @"get_note.php"
@@ -47,10 +47,13 @@
 @implementation ServerCommunicator
 
 - (instancetype)initWithDelegate:(id<ServerCommunicatorDelegate>)delegate
+				 withUserContact:(Contact *)user
 {
 	self = [super init];
 	if (self) {
 		self.delegate = delegate;
+		self.userContact = user;
+		[self registerUserAccount:user.fbUid];
 		self.operationQueue = [[NSOperationQueue alloc] init];
 	}
 	return self;
@@ -239,11 +242,12 @@
 
 
 
-- (NSString *)registerUserAccount
+- (NSString *)registerUserAccount:(NSString *)facebookUID
 {
     
     //NSString *facebookUID=@"123456789";
-	NSString *facebookUID = [[FBCommunicator sharedCommunicator] me].id;
+	//NSString *facebookUID = [[FBCommunicator sharedCommunicator] me].id;
+	
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",serverRootURL,createAcountURL]];
 	
     //開始與server 連線
@@ -261,6 +265,7 @@
         //NSLog(@"%@",stickyUID);
         if(jsonData==nil)
         {
+			NSLog(@"error");
             return nil;
         }
         NSString *contactUID =[jsonData objectForKey:ServerNoteUserUID];
@@ -285,15 +290,21 @@
     for(Contact* contactData in contacts)
     {
         NSString *isVip = [contactData.isVIP stringValue];
-        NSDictionary *data = @{
-                               ServerContactUID:contactData.uid,
-                               ServerContactFbAccountIdentifier:contactData.fbAccount.id,
-                               ServerContactIsVIP:isVip,
-                               ServerContactNickName:contactData.nickName
-                               };
+
+		NSString *fuckString = [self userContact].fbUid;
+		
+        NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
+		if(contactData.uid)
+			data[ServerContactUID]=contactData.uid;
+		if(fuckString)
+			data[ServerContactFbAccountIdentifier]=fuckString;
+		if (contactData.nickName)
+			data[ServerContactNickName] = contactData.nickName;
+		if (contactData.isVIP)
+			data[ServerContactIsVIP] = isVip;
         [contactlist addObject:data];
     }
-    NSData *jsonContactlist = [NSJSONSerialization dataWithJSONObject:notelist options:NSJSONWritingPrettyPrinted error:nil];
+    NSData *jsonContactlist = [NSJSONSerialization dataWithJSONObject:contactlist options:NSJSONWritingPrettyPrinted error:nil];
     NSString *jsonContactlistString = [[NSString alloc] initWithData:jsonContactlist encoding:NSUTF8StringEncoding];
     
     //upload note data to server
@@ -306,6 +317,8 @@
     NSData* responseDate =[self httpPostConnect:url httpBodyString:httpBodyString];
     if(responseDate ==nil){
         NSLog(@"error");
+		[self getLastestNotes:ServerActionPush];
+		[self getContact];
         return false;
     }
     //upload contact data to server
@@ -316,23 +329,30 @@
     responseDate=[self httpPostConnect:url httpBodyString:httpBodyString];
     if(responseDate==nil)
     {
+		[self getLastestNotes:ServerActionPush];
+		[self getContact];
         return false;
     }
     
-    return true;
-    //return[self getLastestNotes:ServerActionPush]& [self getAvailableUsersFromFBFriends:nil ServerAction:ServerActionPush];
+//    return true;
+    [self getLastestNotes:ServerActionPush];
+	[self getContact];
+	return true;
 }
 
 -(NSDictionary *)tranformNoteToJson:(Note *)note
 {
-    NSString *createTime= [NSString stringWithFormat:@"%@",note.createTime];
-    NSString *dueTime = [NSString stringWithFormat:@"%@",note.dueTime];
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+
+    NSString *createTime= [dateFormatter stringFromDate:note.createTime];
+    NSString *dueTime = [dateFormatter stringFromDate:note.dueTime];
     
     //handle receiver_uid_list data
     NSMutableArray *receiverData = [[NSMutableArray alloc] init];
-    for(NSString * receiver in note.receivers){
+    for(Contact * receiver in note.receivers){
         NSMutableDictionary *r =[[NSMutableDictionary alloc] init];
-        [r setValue:receiver forKey:@"receiver_uid" ];
+        [r setValue:receiver.uid forKey:@"receiver_uid" ];
         [receiverData addObject:r];
     }
     
@@ -344,9 +364,22 @@
         [mediaFileNameData addObject:f];
     }
     NSString* noteSync= [note.synced stringValue];
+	
+	NSString *tmpNoteUID = [[NSString alloc]init];
+	if(note.uid== nil)
+	{
+		tmpNoteUID =@"-1";
+	} else{
+		tmpNoteUID = note.uid;
+	}
     //tranform to json data
+	NSString *read = [note.read stringValue];
+	NSString *accepted = [note.accepted stringValue];
+	NSString *archived = [note.archived stringValue];
+	
     NSDictionary *data = @{
-                           ServerNoteSenderUID:note.sender,
+						   ServerNoteUID:tmpNoteUID,
+                           ServerNoteSenderUID:note.sender.uid,
                            ServerNoteReceiverList:receiverData,
                            ServerNoteCreateTime:createTime,
                            ServerNoteDueTime:dueTime,
@@ -354,7 +387,9 @@
                            ServerNoteTitle:note.title,
                            ServerNoteLocation:note.location,
                            @"note_sync":noteSync,
-                           ServerNoteArchive:note.archived,
+                           ServerNoteArchive:archived,
+						   ServerNoteRead:read,
+						   ServerNoteAccepted:accepted
                            };
     return data;
 }
@@ -386,6 +421,7 @@
         //NSLog(@"%@",stickyUID);
         if(jsonData==nil)
         {
+			[self.delegate serverCommunicatorNotesSynced:nil fromAction:action];
             return false;
         }
         //start to check file exist
@@ -442,6 +478,7 @@
         responseData=[self httpPostConnect:url httpBodyString:httpBodyString];
         if(responseData==nil)
         {
+			[self.delegate serverCommunicatorNotesSynced:nil fromAction:action];
             return false;
         }
         //this json object is for delegate
@@ -455,6 +492,16 @@
             NSArray* filelist = note[ServerMediaFileList];
             if(note[ServerMediaFileList]==nil)
             {
+				NSDictionary *tmpDictionary=@{ServerNoteUID:note[ServerNoteUID],
+											  ServerNoteSenderUID:note[ServerNoteSenderUID],
+											  ServerNoteReceiverList:note[ServerNoteReceiverList],
+											  ServerNoteCreateTime:note[ServerNoteCreateTime],
+											  ServerNoteDueTime:note[ServerNoteDueTime],
+											  ServerNoteTitle:note[ServerNoteTitle],
+											  ServerNoteLocation:note[ServerNoteLocation],
+											  ServerNoteArchive:note[ServerNoteArchive]
+											  };
+				[jsonDataComplete addObject:tmpDictionary];
                 continue;
             }
             NSMutableArray *tmpArray=[[NSMutableArray alloc]init];
@@ -474,17 +521,17 @@
                 if([exist isEqualToString:@"1"] && fileData!=nil)
                 {
                     //set this file sync to true
-                    [tmpDictionary setObject:@"1" forKey:ServerMediaSync];
+                    [tmpDictionary setObject:@YES forKey:ServerMediaSync];
                 }
                 else
                 {
                     //set this file sync to false
-                    [tmpDictionary setObject:@"0" forKey:ServerMediaSync];
+                    [tmpDictionary setObject:@NO forKey:ServerMediaSync];
                 }
                 [tmpArray addObject:tmpDictionary];
                 
             }
-            NSDictionary *tmpDictionary=@{
+            NSDictionary *tmpDictionary=@{ServerNoteUID:note[ServerNoteUID],
 										  ServerNoteSenderUID:note[ServerNoteSenderUID],
 										  ServerNoteReceiverList:note[ServerNoteReceiverList],
 										  ServerNoteCreateTime:note[ServerNoteCreateTime],
@@ -503,24 +550,18 @@
         return true;
     }
     else{
+		[self.delegate serverCommunicatorNotesSynced:nil fromAction:action];
         return false;
     }
 }
 
-- (BOOL)getAvailableUsersFromFBFriends:(NSArray *)fbFriends
+
+
+- (BOOL)getContact
+
 {
-    return [self getAvailableUsersFromFBFriends:fbFriends ServerAction:ServerActionPull];
-}
-- (BOOL)getAvailableUsersFromFBFriends:(NSArray *)fbFriends ServerAction:(ServerAction)action
-{
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:fbFriends options:NSJSONWritingPrettyPrinted error:nil];
-    
-    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",serverRootURL,getContactURL]];
-    
-    
-    NSString *httpBodyString = [NSString stringWithFormat:@"user_uid=%@&deviceUID=%@&json_fbfriendlist=%@",[self userContact].uid,self.deviceUID,jsonString];
+    NSString *httpBodyString = [NSString stringWithFormat:@"user_uid=%@&deviceUID=%@",self.userContact.uid,self.deviceUID];
     //開始與server 連線
     NSData *responseData =[self httpPostConnect:url httpBodyString:httpBodyString];
     if(responseData){
@@ -528,16 +569,51 @@
         //NSLog(@"%@",stickyUID);
         if(jsonData==nil)
         {
+			[self.delegate serverCommunicatorContactSynced:nil fromAction:ServerActionPush];
             return false;
         }
-        [self.delegate serverCommunicatorContactSynced:jsonData fromAction:action];
+        [self.delegate serverCommunicatorContactSynced:jsonData fromAction:ServerActionPush];
         return true;
-        
     }
     else{
+		[self.delegate serverCommunicatorContactSynced:nil fromAction:ServerActionPush];
         NSLog(@"error");
         return false;
     }
+	
+}
+
+- (BOOL)getAvailableUsersFromFBFriends
+{
+	NSString *accessToken = [FBSession activeSession].accessTokenData.accessToken;
+	
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",serverRootURL,getFBFriendURL]];
+	
+	
+    NSString *httpBodyString = [NSString stringWithFormat:@"user_uid=%@&deviceUID=%@&access_token=%@&facebook_uid=%@",self.userContact.uid,self.deviceUID,accessToken,self.userContact.fbUid];
+	
+    //開始與server 連線
+    NSData *responseData =[self httpPostConnect:url httpBodyString:httpBodyString];
+    if(responseData){
+        NSArray *jsonData = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
+		
+        //NSLog(@"%@",stickyUID);
+        if(jsonData==nil)
+        {
+			[self.delegate serverCommunicatorContactSynced:nil fromAction:ServerActionPull];
+            return false;
+        }
+        [self.delegate serverCommunicatorContactSynced:jsonData fromAction:ServerActionPull];
+        return true;
+    }
+    else{
+        NSLog(@"error");
+		[self.delegate serverCommunicatorContactSynced:nil fromAction:ServerActionPull];
+        return false;
+		
+    }
+	
 }
 
 - (NSString *)localURL:(NSString *)fileName
@@ -558,13 +634,14 @@
     [request setURL:url];
     
     [request setHTTPMethod:@"POST"];
-    [request setTimeoutInterval: 2.0]; // Will timeout after 2 seconds
+    [request setTimeoutInterval: 10.0]; // Will timeout after 2 seconds
     
     [request setHTTPBody:[httpBodyString dataUsingEncoding:NSUTF8StringEncoding]];
     NSError* error;
     NSData *data =[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
     if(error)
     {
+		NSLog(@"%@", [error localizedDescription]);
         return nil;
     }
     else
@@ -594,7 +671,7 @@
         NSString *isVip = [contact.isVIP stringValue];
         NSDictionary *data = @{
                                ServerContactUID:contact.uid,
-                               ServerContactFbAccountIdentifier:contact.fbAccount.id,
+                               ServerContactFbAccountIdentifier:contact.fbUid,
                                ServerContactIsVIP:isVip,
                                ServerContactNickName:contact.nickName
                                };

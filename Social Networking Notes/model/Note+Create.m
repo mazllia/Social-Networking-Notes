@@ -101,6 +101,10 @@
 	[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 	NSDate *serverInfoDate = [dateFormatter dateFromString:noteDictionary[ServerNoteDueTime]];
 	
+	if (!serverInfoDate) {
+		[[NSException exceptionWithName:@"Note+Create" reason:@"Server Note Dictionary date format error or nil"  userInfo:nil] raise];
+	}
+	
 	// 1
 	if ([serverInfoDate earlierDate:self.createTime]==self.createTime) {
 		return [self updateStatusWithServerInfo:noteDictionary receivers:receivers];
@@ -116,7 +120,8 @@
 	
 	self.archived = noteDictionary[ServerNoteArchive]? noteDictionary[ServerNoteArchive]: self.archived;
 	
-	self.synced = @YES;
+//	self.synced = @YES;
+	self.synced = @NO;
 	
 	// 2: Deal with status
 	self = [self updateStatusWithServerInfo:noteDictionary receivers:receivers];

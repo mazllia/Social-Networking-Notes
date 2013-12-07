@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#define ServerSynchronizerNotificationContactSynced @"ServerSynchronizerNotificationContactSynced"
+#define ServerSynchronizerNotificationNoteSynced @"ServerSynchronizerNotificationNoteSynced"
+
 @class Contact;
 /**
- A singleton class scan through local Core Data and sync with cloud server, providing manual and automatic sync.
+ A singleton class scan through local Core Data and sync with cloud server, providing manual and automatic sync. This class won't start until the
  @discussion Only use this class after user account is initialized.
  */
 @interface ServerSynchronizer : NSObject
@@ -27,18 +30,36 @@
 @property (nonatomic, readonly) BOOL syncing;
 
 /**
- Current login user of this device as a Contact instance
+ Stores newly created notes that do not have a uid yet. These notes are saved with archive instead of core data.
+ */
+@property (nonatomic, strong, readonly) NSMutableArray *notesWithoutUID;
+
+/**
+ Current login user of this device as a Contact instance. This performs the same method: @b registerUserAccount in @e ServerCommunicator when first use.
  */
 @property (nonatomic, strong, readonly) Contact *currentUser;
+
 /**
  Manually sync all data.
  */
 - (void)sync;
 
+// Singelton
+
 /**
- Use this class method to reach the singleton synchronizer
+ Use this class method to reach the singleton synchronizer.
+ @return nil if ServerSynchronizer isn't initilized by @b syncronizerInitWithFBGraphUser:
  */
 + (instancetype)sharedSynchronizer;
 + (id)allocWithZone:(struct _NSZone *)zone;
+
+/**
+ To initilize the singleton class.
+ */
++ (instancetype)syncronizerInitWithFBGraphUser:(id <FBGraphUser>) user;
+/**
+ Set shared object to nil. Usually used when user logout.
+ */
++ (void)closeSynchornizer;
 
 @end
