@@ -51,10 +51,35 @@ static id sharedServerSynchronizer = nil;
 		
 		_dataContext = [DatabaseManagedDocument sharedDatabase].managedObjectContext;
 
-		// Init currentUser
-		NSString *uid = [self registerUserAccount:user[@"id"]];
- 		_currentUser = [Contact contactWithServerInfo:@{ServerContactUID: uid, ServerContactFbAccountIdentifier: user[@"id"], ServerContactFBAccountName: user.name}
-							   inManagedObjectContext:_dataContext];
+		// Init currentUser without contact uid
+		NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Contact"];
+		[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"fbUid = %@", user[@"id"]]];
+		
+		/* Finding currentUser in database
+		 0: First use, then ask for uid then create it
+		 1: We have already created it
+		 */
+		[_dataContext performBlockAndWait:^{
+			NSError *err;
+			NSArray *result = [_dataContext executeFetchRequest:fetchRequest error:&err];
+			
+			switch (result.count) {
+				case 0:
+					_currentUser = [Contact contactWithServerInfo:@{ServerContactUID: [self registerUserAccount:user[@"id"]],
+													 ServerContactFbAccountIdentifier: user[@"id"],
+													 ServerContactFBAccountName: user.name}
+							inManagedObjectContext:_dataContext];
+					break;
+					
+				case 1:
+					_currentUser = result[0];
+					break;
+					
+				default:
+					[[NSException exceptionWithName:@"Server Synchronizer initialize currentUser fetch error" reason:err.localizedDescription userInfo:nil] raise];
+					break;
+			}
+		}];
 		
 		_communicator = [[ServerCommunicator alloc] initWithDelegate:self withUserContact:_currentUser];
 		_syncQueue = [[NSOperationQueue alloc] init];
@@ -155,7 +180,7 @@ static id sharedServerSynchronizer = nil;
     NSError* error;
     NSData *data =[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
     if (error)
-		[[NSException exceptionWithName:@"Server Synchronizer" reason:error.localizedDescription userInfo:nil] raise];
+		[[NSException exceptionWithName:@"Server Synchronizer register user account" reason:error.localizedDescription userInfo:nil] raise];
     else
         return data;
 }
