@@ -13,7 +13,7 @@
 /// Change the navigation bar into a search input place
 - (IBAction)searchTap:(UINavigationItem *)sender
 {
-	self.navigationItem;
+//	self.navigationItem;
 }
 
 @end

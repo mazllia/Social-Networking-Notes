@@ -50,6 +50,9 @@
 		4DBFDB7B1800358900627D62 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DBFDB7A1800358900627D62 /* Images.xcassets */; };
 		4DBFDB96180036C300627D62 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DBFDB95180036C300627D62 /* Storyboard.storyboard */; };
 		4DC36ECA17F9E3BF004BBEBD /* Note+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC36EC917F9E3BF004BBEBD /* Note+Create.m */; };
+		4DCCD8A01855E96000F002CA /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DCCD89F1855E96000F002CA /* QuickLook.framework */; };
+		4DCCD8A31855F01200F002CA /* Multimedia+QuickLook.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DCCD8A21855F01200F002CA /* Multimedia+QuickLook.m */; };
+		4DCCD8A61856565D00F002CA /* NoteCreateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DCCD8A51856565D00F002CA /* NoteCreateVC.m */; };
 		4DD839AF18164FB2003B5DF9 /* TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBFDB981800379000627D62 /* TestVC.m */; };
 		4DD839B118165480003B5DF9 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD839B018165480003B5DF9 /* FacebookSDK.framework */; };
 		4DEA74C317E5AF5E004CB646 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEA74C217E5AF5E004CB646 /* CoreData.framework */; };
@@ -122,6 +125,11 @@
 		4DBFDB981800379000627D62 /* TestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestVC.m; sourceTree = "<group>"; };
 		4DC36EC817F9E3BF004BBEBD /* Note+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Note+Create.h"; sourceTree = "<group>"; };
 		4DC36EC917F9E3BF004BBEBD /* Note+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Note+Create.m"; sourceTree = "<group>"; };
+		4DCCD89F1855E96000F002CA /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
+		4DCCD8A11855F01200F002CA /* Multimedia+QuickLook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Multimedia+QuickLook.h"; sourceTree = "<group>"; };
+		4DCCD8A21855F01200F002CA /* Multimedia+QuickLook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Multimedia+QuickLook.m"; sourceTree = "<group>"; };
+		4DCCD8A41856565D00F002CA /* NoteCreateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteCreateVC.h; sourceTree = "<group>"; };
+		4DCCD8A51856565D00F002CA /* NoteCreateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteCreateVC.m; sourceTree = "<group>"; };
 		4DD839B018165480003B5DF9 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		4DEA74C217E5AF5E004CB646 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		4DEA74DA17E60A3B004CB646 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
@@ -143,6 +151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DCCD8A01855E96000F002CA /* QuickLook.framework in Frameworks */,
 				4D326447183250D000FD067A /* FacebookSDK.framework in Frameworks */,
 				4DEA74C317E5AF5E004CB646 /* CoreData.framework in Frameworks */,
 				4DB3817C17893E5E00AAB49E /* UIKit.framework in Frameworks */,
@@ -168,6 +177,8 @@
 		4D364E7217D8D4BE00354AE3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4DCCD8A41856565D00F002CA /* NoteCreateVC.h */,
+				4DCCD8A51856565D00F002CA /* NoteCreateVC.m */,
 				4D1E3506184D006C002EA4D3 /* FriendTVC.h */,
 				4D1E3507184D006C002EA4D3 /* FriendTVC.m */,
 				4D485335184D08E100ECDA4D /* NoteDetailTVC.h */,
@@ -203,6 +214,8 @@
 			children = (
 				4D60092C1813A3870005EE9A /* Multimedia+Create.h */,
 				4D60092D1813A3870005EE9A /* Multimedia+Create.m */,
+				4DCCD8A11855F01200F002CA /* Multimedia+QuickLook.h */,
+				4DCCD8A21855F01200F002CA /* Multimedia+QuickLook.m */,
 				4D71E69E180D910900E03071 /* NSObject+ClassName.h */,
 				4D71E69F180D910900E03071 /* NSObject+ClassName.m */,
 				4DFCAFE61804F67B009CBF0C /* Contact+Create.h */,
@@ -238,6 +251,7 @@
 		4DB3817A17893E5E00AAB49E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4DCCD89F1855E96000F002CA /* QuickLook.framework */,
 				4DD839B018165480003B5DF9 /* FacebookSDK.framework */,
 				4DEA74C217E5AF5E004CB646 /* CoreData.framework */,
 				4DB3817B17893E5E00AAB49E /* UIKit.framework */,
@@ -457,8 +471,10 @@
 				4D2BE5921850CD39004DB07A /* Contact.m in Sources */,
 				4D062572184CE436008A584A /* FBLoginVC.m in Sources */,
 				4D71E6A0180D910900E03071 /* NSObject+ClassName.m in Sources */,
+				4DCCD8A61856565D00F002CA /* NoteCreateVC.m in Sources */,
 				4D48533B184D0F3900ECDA4D /* NoteCell.m in Sources */,
 				4DC36ECA17F9E3BF004BBEBD /* Note+Create.m in Sources */,
+				4DCCD8A31855F01200F002CA /* Multimedia+QuickLook.m in Sources */,
 				4D364E7517D8D51B00354AE3 /* OldNoteTVC.m in Sources */,
 				4D90EC9917F9FC3100086489 /* UINavigationController+Search.m in Sources */,
 				4D364E7817D8DBF100354AE3 /* SortingViewController.m in Sources */,
