@@ -633,7 +633,7 @@
     [request setURL:url];
     
     [request setHTTPMethod:@"POST"];
-    [request setTimeoutInterval: 10.0]; // Will timeout after 2 seconds
+    [request setTimeoutInterval: 30.0]; // Will timeout after 30 seconds
     
     [request setHTTPBody:[httpBodyString dataUsingEncoding:NSUTF8StringEncoding]];
     NSError* error;
