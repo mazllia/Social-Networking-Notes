@@ -64,8 +64,6 @@
 	self.fbName = contactDictionary[ServerContactFBAccountName]? contactDictionary[ServerContactFBAccountName]: self.fbName;
 	self.fbUid = contactDictionary[ServerContactFbAccountIdentifier]? contactDictionary[ServerContactFbAccountIdentifier]: self.fbName;
 	
-	self.synced = @NO;
-	
 	return self;
 }
 

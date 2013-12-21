@@ -24,7 +24,6 @@
 
 // Override readonly
 @property (readwrite) Contact *currentUser;
-@property (readwrite) NSMutableArray *notesWithoutUID;
 
 @property (nonatomic, strong) NSOperationQueue *syncQueue;
 @property (nonatomic, strong) NSTimer *autoSyncTimer;
@@ -88,14 +87,6 @@ static id sharedServerSynchronizer = nil;
 	return self;
 }
 
-- (void)dealloc
-{
-	// Archive the notesWithoutUID
-	if (![NSKeyedArchiver archiveRootObject:self.notesWithoutUID toFile:[self notesWithoutUIDArchivePath]]) {
-		[[NSException exceptionWithName:@"ServerSynchronizer archive error" reason:[self notesWithoutUIDArchivePath] userInfo:nil] raise];
-	}
-}
-
 #pragma mark - Public APIs
 
 - (void)sync
@@ -143,12 +134,19 @@ static id sharedServerSynchronizer = nil;
 	}
 }
 
-- (NSMutableArray *)notesWithoutUID
+- (NSArray *)notesWithoutUID
 {
-	if (!_notesWithoutUID) {
-		_notesWithoutUID = [NSKeyedUnarchiver unarchiveObjectWithFile:[self notesWithoutUIDArchivePath]];
+	NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:@"Note"];
+	[fetch setPredicate:[NSPredicate predicateWithFormat:@"uid = NIL"]];
+	
+	NSError *err;
+	NSArray *result = [self.dataContext executeFetchRequest:fetch error:&err];
+	
+	if (err) {
+		[[NSException exceptionWithName:@"Server Synchronizer" reason:err.localizedDescription userInfo:nil] raise];
 	}
-	return _notesWithoutUID;
+	
+	return result;
 }
 
 #pragma mark - Private APIs
@@ -185,14 +183,6 @@ static id sharedServerSynchronizer = nil;
         return data;
 }
 
-- (NSString *)notesWithoutUIDArchivePath
-{
-	NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-	url = [url URLByAppendingPathComponent:@"Default Database" isDirectory:YES];
-	url = [url URLByAppendingPathComponent:@"notesWithoutUID.archive"];
-	return [url path];
-}
-
 - (NSArray *)notesNeedSync
 {
 	if (!_notesNeedSync) {
@@ -211,7 +201,6 @@ static id sharedServerSynchronizer = nil;
 				[[NSException exceptionWithName:@"ServerSynchronizer Note fetch error" reason:err.localizedDescription userInfo:nil] raise];
 			}
 			
-			[resultNotes addObjectsFromArray:self.notesWithoutUID];
 			_notesNeedSync = [resultNotes copy];
 		}];
 	}
@@ -330,6 +319,7 @@ static id sharedServerSynchronizer = nil;
 	}];
 	if (action==ServerActionPush) {
 		NSLog(@"finishContactSnyc");
+		[[NSNotificationCenter defaultCenter] postNotificationName:ServerSynchronizerNotificationContactSynced object:self];
 		self.syncingContacts = NO;
 		self.contactsNeedSync = nil;
 	}
@@ -342,7 +332,7 @@ static id sharedServerSynchronizer = nil;
 			/*
 			 1. Find related note in notesWithoutUID
 			 2. Match by createTime
-			 2.1 Match: Delete notesWithoutUID and insert into DB with synced=YES
+			 2.1 Match: Modify notesWithoutUID with synced=YES
 			 2.2 NO: insert into DB with synced=YES
 			 */
 		case ServerActionPush:
@@ -355,7 +345,7 @@ static id sharedServerSynchronizer = nil;
 					// 2
 					if ([aNoteWithoutUID.createTime isEqualToDate:serverNoteDate]) {
 						// 2.1
-						[self.notesWithoutUID removeObjectAtIndex:idx];
+						aNoteWithoutUID.uid = serverNoteInfo[ServerNoteUID];
 					}
 				}];
 			}
@@ -377,6 +367,7 @@ static id sharedServerSynchronizer = nil;
 	
 	if (action==ServerActionPush) {
 		NSLog(@"finishNoteSnyc");
+		[[NSNotificationCenter defaultCenter] postNotificationName:ServerSynchronizerNotificationNoteSynced object:self];
 		self.syncingNotes = NO;
 		self.notesNeedSync = nil;
 	}

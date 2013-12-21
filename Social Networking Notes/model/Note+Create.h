@@ -30,6 +30,16 @@
 			inManagedObjectContext:(NSManagedObjectContext *)context;
 
 /**
+ A method insert a Note without uid into Core Data. Create time determined by the time you call this method.
+ */
++ (instancetype)noteWithTitle:(NSString *)title
+					 location:(NSString *)location
+					  dueTime:(NSDate *)dueTime
+					receivers:(NSArray *)receivers
+						media:(NSArray *)media
+	   inManagedObjectContext:(NSManagedObjectContext *)context;
+
+/**
  Check if this Note is synced all the @e Multimedia in the relationship @b media are synced
  */
 - (BOOL)allSynced;

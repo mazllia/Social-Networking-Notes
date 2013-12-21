@@ -12,6 +12,7 @@
 #import "NSObject+ClassName.h"
 
 #import "ServerCommunicator.h"	// For parsing dictionary purpose
+#import "ServerSynchronizer.h"	// For current user
 
 @implementation Note (Create)
 
@@ -21,6 +22,9 @@
 							 media:(NSArray *)media
 			inManagedObjectContext:(NSManagedObjectContext *)context
 {
+	if (!noteDictionary[ServerNoteUID])
+		return nil;
+	
 	id note;
 	
 	/*
@@ -53,6 +57,29 @@
 	}
 	
 	return note;
+}
+
++ (instancetype)noteWithTitle:(NSString *)title
+					 location:(NSString *)location
+					  dueTime:(NSDate *)dueTime
+					receivers:(NSArray *)receivers
+						media:(NSArray *)media
+	   inManagedObjectContext:(NSManagedObjectContext *)context
+{
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+
+	NSDictionary *noteInfo = @{ServerNoteCreateTime: [dateFormatter stringFromDate:[NSDate date]],
+							   ServerNoteDueTime: [dateFormatter stringFromDate:dueTime],
+							   ServerNoteTitle: title,
+							   ServerNoteLocation: location,
+							   };
+	
+	Note *result = [[NSEntityDescription insertNewObjectForEntityForName:[self className] inManagedObjectContext:context]
+			initWithServerInfo:noteInfo sender:[ServerSynchronizer sharedSynchronizer].currentUser receivers:receivers media:media];
+	result.synced = @NO;
+	
+	return result;
 }
 
 - (BOOL)allSynced
@@ -107,6 +134,7 @@
 	
 	// 1
 	if ([serverInfoDate earlierDate:self.createTime]==self.createTime) {
+		self.synced = @NO;
 		return [self updateStatusWithServerInfo:noteDictionary receivers:receivers];
 	}
 	
@@ -120,8 +148,7 @@
 	
 	self.archived = noteDictionary[ServerNoteArchive]? noteDictionary[ServerNoteArchive]: self.archived;
 	
-//	self.synced = @YES;
-	self.synced = @NO;
+	self.synced = @YES;
 	
 	// 2: Deal with status
 	self = [self updateStatusWithServerInfo:noteDictionary receivers:receivers];

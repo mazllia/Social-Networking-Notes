@@ -290,14 +290,12 @@
     for(Contact* contactData in contacts)
     {
         NSString *isVip = [contactData.isVIP stringValue];
-
-		NSString *fuckString = [self userContact].fbUid;
-		
+				
         NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
 		if(contactData.uid)
 			data[ServerContactUID]=contactData.uid;
-		if(fuckString)
-			data[ServerContactFbAccountIdentifier]=fuckString;
+		if(contactData.fbUid)
+			data[ServerContactFbAccountIdentifier]=contactData.fbUid;
 		if (contactData.nickName)
 			data[ServerContactNickName] = contactData.nickName;
 		if (contactData.isVIP)
@@ -595,6 +593,7 @@
 	
     //開始與server 連線
     NSData *responseData =[self httpPostConnect:url httpBodyString:httpBodyString];
+	NSLog(@"%@", [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
     if(responseData){
         NSArray *jsonData = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
 		

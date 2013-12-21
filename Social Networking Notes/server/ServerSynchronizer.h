@@ -30,11 +30,6 @@
 @property (nonatomic, readonly) BOOL syncing;
 
 /**
- Stores newly created notes that do not have a uid yet. These notes are saved with archive instead of core data.
- */
-@property (nonatomic, strong, readonly) NSMutableArray *notesWithoutUID;
-
-/**
  Current login user of this device as a Contact instance. This performs the same method: @b registerUserAccount in @e ServerCommunicator when first use.
  */
 @property (nonatomic, strong, readonly) Contact *currentUser;
