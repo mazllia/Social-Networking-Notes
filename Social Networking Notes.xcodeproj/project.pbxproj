@@ -62,6 +62,7 @@
 		4DED360C17E617D400CB7FF5 /* DatabaseManagedDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DED360B17E617D400CB7FF5 /* DatabaseManagedDocument.m */; };
 		4DEDA820184B17DE00B01382 /* ServerSynchronizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA5E28F183683840013AC29 /* ServerSynchronizer.m */; };
 		4DEDA821184B17DE00B01382 /* ServerCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DED360717E6156800CB7FF5 /* ServerCommunicator.m */; };
+		4DF6E1EC1865D455001CF62F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DF6E1EB1865D455001CF62F /* MediaPlayer.framework */; };
 		4DFCAFE81804F67B009CBF0C /* Contact+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFCAFE71804F67B009CBF0C /* Contact+Create.m */; };
 		4DFD5EB1183FB3A90031AAC3 /* Multimedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD5EB0183FB3A90031AAC3 /* Multimedia.m */; };
 		4DFD5EB2183FB3A90031AAC3 /* Multimedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD5EB0183FB3A90031AAC3 /* Multimedia.m */; };
@@ -140,6 +141,7 @@
 		4DED360717E6156800CB7FF5 /* ServerCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerCommunicator.m; sourceTree = "<group>"; };
 		4DED360A17E617D400CB7FF5 /* DatabaseManagedDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseManagedDocument.h; sourceTree = "<group>"; };
 		4DED360B17E617D400CB7FF5 /* DatabaseManagedDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseManagedDocument.m; sourceTree = "<group>"; };
+		4DF6E1EB1865D455001CF62F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		4DFCAFE61804F67B009CBF0C /* Contact+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Contact+Create.h"; sourceTree = "<group>"; };
 		4DFCAFE71804F67B009CBF0C /* Contact+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Contact+Create.m"; sourceTree = "<group>"; };
 		4DFD5EAF183FB3A90031AAC3 /* Multimedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Multimedia.h; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DF6E1EC1865D455001CF62F /* MediaPlayer.framework in Frameworks */,
 				4DCCD8A01855E96000F002CA /* QuickLook.framework in Frameworks */,
 				4D326447183250D000FD067A /* FacebookSDK.framework in Frameworks */,
 				4DEA74C317E5AF5E004CB646 /* CoreData.framework in Frameworks */,
@@ -251,6 +254,7 @@
 		4DB3817A17893E5E00AAB49E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4DF6E1EB1865D455001CF62F /* MediaPlayer.framework */,
 				4DCCD89F1855E96000F002CA /* QuickLook.framework */,
 				4DD839B018165480003B5DF9 /* FacebookSDK.framework */,
 				4DEA74C217E5AF5E004CB646 /* CoreData.framework */,
