@@ -9,10 +9,12 @@
 #import "FriendCell.h"
 #import "Contact.h"
 
+#import <FacebookSDK/FBRequestConnection.h>
+
 @interface FriendCell ()
-@property (weak, nonatomic) IBOutlet UILabel *name;
-@property (weak, nonatomic) IBOutlet FBProfilePictureView *picture;
-@property (weak, nonatomic) IBOutlet UISwitch *isVIP;
+@property (weak, nonatomic) IBOutlet FBProfilePictureView *pictureView;
+@property (weak, nonatomic) IBOutlet UILabel *titleView;
+@property (weak, nonatomic) IBOutlet UILabel *vipView;
 
 @end
 
@@ -21,9 +23,9 @@
 - (void)setContact:(Contact *)contact
 {
 	if (_contact!=contact) {
-		self.name.text = contact.nickName? contact.nickName: contact.fbName;
-		self.picture.profileID = contact.fbUid;
-		self.isVIP.on = [contact.isVIP boolValue];
+		self.titleView.text = contact.nickName? contact.nickName: contact.fbName;
+		self.pictureView.profileID = contact.fbUid;
+		self.vipView.hidden = [contact.isVIP boolValue]? NO: YES;
 		
 		_contact = contact;
 	}

@@ -65,18 +65,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"FriendTableCell";
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-	Contact *contact = [self.fetchedResultsController objectAtIndexPath:indexPath];
-	
-	FBProfilePictureView *fbPictureView = [cell viewWithTag:3];
-	fbPictureView.profileID = contact.fbUid;
-	
-	UILabel *title = [cell viewWithTag:1];
-	title.text = contact.nickName? contact.nickName: contact.fbName;
-	
-	UISwitch *vip = [cell viewWithTag:2];
-	vip.on = [contact.isVIP boolValue];
-	
+	FriendCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	cell.contact = [self.fetchedResultsController objectAtIndexPath:indexPath];
+		
 	return cell;
 }
 
