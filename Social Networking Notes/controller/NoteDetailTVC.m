@@ -14,6 +14,7 @@
 
 #import "FriendCell.h"
 #import "FriendTVC.h"
+#import "EditNoteDetailVC.h"
 
 #import "ServerSynchronizer.h" // Determine if user is sender
 
@@ -46,6 +47,16 @@
 	NSLog(@"%@", self.note.description);
 }
 
+- (void)saveNewlyCreatedNote
+{
+	
+}
+
+- (void)discardNewlyCreatedNote
+{
+	
+}
+
 #pragma mark - View & Class
 
 - (void)configureArchiveBottumView
@@ -73,25 +84,29 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	// Set up navigation item
+	if (self.note.sender==[ServerSynchronizer sharedSynchronizer].currentUser)
+		self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	
 	if (!self.note.uid) {
 		self.navigationItem.rightBarButtonItem.enabled = NO;
 		self.navigationItem.title = @"Sending";
 	}
 	
-	if (self.note.sender==[ServerSynchronizer sharedSynchronizer].currentUser)
-		self.navigationItem.rightBarButtonItem = self.editButtonItem;
-	
-	// Set up header view
-	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setDateFormat:@"EEE, MMM-d HH:mm"];
-	self.titleLabel.text = self.note.title;
-	self.placeLabel.text = self.note.location;
-	self.expireLabel.text = [dateFormatter stringFromDate:self.note.dueTime];
-	
-	// Set up footer view
-	self.acceptButton.enabled = ([ServerSynchronizer sharedSynchronizer].currentUser==self.note.sender)? NO: YES;
-	[self configureAcceptBottumView];
-	[self configureArchiveBottumView];
+	if (self.note) {
+		// Set up header view
+		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+		[dateFormatter setDateFormat:@"EEE, MMM-d HH:mm"];
+		self.titleLabel.text = self.note.title;
+		self.placeLabel.text = self.note.location;
+		self.expireLabel.text = [dateFormatter stringFromDate:self.note.dueTime];
+		
+		// Set up footer view
+		self.acceptButton.enabled = ([ServerSynchronizer sharedSynchronizer].currentUser==self.note.sender)? NO: YES;
+		[self configureAcceptBottumView];
+		[self configureArchiveBottumView];
+	} else {
+		self.editing = YES;
+	}
 }
 
 - (NSOperationQueue *)fetchPictureQueue
@@ -356,7 +371,15 @@
 		friendTVC.selectDelegate = self;
 	} else if ([segue.identifier isEqualToString:@"Add Attachment"]) {
 		
+	} else if ([segue.identifier isEqualToString:@"Edit Note Detail"]) {
+		EditNoteDetailVC *noteDetailVC = (EditNoteDetailVC *)segue.destinationViewController;
+		noteDetailVC.note = self.note;
 	}
+}
+
+- (IBAction)finishEditDetail:(UIStoryboardSegue *)segue
+{
+	
 }
 
 - (void)friendTVC:(FriendTVC *)friendTVC didSelectContacts:(NSArray *)contacts

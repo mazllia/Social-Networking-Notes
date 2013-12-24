@@ -114,8 +114,10 @@
 	NoteDetailTVC *noteDetailTVC = (NoteDetailTVC *)segue.destinationViewController;
 	if ([segue.identifier isEqualToString:@"Show Note"]) {
 		noteDetailTVC.note = ((NoteCell *)sender).note;
-	} else if ([segue.identifier isEqualToString:@"Create Note"]) {
-		//
+	} else if ([segue.identifier isEqualToString:@"Create Note"]) {		
+		NSManagedObjectContext *context = [DatabaseManagedDocument sharedDatabase].managedObjectContext;
+		Note *newNote = [Note noteWithTitle:@"Title" location:@"Location" dueTime:[NSDate date] receivers:nil media:nil inManagedObjectContext:context];
+		noteDetailTVC.note = newNote;
 	}
 }
 

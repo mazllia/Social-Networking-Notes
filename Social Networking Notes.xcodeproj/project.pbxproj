@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4D022CDB17A94E1400A78423 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D022CD917A94E1400A78423 /* Model.xcdatamodeld */; };
 		4D062572184CE436008A584A /* FBLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D062571184CE436008A584A /* FBLoginVC.m */; };
+		4D1234E3186A32E700CFC196 /* EditNoteDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1234E2186A32E700CFC196 /* EditNoteDetailVC.m */; };
 		4D1557C8184F27A7002D8A00 /* RootTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1557C7184F27A7002D8A00 /* RootTabBarViewController.m */; };
 		4D1E3508184D006C002EA4D3 /* FriendTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E3507184D006C002EA4D3 /* FriendTVC.m */; };
 		4D23A3CC1840489500463B8E /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D23A3CB1840489500463B8E /* Note.m */; };
@@ -73,6 +74,8 @@
 		4D022CDA17A94E1400A78423 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		4D062570184CE436008A584A /* FBLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoginVC.h; sourceTree = "<group>"; };
 		4D062571184CE436008A584A /* FBLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginVC.m; sourceTree = "<group>"; };
+		4D1234E1186A32E700CFC196 /* EditNoteDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditNoteDetailVC.h; sourceTree = "<group>"; };
+		4D1234E2186A32E700CFC196 /* EditNoteDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditNoteDetailVC.m; sourceTree = "<group>"; };
 		4D1557C6184F27A7002D8A00 /* RootTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTabBarViewController.h; sourceTree = "<group>"; };
 		4D1557C7184F27A7002D8A00 /* RootTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabBarViewController.m; sourceTree = "<group>"; };
 		4D1E3506184D006C002EA4D3 /* FriendTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendTVC.h; sourceTree = "<group>"; };
@@ -183,6 +186,8 @@
 		4D364E7217D8D4BE00354AE3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4D1234E1186A32E700CFC196 /* EditNoteDetailVC.h */,
+				4D1234E2186A32E700CFC196 /* EditNoteDetailVC.m */,
 				4DCCD8A41856565D00F002CA /* NoteCreateVC.h */,
 				4DCCD8A51856565D00F002CA /* NoteCreateVC.m */,
 				4D1E3506184D006C002EA4D3 /* FriendTVC.h */,
@@ -491,6 +496,7 @@
 				4D48533E184D1D3F00ECDA4D /* FriendCell.m in Sources */,
 				4DEA74DC17E60A3B004CB646 /* CoreDataTableViewController.m in Sources */,
 				4DEA74DF17E60DCE004CB646 /* NoteTVC.m in Sources */,
+				4D1234E3186A32E700CFC196 /* EditNoteDetailVC.m in Sources */,
 				4DED360817E6156800CB7FF5 /* ServerCommunicator.m in Sources */,
 				4DA5E290183683840013AC29 /* ServerSynchronizer.m in Sources */,
 				4DED360C17E617D400CB7FF5 /* DatabaseManagedDocument.m in Sources */,
