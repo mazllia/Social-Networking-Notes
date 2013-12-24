@@ -12,6 +12,15 @@
 
 @implementation AppDelegate
 
+#pragma mark - Local notification
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+	NSLog(@"%@", notification);
+}
+
+#pragma mark - App state changes
+
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     // attempt to extract a token from the url
@@ -29,9 +38,16 @@
 	return YES;
 }
 
+// UILocalNotification also sends to here
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+	// Response to UILocalNotification
+	application.applicationIconBadgeNumber = 0;
+	NSDictionary *localNotification = launchOptions[UIApplicationLaunchOptionsLocalNotificationKey];
+	if (localNotification) {
+		NSLog(@"%@", localNotification);
+	}
+	
     return YES;
 }
 							
@@ -45,6 +61,10 @@
 {
 	// Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
 	// If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+	DatabaseManagedDocument *db = [DatabaseManagedDocument sharedDatabase];
+	[db.managedObjectContext performBlockAndWait:^{
+		[db saveToURL:[db fileURL] forSaveOperation:UIDocumentSaveForOverwriting completionHandler:nil];
+	}];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

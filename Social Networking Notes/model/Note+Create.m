@@ -8,6 +8,7 @@
 
 #import "Note+Create.h"
 
+#import "Note+LocalNotification.h"
 #import "Multimedia.h"
 #import "NSObject+ClassName.h"
 
@@ -158,6 +159,12 @@
 	self.receivers = [NSSet setWithArray:receivers];
 	
 	self.media = [NSOrderedSet orderedSetWithArray:media];
+	
+	/*
+	 After note configuration, fire UILocalNotification with complete information.
+	 */
+	NSInvocationOperation *fireNoteOperation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(fireLocalNotification) object:nil];
+	[[NSOperationQueue mainQueue] addOperation:fireNoteOperation];
 	
 	return self;
 }
