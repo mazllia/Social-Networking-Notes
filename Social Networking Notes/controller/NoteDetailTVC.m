@@ -87,10 +87,10 @@
 	if (self.note.sender==[ServerSynchronizer sharedSynchronizer].currentUser)
 		self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
-	if (!self.note.uid) {
-		self.navigationItem.rightBarButtonItem.enabled = NO;
-		self.navigationItem.title = @"Sending";
-	}
+//	if (!self.note.uid) {
+//		self.navigationItem.rightBarButtonItem.enabled = NO;
+//		self.navigationItem.title = @"Sending";
+//	}
 	
 	if (self.note) {
 		// Set up header view
