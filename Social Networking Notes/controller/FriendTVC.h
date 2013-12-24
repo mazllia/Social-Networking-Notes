@@ -8,6 +8,15 @@
 
 #import "CoreDataTableViewController.h"
 
+@class FriendTVC;
+@protocol FriendTVCDelegate <NSObject>
+@required
+- (void)friendTVC:(FriendTVC *)friendTVC didSelectContacts:(NSArray *)contacts;
+@end
+
 @interface FriendTVC : CoreDataTableViewController
+
+@property (nonatomic, weak) id<FriendTVCDelegate> selectDelegate;
+- (void)finishSelectContacts;
 
 @end

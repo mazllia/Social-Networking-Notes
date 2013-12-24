@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <QuickLook/QuickLook.h>
+#import "FriendTVC.h"
 
 @class Note;
 
-@interface NoteDetailTVC : UITableViewController<QLPreviewControllerDataSource>
+@interface NoteDetailTVC : UITableViewController<FriendTVCDelegate, QLPreviewControllerDataSource>
 
 @property (nonatomic, strong) Note *note;
 

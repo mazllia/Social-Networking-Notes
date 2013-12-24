@@ -60,6 +60,15 @@
 																				   cacheName:nil];
 }
 
+- (void)finishSelectContacts
+{
+	NSMutableArray *result = [NSMutableArray array];
+	for (NSIndexPath *selected in [self.tableView indexPathsForSelectedRows]) {
+		[result addObject:((FriendCell *)[self.tableView cellForRowAtIndexPath:selected]).contact];
+	}
+	[self.selectDelegate friendTVC:self didSelectContacts:result];
+}
+
 #pragma mark - UITV Data source
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -75,7 +84,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	FriendCell *friendCell = [self.tableView cellForRowAtIndexPath:indexPath];
+	FriendCell *friendCell = (FriendCell *)[self.tableView cellForRowAtIndexPath:indexPath];
 	NSLog(@"%@", friendCell.contact);
 }
 
