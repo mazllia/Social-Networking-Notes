@@ -17,6 +17,7 @@
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
 	NSLog(@"%@", notification);
+	application.applicationIconBadgeNumber = 0;
 }
 
 #pragma mark - App state changes
@@ -42,12 +43,17 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	// Response to UILocalNotification
-	application.applicationIconBadgeNumber = 0;
-	NSDictionary *localNotification = launchOptions[UIApplicationLaunchOptionsLocalNotificationKey];
+	UILocalNotification *localNotification = launchOptions[UIApplicationLaunchOptionsLocalNotificationKey];
+	NSLog(@"%@", launchOptions[UIApplicationLaunchOptionsLocalNotificationKey]);
 	if (localNotification) {
 		NSLog(@"%@", localNotification);
+		[[[UIAlertView alloc] initWithTitle:@"Notification!" message:localNotification.userInfo[@"sticky_uid"] delegate:Nil cancelButtonTitle:@"Okay" otherButtonTitles:nil] show];
+		// Show badge number ono the alarm view
+		UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
+		((UIViewController *)tabBarController.viewControllers[0]).tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld", (long)application.applicationIconBadgeNumber];
 	}
 	
+	application.applicationIconBadgeNumber = 0;
     return YES;
 }
 							

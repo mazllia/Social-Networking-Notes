@@ -161,10 +161,12 @@
 	self.media = [NSOrderedSet orderedSetWithArray:media];
 	
 	/*
-	 After note configuration, fire UILocalNotification with complete information.
+	 After note configuration, fire UILocalNotification with complete information if user is one of the receivers.
 	 */
-	NSInvocationOperation *fireNoteOperation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(fireLocalNotification) object:nil];
-	[[NSOperationQueue mainQueue] addOperation:fireNoteOperation];
+	if ([receivers containsObject:[ServerSynchronizer sharedSynchronizer].currentUser]) {
+		NSInvocationOperation *fireNoteOperation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(fireLocalNotification) object:nil];
+		[[NSOperationQueue mainQueue] addOperation:fireNoteOperation];
+	}
 	
 	return self;
 }

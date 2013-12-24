@@ -21,7 +21,7 @@
 	
 	// Determine note type
 	BOOL amISender = [self.receivers containsObject:[ServerSynchronizer sharedSynchronizer].currentUser];
-	BOOL isNewlyCreate = self.uid? YES: NO;
+	BOOL isNewlyCreate = self.uid? NO: YES;
 	
 	NoteLocalNotificationNoteType noteTypeValue = amISender?
 	(isNewlyCreate? NoteLocalNotificationNoteType1: NoteLocalNotificationNoteType2):
@@ -30,7 +30,7 @@
 	
 	// Set up userInfo dictionary
 	static NSString *NoteTypeKey =  @"NoteType";
-	NSMutableDictionary *notificationUserInfo = isNewlyCreate? [@{ServerNoteUID: self.uid} mutableCopy]: [@{ServerNoteCreateTime: self.createTime} mutableCopy];
+	NSMutableDictionary *notificationUserInfo = isNewlyCreate? [@{ServerNoteCreateTime: self.createTime} mutableCopy]: [@{ServerNoteUID: self.uid} mutableCopy];
 	[notificationUserInfo setValue:noteType forKey:NoteTypeKey];
 	
 	/*
@@ -48,7 +48,7 @@
 				NoteLocalNotificationNoteType notificationNoteType = [(NSNumber *)obj.userInfo[NoteTypeKey] intValue];
 				BOOL isTargetType1 = notificationNoteType & NoteLocalNotificationNoteType1;
 				BOOL isTargetType2 = notificationNoteType & NoteLocalNotificationNoteType2;
-				BOOL shouldDelete = (isTargetType1 & [obj.userInfo[ServerNoteCreateTime] isEqualToDate:self.createTime]) && (isTargetType2 & [obj.userInfo[ServerNoteUID] isEqualToString:self.uid]);
+				BOOL shouldDelete = (isTargetType1 & [obj.userInfo[ServerNoteCreateTime] isEqualToDate:self.createTime]) || (isTargetType2 & [obj.userInfo[ServerNoteUID] isEqualToString:self.uid]);
 				if (shouldDelete) {
 					[app cancelLocalNotification:obj];
 					*stop = YES;
@@ -75,15 +75,21 @@
 	}
 	
 	static NSString *NotificationAlertActionString = @"Detail";
-	// Configure new UILocalNotification and insert into UIApplication
-	UILocalNotification *notification = [[UILocalNotification alloc] init];
-	notification.fireDate = self.dueTime;
-	notification.alertBody = [NSString stringWithFormat:@"%@ %@.", self.title, self.location];
-	notification.alertAction = NotificationAlertActionString;
-	notification.applicationIconBadgeNumber = 1;
-	notification.userInfo = notificationUserInfo;
-	
-	[app scheduleLocalNotification:notification];
+	/*
+	 Block earlier fire date then
+	 Configure new UILocalNotification and insert into UIApplication
+	 */
+	NSDate *now = [NSDate date];
+	if ([now earlierDate:self.dueTime]==now) {
+		UILocalNotification *notification = [[UILocalNotification alloc] init];
+		notification.fireDate = self.dueTime;
+		notification.alertBody = [NSString stringWithFormat:@"%@ %@.", self.title, self.location];
+		notification.alertAction = NotificationAlertActionString;
+		notification.applicationIconBadgeNumber = 1;
+		notification.userInfo = notificationUserInfo;
+		
+		[app scheduleLocalNotification:notification];
+	}
 }
 
 

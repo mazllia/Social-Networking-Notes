@@ -26,7 +26,7 @@ typedef enum {
 
 /**
  Insert or replace corresponding @e UILocalNotification in the @e UIApplication singleton. In another word, make sure there is only one @e UILocalNotification of this note in this application. The property @b userInfo of fired @e UILocalNotification always contains 2 key-value pairs. One of the pairs key is: @b ServerNoteUID if note has property @b uid; @b ServerNoteCreateTime otherwise. Another of the pairs key is @b NoteType with value @e NoteLocalNotificationNoteType
- @note This method use @e UIKit and thus can only executed in @b main thread.
+ @note This method use @e UIKit and thus can only executed in @b main thread. Also, if @b dueTime is earlier than now, notification will not fire.
  */
 - (void)fireLocalNotification;
 
