@@ -204,6 +204,7 @@ static id sharedServerSynchronizer = nil;
 			_notesNeedSync = [resultNotes copy];
 		}];
 	}
+	NSLog(@"%@ notes need sync", _notesNeedSync);
 	return _notesNeedSync;
 }
 
@@ -224,6 +225,7 @@ static id sharedServerSynchronizer = nil;
 			_contactsNeedSync = resultContacts;
 		}];
 	}
+	NSLog(@"%@ contacts need sync", _contactsNeedSync);
 	return _contactsNeedSync;
 }
 

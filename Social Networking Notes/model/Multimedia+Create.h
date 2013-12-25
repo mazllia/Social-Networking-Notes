@@ -37,6 +37,8 @@ typedef enum {
  */
 - (NSData *)data;
 
+- (UIImage *)image;
+
 - (NSString *)localURL;
 
 @end

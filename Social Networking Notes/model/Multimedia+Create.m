@@ -55,6 +55,11 @@
 	return [[NSFileManager defaultManager] contentsAtPath:[self localURL]];
 }
 
+- (UIImage *)image
+{
+	return [UIImage imageWithData:[self data]];
+}
+
 - (NSString *)localURL
 {
 	NSError *err;
@@ -75,10 +80,11 @@
 {
 	// Deal with properties
 	self.fileName = multimediaDictionary[ServerMediaFileName];
+	self.type = multimediaDictionary[ServerMediaType];
 	self.synced = multimediaDictionary[ServerMediaSync]? multimediaDictionary[ServerMediaSync]: self.synced;
 	
 	// Save the data file
-	[data writeToURL:[NSURL URLWithString:[self localURL]] atomically:YES];
+	[data writeToURL:[NSURL fileURLWithPath:[self localURL] isDirectory:NO] atomically:YES];
 	
 	return self;
 }

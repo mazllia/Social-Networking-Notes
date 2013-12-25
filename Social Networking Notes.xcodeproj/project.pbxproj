@@ -10,6 +10,7 @@
 		4D022CDB17A94E1400A78423 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D022CD917A94E1400A78423 /* Model.xcdatamodeld */; };
 		4D062572184CE436008A584A /* FBLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D062571184CE436008A584A /* FBLoginVC.m */; };
 		4D1234E3186A32E700CFC196 /* EditNoteDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1234E2186A32E700CFC196 /* EditNoteDetailVC.m */; };
+		4D1234E6186A6AD800CFC196 /* SelectAttachmentTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1234E5186A6AD800CFC196 /* SelectAttachmentTVC.m */; };
 		4D1557C8184F27A7002D8A00 /* RootTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1557C7184F27A7002D8A00 /* RootTabBarViewController.m */; };
 		4D1E3508184D006C002EA4D3 /* FriendTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E3507184D006C002EA4D3 /* FriendTVC.m */; };
 		4D23A3CC1840489500463B8E /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D23A3CB1840489500463B8E /* Note.m */; };
@@ -76,6 +77,8 @@
 		4D062571184CE436008A584A /* FBLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginVC.m; sourceTree = "<group>"; };
 		4D1234E1186A32E700CFC196 /* EditNoteDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditNoteDetailVC.h; sourceTree = "<group>"; };
 		4D1234E2186A32E700CFC196 /* EditNoteDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditNoteDetailVC.m; sourceTree = "<group>"; };
+		4D1234E4186A6AD800CFC196 /* SelectAttachmentTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectAttachmentTVC.h; sourceTree = "<group>"; };
+		4D1234E5186A6AD800CFC196 /* SelectAttachmentTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectAttachmentTVC.m; sourceTree = "<group>"; };
 		4D1557C6184F27A7002D8A00 /* RootTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTabBarViewController.h; sourceTree = "<group>"; };
 		4D1557C7184F27A7002D8A00 /* RootTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabBarViewController.m; sourceTree = "<group>"; };
 		4D1E3506184D006C002EA4D3 /* FriendTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendTVC.h; sourceTree = "<group>"; };
@@ -186,6 +189,8 @@
 		4D364E7217D8D4BE00354AE3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4D1234E4186A6AD800CFC196 /* SelectAttachmentTVC.h */,
+				4D1234E5186A6AD800CFC196 /* SelectAttachmentTVC.m */,
 				4D1234E1186A32E700CFC196 /* EditNoteDetailVC.h */,
 				4D1234E2186A32E700CFC196 /* EditNoteDetailVC.m */,
 				4DCCD8A41856565D00F002CA /* NoteCreateVC.h */,
@@ -499,6 +504,7 @@
 				4D1234E3186A32E700CFC196 /* EditNoteDetailVC.m in Sources */,
 				4DED360817E6156800CB7FF5 /* ServerCommunicator.m in Sources */,
 				4DA5E290183683840013AC29 /* ServerSynchronizer.m in Sources */,
+				4D1234E6186A6AD800CFC196 /* SelectAttachmentTVC.m in Sources */,
 				4DED360C17E617D400CB7FF5 /* DatabaseManagedDocument.m in Sources */,
 				4D1557C8184F27A7002D8A00 /* RootTabBarViewController.m in Sources */,
 				4D1E3508184D006C002EA4D3 /* FriendTVC.m in Sources */,

@@ -73,12 +73,14 @@
 	NSDictionary *noteInfo = @{ServerNoteCreateTime: [dateFormatter stringFromDate:[NSDate date]],
 							   ServerNoteDueTime: [dateFormatter stringFromDate:dueTime],
 							   ServerNoteTitle: title,
-							   ServerNoteLocation: location,
+							   ServerNoteLocation: location
 							   };
 	
 	Note *result = [[NSEntityDescription insertNewObjectForEntityForName:[self className] inManagedObjectContext:context]
 			initWithServerInfo:noteInfo sender:[ServerSynchronizer sharedSynchronizer].currentUser receivers:receivers media:media];
 	result.synced = @NO;
+	result.read = @NO;
+	result.accepted = @NO;
 	
 	return result;
 }

@@ -11,12 +11,15 @@
 #import "Note.h"
 #import "Contact.h"
 #import "Multimedia+QuickLook.h"
+#import "Multimedia+Create.h"
 
 #import "FriendCell.h"
 #import "FriendTVC.h"
 #import "EditNoteDetailVC.h"
 
+#import "DatabaseManagedDocument.h"
 #import "ServerSynchronizer.h" // Determine if user is sender
+#import "ServerCommunicator.h"
 
 @interface NoteDetailTVC ()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -180,7 +183,7 @@
 	static NSString *ReceiverCellIdentifier = @"ReceiverCell";
 	static NSString *AttachmentCellIdentifier = @"AttachmentCell";
 	static NSString *AddReceiverCellIdentifier = @"AddReceiverCell";
-		static NSString *AddAttachmentCellIdentifier = @"AddAttachmentCell";
+	static NSString *AddAttachmentCellIdentifier = @"AddAttachmentCell";
 	
 	UITableViewCell *cell;
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -217,8 +220,10 @@
 		}
 		case 3:
 		{
+			Multimedia *media = self.note.media[indexPath.row];
 			cell = [tableView dequeueReusableCellWithIdentifier:AttachmentCellIdentifier];
-			cell.textLabel.text = ((Multimedia *)self.note.media[indexPath.row]).fileName;
+			cell.textLabel.text = media.type;
+			cell.imageView.image = [media image];
 			break;
 		}
 		case 2:
@@ -300,7 +305,9 @@
 		case 3:
 		{
 			Multimedia *multimediaNeedRemove = self.note.media[indexPath.row];
-			[self.note removeMediaObject:multimediaNeedRemove];
+			NSMutableArray *mediaArray = [[self.note.media array] mutableCopy];
+			[mediaArray removeObject:multimediaNeedRemove];
+			self.note.media = [NSOrderedSet orderedSetWithArray:mediaArray];
 			[indexSet addIndex:3];
 			break;
 		}
@@ -309,9 +316,14 @@
 			break;
 		
 		case 4:
+		{
 			[self performSegueWithIdentifier:AddAttachment sender:self];
+//			UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+//			imagePicker.delegate = self;
+//			
+//			[self presentViewController:imagePicker animated:YES completion:nil];
 			break;
-			
+		}
 		default:
 			break;
 	}
@@ -353,6 +365,37 @@
 	return self.note.media[index];
 }
 
+#pragma mark - Image picker controller delegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+	UIImage *image = info[@"UIImagePickerControllerOriginalImage"];
+	NSString *imageType = info[@"UIImagePickerControllerMediaType"];
+	NSData *imageData;
+	
+	if ([imageType isEqualToString:kUTTypeImage])
+		imageData = UIImageJPEGRepresentation(image, 0.2);
+	
+	Multimedia *newAttachment = [Multimedia multimediaWithServerInfo:@{
+										   ServerMediaFileName: [[[NSUUID UUID] UUIDString] stringByAppendingPathExtension:@"jpeg"],
+										   ServerMediaType: imageType
+										   }
+									data:imageData
+				  inManagedObjectContext:[DatabaseManagedDocument sharedDatabase].managedObjectContext];
+	
+	NSMutableOrderedSet *noteMedia = [NSMutableOrderedSet orderedSetWithOrderedSet:self.note.media];
+//	[self.note addMedia:[NSOrderedSet orderedSetWithObject:newAttachment]];
+	[noteMedia addObject:newAttachment];
+	self.note.media = noteMedia;
+	[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:3] withRowAnimation:UITableViewRowAnimationAutomatic];
+	[self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+	[self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -370,16 +413,12 @@
 		friendTVC.tableView.allowsSelection = YES;
 		friendTVC.selectDelegate = self;
 	} else if ([segue.identifier isEqualToString:@"Add Attachment"]) {
-		
+		UIImagePickerController *imagePicker = [(UIImagePickerController *)segue.destinationViewController init];
+		imagePicker.delegate = self;
 	} else if ([segue.identifier isEqualToString:@"Edit Note Detail"]) {
 		EditNoteDetailVC *noteDetailVC = (EditNoteDetailVC *)segue.destinationViewController;
 		noteDetailVC.note = self.note;
 	}
-}
-
-- (IBAction)finishEditDetail:(UIStoryboardSegue *)segue
-{
-	
 }
 
 - (void)friendTVC:(FriendTVC *)friendTVC didSelectContacts:(NSArray *)contacts
