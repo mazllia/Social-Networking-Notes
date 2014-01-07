@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <QuickLook/QuickLook.h>
+#import <MobileCoreServices/UTCoreTypes.h>
 #import "FriendTVC.h"
 
 @class Note;
 
-@interface NoteDetailTVC : UITableViewController<FriendTVCDelegate, QLPreviewControllerDataSource>
+@interface NoteDetailTVC : UITableViewController<FriendTVCDelegate, UIImagePickerControllerDelegate, QLPreviewControllerDataSource>
 
 @property (nonatomic, strong) Note *note;
 

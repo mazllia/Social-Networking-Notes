@@ -445,9 +445,12 @@
                 //NSLog(@"%@",fileName);
                 NSString* exist = [file objectForKey:@"exist"];
                 
-                NSString* path = [self localURL:fileName];
-                NSURL* u =[NSURL URLWithString:path];
-                NSData * fileData = [NSData dataWithContentsOfURL:u];
+//                NSString* path = [self localURL:fileName];
+//                NSURL* u =[NSURL URLWithString:path];
+//                NSData * fileData = [NSData dataWithContentsOfURL:u];
+				NSString *documentURL = [[[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil] path];
+				documentURL = [documentURL stringByAppendingPathComponent:fileName];
+				NSData *fileData = [[NSFileManager defaultManager] contentsAtPath:documentURL];
                 
                 if (fileData ==nil && [exist isEqualToString:@"1"])
                 {
@@ -461,6 +464,8 @@
                     [self.operationQueue addOperationWithBlock:^{
                         [self uploadFile:noteUID fileData:fileData filePath:[self localURL:fileName] fileName:fileName];
                     }];
+					/*
+					[self uploadFile:noteUID fileData:fileData filePath:[self localURL:fileName] fileName:fileName];*/
                 }
             }
             
