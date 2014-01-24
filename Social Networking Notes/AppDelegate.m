@@ -27,7 +27,7 @@
     // attempt to extract a token from the url
     return [FBAppCall handleOpenURL:url
                   sourceApplication:sourceApplication
-                    fallbackHandler:^(FBAppCall *call) {
+                    fallbackHandler:^(FBAppCall *call){
                         NSLog(@"In fallback handler");
                     }];
 }

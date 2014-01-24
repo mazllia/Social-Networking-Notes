@@ -13,7 +13,7 @@
 
 @class Contact;
 /**
- A singleton class scan through local Core Data and sync with cloud server, providing manual and automatic sync. This class won't start until the
+ A singleton class scan through local Core Data and sync with cloud server, providing manual and automatic sync.
  @discussion Only use this class after user account is initialized.
  */
 @interface ServerSynchronizer : NSObject

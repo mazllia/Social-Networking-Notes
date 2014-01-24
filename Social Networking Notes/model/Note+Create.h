@@ -44,6 +44,9 @@
  */
 - (BOOL)allSynced;
 
+/**
+ Update only property @b read and @b accept. Usually used when local information is newer than server information, and thus only needs to update receiver's status.
+ */
 - (instancetype)updateStatusWithServerInfo:(NSDictionary *)noteDictionary
 								 receivers:(NSArray *)receivers;
 
