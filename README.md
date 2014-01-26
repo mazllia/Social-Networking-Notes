@@ -24,3 +24,8 @@ We have the following 2 final demo videos from the perspectives of sender and re
 
 1. [Sender view](http://youtu.be/pTC3nGYvzHM)
 2. [Receiver view](http://youtu.be/P4Z8ZFLDBWQ)
+
+Server side source code
+------
+
+link:(http://github.com/JASPER012/Social-Networking-NotesServer-php)
