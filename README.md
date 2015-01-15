@@ -14,7 +14,7 @@ Branches
 --------
 
 1. alpha: Nerely empty here (JASPER012 accidentally commited codes here), need to be merged from alpha-serverTest
-2. alpha-serverTest: Based on _alph_. Finish the Models in iOS and server communication. Need to be merged from Storyboard-Time
+2. alpha-serverTest: Based on _alpha_. Finish the Models in iOS and server communication. Need to be merged from Storyboard-Time
 3. Storyboard-Time: Based on _alpha-serverTest_. Implement the Controllers and Views. Also bugs fixed in Models.
 
 Result
